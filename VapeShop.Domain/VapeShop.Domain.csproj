@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entity\User\" />
     <Folder Include="Entity\Functions\" />
   </ItemGroup>
 
