@@ -16,7 +16,7 @@ namespace VapeShop.Domain.Entity.Product
 
         public double Nicotine_concentration { get; set; }
 
-        public SqlMoney Additional_price { get; set; }
+        public decimal Additional_price { get; set; }
 
 		public ICollection<Liquid_param>? Liquid_Params { get; set; }
 

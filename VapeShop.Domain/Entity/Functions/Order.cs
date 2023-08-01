@@ -17,7 +17,7 @@ namespace VapeShop.Domain.Entity.Functions
 
 		public PaymentMethod PaymentMethod { get; set; }
 
-		public SqlMoney OrderAmount { get; set; }
+		public decimal OrderAmount { get; set; }
 
 		public int UserID { get; set; }	
 

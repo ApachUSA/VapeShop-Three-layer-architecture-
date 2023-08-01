@@ -27,7 +27,7 @@ namespace VapeShop.Domain.Entity.Product
 
         public required Flavor Flavor { get; set; }
 
-        public  SqlMoney Price { get; set; }
+        public decimal Price { get; set; }
 
         public required LiquidType LiquidType { get; set; }
 
