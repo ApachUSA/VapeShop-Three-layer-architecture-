@@ -22,11 +22,15 @@ namespace VapeShop.Domain.Entity.Product
 
         public required Volume Volume { get; set; }
 
+        public int FlavorID { get; set; }
+
         public required Flavor Flavor { get; set; }
 
         public  SqlMoney Price { get; set; }
 
         public required LiquidType LiquidType { get; set; }
 
-    }
+		public ICollection<Liquid_param> Liquid_Params { get; set; }
+
+	}
 }

@@ -11,5 +11,7 @@ namespace VapeShop.Domain.Entity.Product
         public int FlavorID { get; set; }
 
         public required string Flavor_name { get; set; }
-    }
+
+		public ICollection<Liquid> Liquids { get; set; }
+	}
 }
