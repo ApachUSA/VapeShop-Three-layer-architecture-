@@ -26,6 +26,8 @@ namespace VapeShop.Domain.Entity.Product
         public required Nicotine Nicotine { get; set; }
 
 		public ICollection<WishList>? WishLists { get; set; }
+		public ICollection<Cart>? CartLists { get; set; }
+		public ICollection<OrderProduct>? OrderProducts { get; set; }
 
 	}
 }
