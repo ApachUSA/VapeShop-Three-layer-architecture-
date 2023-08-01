@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VapeShop.Domain.Entity.Product;
 
-namespace VapeShop.Domain.Entity.User
+namespace VapeShop.Domain.Entity.Client
 {
 	public class CommunicationMethod
 	{
@@ -13,6 +13,6 @@ namespace VapeShop.Domain.Entity.User
 
 		public required string CommunicationMethodName { get; set; }
 
-		public ICollection<User> Users { get; set; }
+		public ICollection<User>? Users { get; set; }
 	}
 }

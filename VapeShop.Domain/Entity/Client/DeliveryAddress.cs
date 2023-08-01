@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VapeShop.Domain.Entity.User
+namespace VapeShop.Domain.Entity.Client
 {
 	public class DeliveryAddress
 	{
@@ -26,6 +26,6 @@ namespace VapeShop.Domain.Entity.User
 
 		public required Region Region { get; set; }
 
-		public ICollection<User> Users { get; set; }
+		public ICollection<User>? Users { get; set; }
 	}
 }

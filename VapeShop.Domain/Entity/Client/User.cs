@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VapeShop.Domain.Entity.Functions;
 using VapeShop.Domain.Enum;
 
-namespace VapeShop.Domain.Entity.User
+namespace VapeShop.Domain.Entity.Client
 {
 	public class User
 	{
@@ -32,5 +33,11 @@ namespace VapeShop.Domain.Entity.User
 		public required DeliveryAddress DeliveryAddress { get; set; }
 
 		public Role Role { get; set; }
+
+		public ICollection<ComparisonList>? ComparisonLists { get; set; }
+
+		public ICollection<WishList>? WishLists { get; set; }
+
+		public ICollection<Cart>? CartLists { get; set; }
 	}
 }
