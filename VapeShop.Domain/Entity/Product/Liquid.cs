@@ -19,7 +19,7 @@ namespace VapeShop.Domain.Entity.Product
 
         public string? Description { get; set; }
 
-        public required string Image { get; set; }
+        public string? Image { get; set; }
 
         public required Volume Volume { get; set; }
 
