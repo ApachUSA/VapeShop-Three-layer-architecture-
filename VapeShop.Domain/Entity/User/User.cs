@@ -23,9 +23,13 @@ namespace VapeShop.Domain.Entity.User
 
 		public required string PasswordConfirme { get; set; }
 
+		public int CommunicationMethodID { get; set; }
+
 		public CommunicationMethod? CommunicationMethod { get; set; }
 
-		public required DeliveryAddress DeliveryAddressID { get; set; }
+		public int DeliveryAddressID { get; set; }
+
+		public required DeliveryAddress DeliveryAddress { get; set; }
 
 		public Role Role { get; set; }
 	}

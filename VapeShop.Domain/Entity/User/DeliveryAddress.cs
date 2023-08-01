@@ -18,8 +18,14 @@ namespace VapeShop.Domain.Entity.User
 
 		public string Country { get; set; } = "Ukraine";
 
+		public int CityID { get; set; }
+
 		public required City City { get; set; }
 
+		public int RegionID { get; set; }
+
 		public required Region Region { get; set; }
+
+		public ICollection<User> Users { get; set; }
 	}
 }

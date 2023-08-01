@@ -11,5 +11,7 @@ namespace VapeShop.Domain.Entity.User
 		public int CityID { get; set; }
 
 		public required string CityName { get; set; }
+
+		public ICollection<DeliveryAddress> DeliveryAddress { get; set; }
 	}
 }
