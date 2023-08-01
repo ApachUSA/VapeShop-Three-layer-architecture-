@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using VapeShop.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<VapeShopDbContext>(options =>
+						options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
