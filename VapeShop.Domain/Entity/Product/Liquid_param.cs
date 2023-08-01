@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VapeShop.Domain.Entity.Functions;
 
 namespace VapeShop.Domain.Entity.Product
 {
@@ -23,6 +24,8 @@ namespace VapeShop.Domain.Entity.Product
         public required PG_VG PG_VG { get; set; }
 
         public required Nicotine Nicotine { get; set; }
+
+		public ICollection<WishList>? WishLists { get; set; }
 
 	}
 }

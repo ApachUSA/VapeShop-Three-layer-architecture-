@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VapeShop.Domain.Entity.Functions;
 using VapeShop.Domain.Enum;
 
 namespace VapeShop.Domain.Entity.Product
@@ -30,7 +31,9 @@ namespace VapeShop.Domain.Entity.Product
 
         public required LiquidType LiquidType { get; set; }
 
-		public ICollection<Liquid_param> Liquid_Params { get; set; }
+		public ICollection<Liquid_param>? Liquid_Params { get; set; }
+
+		public ICollection<ComparisonList>? ComparisonLists { get; set; }
 
 	}
 }

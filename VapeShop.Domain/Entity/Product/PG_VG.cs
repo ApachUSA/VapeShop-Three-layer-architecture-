@@ -12,6 +12,6 @@ namespace VapeShop.Domain.Entity.Product
 
         public required string PG_VG_name { get; set; }
 
-        public ICollection<Liquid_param> Liquid_Params { get; set; }
+        public ICollection<Liquid_param>? Liquid_Params { get; set; }
     }
 }
