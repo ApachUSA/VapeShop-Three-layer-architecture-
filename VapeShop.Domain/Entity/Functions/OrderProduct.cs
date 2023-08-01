@@ -9,9 +9,9 @@ namespace VapeShop.Domain.Entity.Functions
 {
 	public class OrderProduct
 	{
-		public int OrderProductId { get; set; }
+		public int OrderProductID { get; set; }
 
-		public int OrderId { get; set; }
+		public int OrderID { get; set; }
 
 		public int Liquid_paramID { get; set; }
 
