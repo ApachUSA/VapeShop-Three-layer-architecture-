@@ -39,5 +39,7 @@ namespace VapeShop.Domain.Entity.Client
 		public ICollection<WishList>? WishLists { get; set; }
 
 		public ICollection<Cart>? CartLists { get; set; }
+
+		public ICollection<Order>? Orders { get; set; }
 	}
 }
