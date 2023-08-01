@@ -14,7 +14,7 @@ namespace VapeShop.Domain.Entity.Client
 
 		public required string Name { get; set; }
 
-		public required string Patronomyc { get; set; }
+		public string? Patronomyc { get; set; }
 
 		public string Country { get; set; } = "Ukraine";
 
