@@ -11,11 +11,11 @@ namespace VapeShop.Domain.Entity.Product
     {
         public int LiquidParamID { get; set; }
 
-		public int LiquidID { get; set; }
+		public int? LiquidID { get; set; }
 
-		public int PG_VGID { get; set; }
+		public int? PG_VGID { get; set; }
 
-		public int NicotineID { get; set; }
+		public int? NicotineID { get; set; }
 
         public int Available_quantity { get; set; }
 

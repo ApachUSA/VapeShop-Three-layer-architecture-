@@ -18,11 +18,11 @@ namespace VapeShop.Domain.Entity.Client
 
 		public string Country { get; set; } = "Ukraine";
 
-		public int CityID { get; set; }
+		public int? CityID { get; set; }
 
 		public City? City { get; set; }
 
-		public int RegionID { get; set; }
+		public int? RegionID { get; set; }
 
 		public Region? Region { get; set; }
 

@@ -23,7 +23,7 @@ namespace VapeShop.Domain.Entity.Product
 
         public Volume Volume { get; set; }
 
-        public int FlavorID { get; set; }
+        public int? FlavorID { get; set; }
 
         public Flavor? Flavor { get; set; }
 

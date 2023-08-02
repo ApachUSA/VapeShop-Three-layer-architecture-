@@ -24,11 +24,11 @@ namespace VapeShop.Domain.Entity.Client
 
 		public required string PasswordConfirme { get; set; }
 
-		public int CommunicationMethodID { get; set; }
+		public int? CommunicationMethodID { get; set; }
 
 		public CommunicationMethod? CommunicationMethod { get; set; }
 
-		public int DeliveryAddressID { get; set; }
+		public int? DeliveryAddressID { get; set; }
 
 		public DeliveryAddress? DeliveryAddress { get; set; }
 
