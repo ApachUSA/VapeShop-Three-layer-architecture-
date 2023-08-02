@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using VapeShop.Infrastructure;
+using VapeShop.Infrastructure.Interfaces;
+using VapeShop.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<VapeShopDbContext>(options =>
 						options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped(typeof(IBaseRespository<>), typeof(Respository<>));
 
 var app = builder.Build();
 
