@@ -114,11 +114,13 @@ namespace VapeShop.Infrastructure
 
 				builder.HasOne(x => x.User)
 				.WithMany(x => x.CartLists)
-				.HasForeignKey(x => x.UserID);
+				.HasForeignKey(x => x.UserID)
+				.OnDelete(DeleteBehavior.Cascade);
 
 				builder.HasOne(x => x.Liquid_param)
 				.WithMany(x => x.CartLists)
-				.HasForeignKey(x => x.Liquid_paramID);
+				.HasForeignKey(x => x.Liquid_paramID)
+				.OnDelete(DeleteBehavior.Cascade);
 
 			});
 
@@ -129,11 +131,13 @@ namespace VapeShop.Infrastructure
 
 				builder.HasOne(x => x.User)
 				.WithMany(x => x.ComparisonLists)
-				.HasForeignKey(x => x.UserID);
+				.HasForeignKey(x => x.UserID)
+				.OnDelete(DeleteBehavior.Cascade);
 
 				builder.HasOne(x => x.Liquid)
 				.WithMany(x => x.ComparisonLists)
-				.HasForeignKey(x => x.LiquidID);
+				.HasForeignKey(x => x.LiquidID)
+				.OnDelete(DeleteBehavior.Cascade);
 
 			});
 
@@ -155,7 +159,8 @@ namespace VapeShop.Infrastructure
 
 				builder.HasOne(x => x.Order)
 				.WithMany(x => x.Products)
-				.HasForeignKey(x => x.OrderID);
+				.HasForeignKey(x => x.OrderID)
+				.OnDelete(DeleteBehavior.Cascade);
 
 				builder.HasOne(x => x.Liquid_Param)
 				.WithMany(x => x.OrderProducts)
@@ -170,11 +175,13 @@ namespace VapeShop.Infrastructure
 
 				builder.HasOne(x => x.User)
 				.WithMany(x => x.WishLists)
-				.HasForeignKey(x => x.UserID);
+				.HasForeignKey(x => x.UserID)
+				.OnDelete(DeleteBehavior.Cascade);
 
 				builder.HasOne(x => x.Liquid_param)
 				.WithMany(x => x.WishLists)
-				.HasForeignKey(x => x.Liquid_paramID);
+				.HasForeignKey(x => x.Liquid_paramID)
+				.OnDelete(DeleteBehavior.Cascade);
 
 			});
 			#endregion
@@ -213,8 +220,9 @@ namespace VapeShop.Infrastructure
 
 				builder.HasOne(x => x.Flavor)
 				.WithMany(x => x.Liquids)
-				.HasForeignKey(x => x.FlavorID);
-				
+				.HasForeignKey(x => x.FlavorID)
+				.OnDelete(DeleteBehavior.SetNull);
+
 
 			});
 
