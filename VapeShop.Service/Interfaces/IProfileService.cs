@@ -13,5 +13,11 @@ namespace VapeShop.Service.Interfaces
 		Task<BaseResponse<User>> GetProfile(int id);
 
 		Task<BaseResponse<User>> Update(int id);
+
+		BaseResponse<IEnumerable<City>> GetCities();
+
+		BaseResponse<IEnumerable<Region>> GetRegions();
+
+		BaseResponse<IEnumerable<CommunicationMethod>> GetCommunicationMethod();
 	}
 }
