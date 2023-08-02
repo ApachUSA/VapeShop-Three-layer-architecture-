@@ -19,11 +19,11 @@ namespace VapeShop.Domain.Entity.Product
 
         public int Available_quantity { get; set; }
 
-		public required Liquid Liquid { get; set; }
+		public Liquid? Liquid { get; set; }
 
-        public required PG_VG PG_VG { get; set; }
+        public PG_VG? PG_VG { get; set; }
 
-        public required Nicotine Nicotine { get; set; }
+        public Nicotine? Nicotine { get; set; }
 
 		public ICollection<WishList>? WishLists { get; set; }
 		public ICollection<Cart>? CartLists { get; set; }
