@@ -12,7 +12,7 @@ namespace VapeShop.Domain.Entity.Product
     {
         public int NicotineID { get; set; }
 
-        public required NicotineType Nicotine_type { get; set; }
+        public NicotineType Nicotine_type { get; set; }
 
         public double Nicotine_concentration { get; set; }
 

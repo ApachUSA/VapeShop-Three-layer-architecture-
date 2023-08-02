@@ -30,7 +30,7 @@ namespace VapeShop.Domain.Entity.Client
 
 		public int DeliveryAddressID { get; set; }
 
-		public required DeliveryAddress DeliveryAddress { get; set; }
+		public DeliveryAddress? DeliveryAddress { get; set; }
 
 		public Role Role { get; set; }
 

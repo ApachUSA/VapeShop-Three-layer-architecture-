@@ -20,11 +20,11 @@ namespace VapeShop.Domain.Entity.Client
 
 		public int CityID { get; set; }
 
-		public required City City { get; set; }
+		public City? City { get; set; }
 
 		public int RegionID { get; set; }
 
-		public required Region Region { get; set; }
+		public Region? Region { get; set; }
 
 		public ICollection<User>? Users { get; set; }
 	}

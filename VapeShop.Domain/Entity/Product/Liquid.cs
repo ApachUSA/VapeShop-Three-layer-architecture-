@@ -21,15 +21,15 @@ namespace VapeShop.Domain.Entity.Product
 
         public string? Image { get; set; }
 
-        public required Volume Volume { get; set; }
+        public Volume Volume { get; set; }
 
         public int FlavorID { get; set; }
 
-        public required Flavor Flavor { get; set; }
+        public Flavor? Flavor { get; set; }
 
         public decimal Price { get; set; }
 
-        public required LiquidType LiquidType { get; set; }
+        public LiquidType LiquidType { get; set; }
 
 		public ICollection<Liquid_param>? Liquid_Params { get; set; }
 
