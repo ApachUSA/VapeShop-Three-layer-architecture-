@@ -10,9 +10,9 @@ namespace VapeShop.Service.Interfaces
 {
 	public interface IProfileService
 	{
-		Task<BaseResponse<User>> GetProfile(int id);
+		Task<BaseResponse<User>> GetProfile(string name);
 
-		Task<BaseResponse<User>> Update(int id);
+		Task<BaseResponse<User>> Update(User model);
 
 		BaseResponse<IEnumerable<City>> GetCities();
 
