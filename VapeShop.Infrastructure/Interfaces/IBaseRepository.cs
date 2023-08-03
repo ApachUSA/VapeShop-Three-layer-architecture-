@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VapeShop.Infrastructure.Interfaces
 {
-	public interface IBaseRespository<T> where T : class
+	public interface IBaseRepository<T> where T : class
 	{
 		Task Create(T entity);
 
