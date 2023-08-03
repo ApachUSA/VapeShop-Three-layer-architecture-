@@ -52,6 +52,15 @@ namespace VapeShop.Infrastructure
 				builder.ToTable("CommunicationMethods").HasKey(x => x.CommunicationMethodID);
 				builder.Property(x => x.CommunicationMethodID).ValueGeneratedOnAdd();
 				builder.Property(x => x.CommunicationMethodName).HasMaxLength(10);
+
+				builder.HasData(new CommunicationMethod[]
+				{
+					new CommunicationMethod()
+					{
+						CommunicationMethodID = 1,
+						CommunicationMethodName = "Telegram",
+					}
+				});
 			});
 
 			modelBuilder.Entity<Region>(builder =>
@@ -80,6 +89,10 @@ namespace VapeShop.Infrastructure
 				.WithMany(d => d.DeliveryAddress)
 				.HasForeignKey(x => x.RegionID)
 				.OnDelete(DeleteBehavior.SetNull);
+
+				
+
+
 			});
 
 			modelBuilder.Entity<User>(builder =>
@@ -99,9 +112,10 @@ namespace VapeShop.Infrastructure
 				.OnDelete(DeleteBehavior.SetNull);
 
 				builder.HasOne(x => x.DeliveryAddress)
-				.WithMany(x => x.Users)
-				.HasForeignKey(x => x.DeliveryAddressID)
-				.OnDelete(DeleteBehavior.SetNull);
+				.WithOne(x => x.User)
+				.HasForeignKey<DeliveryAddress>(x => x.UserID);
+
+
 
 			});
 			#endregion
