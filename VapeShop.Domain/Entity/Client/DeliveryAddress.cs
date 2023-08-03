@@ -10,9 +10,9 @@ namespace VapeShop.Domain.Entity.Client
 	{
 		public int DeliveryAddressID { get; set; }
 
-		public required string Surname { get; set; }
+		public string? Surname { get; set; }
 
-		public required string Name { get; set; }
+		public string? Name { get; set; }
 
 		public string? Patronomyc { get; set; }
 
@@ -26,6 +26,8 @@ namespace VapeShop.Domain.Entity.Client
 
 		public Region? Region { get; set; }
 
-		public ICollection<User>? Users { get; set; }
+		public int UserID { get; set; }
+
+		public User User { get; set; }
 	}
 }
