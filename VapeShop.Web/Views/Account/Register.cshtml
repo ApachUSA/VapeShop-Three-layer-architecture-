@@ -1,0 +1,53 @@
+﻿@model RegisterVM
+
+
+@{
+	ViewData["Title"] = "Register";
+}
+
+<form asp-action="Register">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div>
+		<label asp-for="Surname"></label>
+		<input asp-for="Surname" class="form-control" />
+		<span asp-validation-for="Surname" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="Phone"></label>
+		<input asp-for="Phone" class="form-control" />
+		<span asp-validation-for="Phone" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="Email"></label>
+		<input asp-for="Email" class="form-control" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="Password"></label>
+		<input asp-for="Password" class="form-control" />
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="PasswordConfirme"></label>
+		<input asp-for="PasswordConfirme" class="form-control" />
+		<span asp-validation-for="PasswordConfirme" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="CommunicationMethodID"></label>
+		<input asp-for="CommunicationMethodID" class="form-control" />
+		<span asp-validation-for="CommunicationMethodID" class="text-danger"></span>
+	</div>
+	
+
+
+	<div class="row  align-items-center justify-content-center">
+		<div class="col-4 mt-5 text-center">
+			<button class="form-control" style="width:100%; margin-top: 10px" type="submit">Зареєструватись</button>
+		</div>
+	</div>
+</form>
