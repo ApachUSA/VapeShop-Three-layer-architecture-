@@ -28,8 +28,6 @@ namespace VapeShop.Domain.Entity.Client
 
 		public CommunicationMethod? CommunicationMethod { get; set; }
 
-		public int? DeliveryAddressID { get; set; }
-
 		public DeliveryAddress? DeliveryAddress { get; set; }
 
 		public Role Role { get; set; }
