@@ -8,11 +8,11 @@ using VapeShop.Infrastructure.Interfaces;
 
 namespace VapeShop.Infrastructure.Repositories
 {
-	public class Respository<T> : IBaseRespository<T> where T : class
+	public class Repository<T> : IBaseRepository<T> where T : class
 	{
 		private readonly VapeShopDbContext _dbContext;
 
-		public Respository(VapeShopDbContext dbContext)
+		public Repository(VapeShopDbContext dbContext)
 		{
 			_dbContext = dbContext;
 		}
