@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VapeShop.Domain\VapeShop.Domain.csproj" />
+    <ProjectReference Include="..\VapeShop.Infrastructure\VapeShop.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

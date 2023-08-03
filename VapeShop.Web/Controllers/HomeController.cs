@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using VapeShop.Domain.Entity.Client;
 using VapeShop.Infrastructure;
+using VapeShop.Infrastructure.Interfaces;
 using VapeShop.Web.Models;
 
 namespace VapeShop.Web.Controllers
@@ -8,12 +10,10 @@ namespace VapeShop.Web.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
-		private readonly VapeShopDbContext _context;
 
-		public HomeController(ILogger<HomeController> logger, VapeShopDbContext context)
+		public HomeController(ILogger<HomeController> logger)
 		{
 			_logger = logger;
-			_context = context;
 		}
 
 		public IActionResult Index()
