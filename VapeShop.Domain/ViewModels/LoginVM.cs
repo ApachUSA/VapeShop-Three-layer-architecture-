@@ -12,6 +12,5 @@ namespace VapeShop.Domain.ViewModels
 
 		public string Password { get; set; }
 
-		public string PasswordConfirm { get; set; }
 	}
 }
