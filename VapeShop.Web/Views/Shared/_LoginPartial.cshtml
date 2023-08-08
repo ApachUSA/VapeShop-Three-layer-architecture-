@@ -1,23 +1,38 @@
 ﻿
 @if(User.Identity.IsAuthenticated)
 {
-	<p>
-		@User.Identity.Name
-	</p>
-	<p>Profile</p>
-	<p>Order</p>
-	<p>Wish</p>
-	<p>Comparison</p>
+	<li><span class="dropdown-item disabled">@User.Identity.Name</span></li>
+	<li><a class="btn dropdown-item">Profile</a></li>
+	<li><a class="btn dropdown-item">Order</a></li>
+	<li><a class="btn dropdown-item">Wish</a></li>
+	<li><a class="btn dropdown-item">Comparison</a></li>
+	<li></li>
+	<li class="text-center"><a class="btn btn-primary" asp-action="Logout" asp-controller="Account">LogOut</a></li>
 
-	<a class="col-10" asp-action="Logout" asp-controller="Account">LogOut</a>
+	
 }
 else
 {
-	<p>Order</p>
-	<p>Wish</p>
-	<p>Comparison</p>
-	<p>test</p>
-	<a class="col-4" asp-action="Login" asp-controller="Account">LogIn</a>
-	<a class="col-8" asp-action="Register" asp-controller="Account">Register</a>
+
+	<li><a class="btn dropdown-item">Order</a></li>
+	<li><a class="btn dropdown-item">Wish</a></li>
+	<li><a class="btn dropdown-item">Comparison</a></li>
+	<li></li>
+	<li class="text-center">
+		<a class="btn btn-primary" asp-action="Login" asp-controller="Account">LogIn</a>
+		<a class="btn btn-primary" asp-action="Register" asp-controller="Account">Register</a>
+	</li>
+
+
 	
 }
+
+<style>
+	a.dropdown-item{
+		color: #08a6a8;
+	}
+	a.dropdown-item:hover {
+		color: white;
+		background-color: #08a6a8;
+	}
+</style>
