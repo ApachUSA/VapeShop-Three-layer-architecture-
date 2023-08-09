@@ -11,14 +11,14 @@
 </head>
 <body>
 	<header>
-		<div class="container text-center mt-3">
+		<div class="container-fluid text-center" style="background-color: #fff">
 			<div class="row justify-content-md-center" style="line-height: 50px">
 				<div class="col-md-auto">
 					<a asp-action="Index" asp-controller="Home"><img src="https://vapejoy.com.ua/images/ab__webp/logos/10/Vapejoy_logo__1__png.webp" style="max-height: 40px" /></a>
 
 				</div>
 
-				<div class="col-6">
+				<div class="col-4">
 					<div class="input-group">
 						<input type="search" class="form-control rounded" placeholder="Search product" aria-label="Search" aria-describedby="search-addon" />
 						<button type="button" class="btn btn-outline-primary">search</button>
@@ -73,7 +73,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row justify-content-md-center fw-bold" style="height: 50px; font-weight:600; color: #fff; background-color: #363636; line-height: 50px; border-radius: 5px">
+			<div class="row justify-content-md-center fw-bold" style="height: 50px; font-weight:600; color: #fff; background-color: #363636; line-height: 50px;">
 				<div class="col-md-auto">
 					<a data-bs-toggle="collapse" href="#liquidCollapse" role="button" aria-expanded="false" aria-controls="liquidCollapse" style="color: #fff; text-decoration: none">
 						<img class="m-1" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__9_1_png.webp" />
@@ -104,7 +104,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="container text-center mt-2" style="    box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);">
+			<div class="container-fluid text-center" style="    box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);">
 				<div class="collapse" id="liquidCollapse">
 					<div class="row justify-content-md-center">
 						<div class="col-md-auto m-2">
@@ -212,8 +212,8 @@
 			</div>
 		</div>
 	</header>
-	<div class="container">
-		<main role="main" class="pb-3">
+	<div class="container" >
+		<main role="main" class="pb-3" style="background-color: #fff">
 			@RenderBody()
 		</main>
 	</div>
@@ -235,6 +235,7 @@
 
 	.link_hover:hover {
 		color: #08a6a8;
+		cursor: grab;
 	}
 
 	.dropdown:hover > .dropdown-menu {
