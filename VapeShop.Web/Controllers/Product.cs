@@ -6,7 +6,7 @@ namespace VapeShop.Web.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View("Catalog");
+			return View("ProductDetails");
 		}
 	}
 }
