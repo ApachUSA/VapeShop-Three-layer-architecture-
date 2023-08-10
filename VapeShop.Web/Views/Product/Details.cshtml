@@ -13,11 +13,11 @@
 
 		<div class="col-6" style="box-shadow: 0 0.1rem 2rem rgba(54,54,54,0.1); border-radius: 8px; ">
 
-			<div class="row text-end">
-				<p style="font-size: 10px">КОД: </p>
+			<div class="row text-end" style="line-height: 30px; border-bottom: 1px solid lightgray">
+				<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">КОД: 635885584CF57</p>
 			</div>
 
-			<div class="row">
+			<div class="row mt-3">
 				<div class="col-6 ms-4">
 
 					<form asp-action="AddToCart">
@@ -139,7 +139,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row mt-4">
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
@@ -149,7 +149,7 @@
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-				<textarea rows="30" class="w-100">
+				<textarea rows="30" class="w-100" style="border: none">
 					ANDROMEDA - вейп набор со вкусом граната и черники
 Andromeda - кисло-сладкий микс из ягод свежей черники и спелого граната. Отличается ровным и в то же время богатым вкусом, поэтому отлично подходит для парения на каждый день. Выпускается без изменений с 2015 года, так как пришелся по вкусу огромному количеству наших клиентов. 
 
@@ -174,44 +174,20 @@ VAPEJOY
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
-							<table class="w-100">
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-							</table>
+							<ul class="dots" style="width: 70%; float: left; font-family: Arial;">
+								<li><span>Один</span><span>1</span></li>
+								<li><span>Два</span><span>22</span></li>
+								<li><span>Три</span><span>333</span></li>
+								<li><span>Десять</span><span>000000000000</span></li>
+							</ul>
 						</div>
 						<div class="col-6">
-							<table class="w-100">
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-								<tr>
-									<td>Вид вкуса</td>
-									<td>Фруктовые</td>
-								</tr>
-							</table>
+							<ul class="dots" style="width: 70%; float: left; font-family: Arial;">
+								<li><span>Один</span><span>1</span></li>
+								<li><span>Два</span><span>22</span></li>
+								<li><span>Три</span><span>333</span></li>
+								<li><span>Десять</span><span>000000000000</span></li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -247,7 +223,36 @@ VAPEJOY
 
 	.tab-content {
 		border: 1px lightgray solid;
-		margin: 5px;
+		width: 99%;
+		margin-left: 5px
 	}
+
+	ul.dots li {
+		list-style-type: none;
+		clear: both;
+		font-size: 1em;
+		margin: 0;
+		padding: 0;
+	}
+
+		ul.dots li span:first-child {
+			float: left;
+			padding: 0 10px 0 0;
+			color: gray;
+		}
+
+		ul.dots li span + span {
+			float: right;
+			padding: 0 0 0 10px;
+		}
+
+		ul.dots li:after {
+		
+			content: "";
+			display: block;
+			overflow: hidden;
+			height: 0.8em;
+			border-bottom: 1px dotted gray;
+		}
 </style>
 
