@@ -19,6 +19,10 @@ namespace VapeShop.Domain.ViewModels
 
 		public required string Email { get; set; }
 
+		public required string Password { get; set; }
+
+		public required string PasswordConfirme { get; set; }
+
 		public int? CommunicationMethodID { get; set; }
 
 		public CommunicationMethod? CommunicationMethod { get; set; }
