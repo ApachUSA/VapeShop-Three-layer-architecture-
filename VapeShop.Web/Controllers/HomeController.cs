@@ -18,7 +18,7 @@ namespace VapeShop.Web.Controllers
 
 		public IActionResult Index()
 		{
-			return RedirectToAction("Create","Product");
+			return RedirectToAction("Profile","Account");
 		}
 
 		public IActionResult Privacy()

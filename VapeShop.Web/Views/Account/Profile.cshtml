@@ -1,0 +1,130 @@
+﻿@model UserViewModel
+
+
+<div class="container">
+
+	<div class="row"></div>
+
+	<div class="row mt-4">
+		<h4>Profile</h4>
+	</div>
+
+
+	<div class="row mt-3" style="padding: 10px">
+
+
+		<div class="col-6 mt-4" style="border-width: 0 1px 1px 1px; border-color: lightgray; border-style: solid; padding: 20px">
+			<form asp-action="Profile">
+				<div class="row">
+					<h4 class="fw-bold">Информация об учетной записи пользователя</h4>
+					<div class="form-group mb-3">
+						<label class="fw-bold" asp-for="Email"></label>
+						<input asp-for="Email" class="form-control" />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+					<div class="form-group mb-3">
+						<label asp-for="Password"></label>
+						<input asp-for="Password" class="form-control" />
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+					<div class="form-group mb-3">
+						<label asp-for="PasswordConfirme"></label>
+						<input asp-for="PasswordConfirme" class="form-control" />
+						<span asp-validation-for="PasswordConfirme" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row mt-3">
+					<h4 class="fw-bold">Контактная информация</h4>
+					<div class="form-group col-6 mb-3">
+						<label asp-for="Name"></label>
+						<input asp-for="Name" class="form-control" />
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+
+					<div class="form-group col-6 mb-3">
+						<label asp-for="Surname"></label>
+						<input asp-for="Surname" class="form-control" />
+						<span asp-validation-for="Surname" class="text-danger"></span>
+					</div>
+
+					<div class="form-group mb-3">
+						<label asp-for="Phone"></label>
+						<input asp-for="Phone" class="form-control" />
+						<span asp-validation-for="Phone" class="text-danger"></span>
+					</div>
+					<div class="form-group mb-3">
+						<label asp-for="CommunicationMethod"></label>
+						<input type="radio" />
+					</div>
+				</div>
+				<div class="row mt-3">
+					<h4 class="fw-bold">Адрес доставки</h4>
+					<div class="form-group col-6 mb-3">
+						<label asp-for="DeliveryAddress.Name"></label>
+						<input asp-for="DeliveryAddress.Name" class="form-control" />
+						<span asp-validation-for="DeliveryAddress.Name" class="text-danger"></span>
+					</div>
+
+					<div class="form-group col-6 mb-3">
+						<label asp-for="DeliveryAddress.Surname"></label>
+						<input asp-for="DeliveryAddress.Surname" class="form-control" />
+						<span asp-validation-for="DeliveryAddress.Surname" class="text-danger"></span>
+					</div>
+
+					<div class="form-group mb-3">
+						<label asp-for="DeliveryAddress.Patronomyc"></label>
+						<input asp-for="DeliveryAddress.Patronomyc" class="form-control" />
+						<span asp-validation-for="DeliveryAddress.Patronomyc" class="text-danger"></span>
+					</div>
+					<div class="form-group mb-3">
+						<label asp-for="DeliveryAddress.City"></label>
+						<select asp-for="DeliveryAddress.City" class="form-control"></select>
+						<span asp-validation-for="DeliveryAddress.City" class="text-danger"></span>
+					</div>
+					<div class="form-group col-6  mb-3">
+						<label asp-for="DeliveryAddress.Country"></label>
+						<select asp-for="DeliveryAddress.Country" class="form-control"></select>
+						<span asp-validation-for="DeliveryAddress.Country" class="text-danger"></span>
+					</div>
+
+					<div class="form-group col-6  mb-3">
+						<label asp-for="DeliveryAddress.Region"></label>
+						<select asp-for="DeliveryAddress.Region" class="form-control"></select>
+						<span asp-validation-for="DeliveryAddress.Region" class="text-danger"></span>
+					</div>
+				</div>
+
+				<button class="form-control btn btn-primary" type="submit">Save</button>
+			</form>
+		</div>
+
+		<div class="col-6" style="padding: 50px">
+			<div>
+				<h4 class="fw-bold">Детали учетной записи</h4>
+				<br />
+				<p>На этой странице вы можете изменить данные для авторизации и персональную информацию для её использования при размещении заказов.</p>
+				<p>Чтобы повысить уровень безопасности своей учетной записи, рекомендуется избегать паролей, в которых используются:</p>
+				<ul>
+					<li>Слова из словарей на любом языке.</li>
+					<li>Слова, написанные задом наперед, и аббревиатуры.</li>
+					<li>Последовательности символов или повторяющиеся символы. Например: 12345678, 222222, abcdefg или соседние буквы на вашей клавиатуре (qwerty).</li>
+					<li>Персональную информацию. ваше имя, дата рождения, номер водительских прав, номер паспорта или подобную информацию.</li>
+				</ul>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+</div>
+<style>
+	label {
+		font-weight: bold;
+		font-size: 16px;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+</style>

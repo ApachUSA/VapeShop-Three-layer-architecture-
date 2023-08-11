@@ -56,7 +56,28 @@ namespace VapeShop.Web.Controllers
 			return View(model);
 		}
 
-		
+		[HttpGet]
+		public IActionResult Profile() => View();
+
+		[HttpPost]
+		public async Task<IActionResult> Profile(UserViewModel model)
+		{
+			//if (ModelState.IsValid)
+			//{
+			//	var response = await _accountService.Login(model);
+			//	if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			//	{
+			//		await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new System.Security.Claims.ClaimsPrincipal(response.Value));
+			//		return RedirectToAction("Index", "Home");
+
+			//	}
+			//	ModelState.AddModelError("", response.Descrition);
+			//}
+			return View(model);
+		}
+
+
+
 		public async Task<IActionResult> Logout()
 		{
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
