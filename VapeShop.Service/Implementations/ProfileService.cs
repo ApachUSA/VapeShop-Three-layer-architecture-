@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -30,7 +31,7 @@ namespace VapeShop.Service.Implementations
 
 		public BaseResponse<IEnumerable<City>> GetCities()
 		{
-			return new BaseResponse<IEnumerable<City>> { Value =  _cityRepository.Get().ToList() };
+			return new BaseResponse<IEnumerable<City>> { Value =  _cityRepository.Get().ToList().OrderBy(x => x.CityName) };
 		}
 
 		public BaseResponse<IEnumerable<CommunicationMethod>> GetCommunicationMethod()
@@ -43,7 +44,11 @@ namespace VapeShop.Service.Implementations
 			try
 			{
 				var surname_name = name.Split(' ');
-				var user = _userRepository.Get().Where(x => x.Surname == surname_name[0] && x.Name == surname_name[1]).FirstOrDefault();
+				var user = _userRepository.Get()
+					.Where(x => x.Surname == surname_name[0] && x.Name == surname_name[1])
+					.Include(x => x.CommunicationMethod)
+					.Include(x => x.DeliveryAddress)
+					.FirstOrDefault();
 				if(user == null)
 				{
 					return new BaseResponse<User>
