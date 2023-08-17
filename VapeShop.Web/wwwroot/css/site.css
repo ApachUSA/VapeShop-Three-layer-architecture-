@@ -27,6 +27,11 @@ a{
     color:black;
 }
 
+.form-control:focus {
+    border-color: #08a6a8; /* Замените на цвет, который вам нужен */
+    box-shadow: 0 0 0 0.1rem #08a6a8; /* Тоже замените на нужные значения */
+}
+
 .btn_l {
     width: 100%;
     height: 50px;
