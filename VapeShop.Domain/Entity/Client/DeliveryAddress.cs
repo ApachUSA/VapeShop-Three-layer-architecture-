@@ -28,6 +28,6 @@ namespace VapeShop.Domain.Entity.Client
 
 		public int UserID { get; set; }
 
-		public User User { get; set; }
+		public User? User { get; set; }
 	}
 }
