@@ -14,216 +14,225 @@
 </head>
 <body>
 	<header>
-		<div class="container-fluid text-center" style="background-color: #fff">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="row d-flex align-items-center justify-content-between" style="height: 80px">
-						<div class="col-auto">
-							<a asp-action="Index" asp-controller="Home"><img src="https://vapejoy.com.ua/images/ab__webp/logos/10/Vapejoy_logo__1__png.webp" style="max-height: 40px" /></a>
+		<nav>
+			<div class="container-fluid text-center" style="background-color: #fff">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="row d-flex align-items-center justify-content-between" style="height: 80px">
+							<div class="col-auto">
+								<a asp-action="Index" asp-controller="Home"><img src="https://vapejoy.com.ua/images/ab__webp/logos/10/Vapejoy_logo__1__png.webp" style="max-height: 40px" /></a>
 
-						</div>
+							</div>
 
-						<div class="col-6">
-							<div class="input-group">
-								<input type="search" class="form-control rounded" placeholder="Search product" aria-label="Search" aria-describedby="search-addon" />
-								<button type="button" class="btn btn-outline-primary">search</button>
+							<div class="col-6">
+								<div class="input-group" style="height: 50px">
+									<input type="search" style="background-color: #f7f7f7;border: 0; border-radius: 6px;" class="form-control" placeholder="Search product" aria-label="Search" aria-describedby="search-addon" />
+									<button type="button" class="icon_btn icon_btn_center" style="background-color: #f7f7f7; border: none">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</div>
 							</div>
-						</div>
 
-						<div class="col-auto p-0">
-							<div class="icon_btn">
-								<a>
-									<i class="far fa-heart"></i>
-								</a>
+							<div class="col-auto d-flex">
+								<div class="icon_btn icon_btn_left">
+									<a>
+										<i class="far fa-heart"></i>
+									</a>
+								</div>
+								<div class="icon_btn icon_btn_right">
+									<a>
+										<i class="bi bi-bar-chart"></i>
+									</a>
+								</div>
+								<div class="ms-2">
+									<a class="link_hover" asp-action="" asp-controller="" style="line-height: 20px; font-size: 18px; font-weight: bold;">
+										+380(50)248-90-89
+									</a><br />
+									<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8; text-decoration: underline; line-height: 30px; font-size: 12px; font-weight: bold;">
+										Заказать обратный звонок
+									</a>
+								</div>
+							
+								
+
 							</div>
-						</div>
-						<div class="col-auto p-0">
-							<div class="icon_btn">
-								<a>
-									<i class="bi bi-bar-chart"></i>
-								</a>
+
+							<div class="col-auto">
+								<div class="dropdown">
+									<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">
+											<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+											<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+										</svg><br />
+										<span>Аккаунт</span>
+									</button>
+									<div class="dropdown-menu dropdown-menu-start custom-dropdown-menu p-0">
+										<partial name="_LoginPartial" />
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="col-auto">
-							<P>
-								+380(50)248-90-89
-							</P>
-						</div>
-						<div class="col-auto">
-							<div class="dropdown">
-								<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
-									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">
-										<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-										<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-									</svg><br />
-									<span>Аккаунт</span>
-								</button>
-								<ul class="dropdown-menu dropdown-menu-start">
-									<partial name="_LoginPartial" />
-								</ul>
-							</div>
-						</div>
-						<div class="col-auto">
-							<div class="dropdown">
-								<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
-									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
-										<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-									</svg><br />
-									<span>Корзина</span>
-								</button>
-								<div class="dropdown-menu ">
-									<div class="container-fluid">
-										<div class="row">
+							<div class="col-auto">
+								<div class="dropdown">
+									<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+											<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+										</svg><br />
+										<span>Корзина</span>
+									</button>
+									<div class="dropdown-menu ">
+										<div class="container-fluid">
+											<div class="row">
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
+
+
+					</div>
+				</div>
+
+				<div class="row justify-content-md-center fw-bold" style="height: 50px; font-weight:600; color: #fff; background-color: #363636; line-height: 50px;">
+					<div class="col-md-auto">
+						<a data-bs-toggle="collapse" href="#liquidCollapse" role="button" aria-expanded="false" aria-controls="liquidCollapse" style="color: #fff; text-decoration: none">
+							<img class="m-1" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__9_1_png.webp" />
+							LIQUID FOR VAPE
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+							</svg>
+						</a>
+
+
+					</div>
+					<div class="col-md-auto">
+						<a data-bs-toggle="collapse" href="#SaltliquidCollapse" role="button" aria-expanded="false" aria-controls="SaltliquidCollapse" style="color: #fff; text-decoration: none">
+							<img class="m-1" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__8_1_png.webp" />
+							SALT LIQUID
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+							</svg>
+						</a>
+					</div>
+					<div class="col-md-auto">
+						<a data-bs-toggle="collapse" href="#flavoringCollapse" role="button" aria-expanded="false" aria-controls="flavoringCollapse" style="color: #fff; text-decoration: none">
+							<img class="m-1" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%B0%D1%80%D0%BE%D0%BC%D0%B83_5k9c-oc_png.webp" />
+							FLAVORING
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+							</svg>
+						</a>
+					</div>
+				</div>
+				<div class="container-fluid text-center" style="    box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);">
+					<div class="collapse" id="liquidCollapse">
+						<div class="row justify-content-md-center">
+							<div class="col-md-auto m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__23_1_png.webp">
+									<br>
+									FRUITS
+								</a>
+
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__22%D1%83__png.webp">
+									<br>
+									Desserts
+								</a>
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__13_1_png.webp">
+									<br>
+									Tobacco
+								</a>
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%BD%D0%B0%D0%BF%D0%B8%D1%82%D0%BA%D0%B8_200_k2pr-l1_png.webp">
+									<br>
+									Drinks
+								</a>
+							</div>
+
+						</div>
 					</div>
 
+					<div class="collapse" id="SaltliquidCollapse">
+						<div class="row justify-content-md-center">
+							<div class="col-md-auto m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__259__png.webp">
+									<br>
+									FRUITS
+								</a>
 
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__241__png.webp">
+									<br />
+									Desserts
+								</a>
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__2%D1%838__png.webp">
+									<br />
+									Tobacco
+								</a>
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__251__png.webp">
+									<br />
+									Drinks
+								</a>
+							</div>
 
+						</div>
+					</div>
+
+					<div class="collapse" id="flavoringCollapse">
+						<div class="row justify-content-md-center">
+							<div class="col-md-auto m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/fruktovyie_aromatizatoryi_dlya_vape_vapejoy_png.webp">
+									<br>
+									FRUITS
+								</a>
+
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B_%D0%B0%D1%80%D0%BE%D0%BC%D1%8B_vapejoy_png.webp">
+									<br />
+									Desserts
+								</a>
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/tabachnyiy_aromatizator_vapejoy_png.webp">
+									<br />
+									Tobacco
+								</a>
+							</div>
+							<div class="col-md-auto  m-2">
+								<a class="link_hover" asp-action="" asp-controller="">
+									<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/napitki_aromatizatoryi_vapejoy_png.webp">
+									<br />
+									Drinks
+								</a>
+							</div>
+
+						</div>
+					</div>
 				</div>
 			</div>
-
-			<div class="row justify-content-md-center fw-bold" style="height: 50px; font-weight:600; color: #fff; background-color: #363636; line-height: 50px;">
-				<div class="col-md-auto">
-					<a data-bs-toggle="collapse" href="#liquidCollapse" role="button" aria-expanded="false" aria-controls="liquidCollapse" style="color: #fff; text-decoration: none">
-						<img class="m-1" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__9_1_png.webp" />
-						LIQUID FOR VAPE
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-						</svg>
-					</a>
-
-
-				</div>
-				<div class="col-md-auto">
-					<a data-bs-toggle="collapse" href="#SaltliquidCollapse" role="button" aria-expanded="false" aria-controls="SaltliquidCollapse" style="color: #fff; text-decoration: none">
-						<img class="m-1" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__8_1_png.webp" />
-						SALT LIQUID
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-						</svg>
-					</a>
-				</div>
-				<div class="col-md-auto">
-					<a data-bs-toggle="collapse" href="#flavoringCollapse" role="button" aria-expanded="false" aria-controls="flavoringCollapse" style="color: #fff; text-decoration: none">
-						<img class="m-1" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%B0%D1%80%D0%BE%D0%BC%D0%B83_5k9c-oc_png.webp" />
-						FLAVORING
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-						</svg>
-					</a>
-				</div>
-			</div>
-			<div class="container-fluid text-center" style="    box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);">
-				<div class="collapse" id="liquidCollapse">
-					<div class="row justify-content-md-center">
-						<div class="col-md-auto m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__23_1_png.webp">
-								<br>
-								FRUITS
-							</a>
-
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__22%D1%83__png.webp">
-								<br>
-								Desserts
-							</a>
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__13_1_png.webp">
-								<br>
-								Tobacco
-							</a>
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%BD%D0%B0%D0%BF%D0%B8%D1%82%D0%BA%D0%B8_200_k2pr-l1_png.webp">
-								<br>
-								Drinks
-							</a>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="collapse" id="SaltliquidCollapse">
-					<div class="row justify-content-md-center">
-						<div class="col-md-auto m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__259__png.webp">
-								<br>
-								FRUITS
-							</a>
-
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__241__png.webp">
-								<br />
-								Desserts
-							</a>
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__2%D1%838__png.webp">
-								<br />
-								Tobacco
-							</a>
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__251__png.webp">
-								<br />
-								Drinks
-							</a>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="collapse" id="flavoringCollapse">
-					<div class="row justify-content-md-center">
-						<div class="col-md-auto m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/fruktovyie_aromatizatoryi_dlya_vape_vapejoy_png.webp">
-								<br>
-								FRUITS
-							</a>
-
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B_%D0%B0%D1%80%D0%BE%D0%BC%D1%8B_vapejoy_png.webp">
-								<br />
-								Desserts
-							</a>
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/tabachnyiy_aromatizator_vapejoy_png.webp">
-								<br />
-								Tobacco
-							</a>
-						</div>
-						<div class="col-md-auto  m-2">
-							<a class="link_hover" asp-action="" asp-controller="">
-								<img height="100" width="150" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/napitki_aromatizatoryi_vapejoy_png.webp">
-								<br />
-								Drinks
-							</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
+		</nav>
 	</header>
 	<div class="container">
 		<main role="main" class="pb-3" style="background-color: #fff">
@@ -248,35 +257,48 @@
 		padding: 0px 8px 0px 8px;
 		height: 50px;
 		width: 50px;
-		font-size: 32px;
-		border-radius: 6px 0 0 6px;
+		font-size: 25px;
+		line-height: 50px;
 		transition: .4s cubic-bezier(.4,0,.2,1);
 		color: #8f8f8f;
 	}
 
-		.icon_btn:hover {
-			border: 1px solid #d6d6d6;
-			box-shadow: 0 0 6px 0 #d6d6d6;
+	.icon_btn_left {
+		border-radius: 6px 0 0 6px;
+	}
+
+	.icon_btn_right {
+		border-radius: 0px 6px 6px 0px;
+	}
+
+	.icon_btn_center {
+		border-radius: 6px;
+	}
+
+
+	.icon_btn:hover {
+		border: 1px solid #d6d6d6;
+		box-shadow: 0 0 6px 0 #d6d6d6;
+		color: #08a6a8;
+		transition: .4s cubic-bezier(.4,0,.2,1);
+		cursor: pointer;
+	}
+
+	.link_hover {
+		color: #363636;
+		font-family: Arial,'Helvetica Neue',-apple-system,sans-serif;
+	}
+
+		.link_hover:hover {
 			color: #08a6a8;
-			transition: .4s cubic-bezier(.4,0,.2,1);
 			cursor: pointer;
 		}
 
-
-
-	.link_hover:hover {
-		color: #08a6a8;
-		cursor: grab;
+	.custom-dropdown-menu {
+		padding: 20px 0;
+		width: 250px; /* Задайте желаемую ширину здесь */
 	}
-
-	.dropdown:hover > .dropdown-menu {
-		display: block;
-	}
-
-	.dropdown > .dropdown-toggle:active {
-		/*Without this, clicking will make it sticky*/
-		pointer-events: none;
-	}
+	
 </style>
 
 <script>
