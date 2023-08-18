@@ -1,38 +1,67 @@
 ﻿
 @if(User.Identity.IsAuthenticated)
 {
-	<li><span class="dropdown-item disabled">@User.Identity.Name</span></li>
-	<li><a class="btn dropdown-item">Profile</a></li>
-	<li><a class="btn dropdown-item">Order</a></li>
-	<li><a class="btn dropdown-item">Wish</a></li>
-	<li><a class="btn dropdown-item">Comparison</a></li>
-	<li></li>
-	<li class="text-center"><a class="btn btn-primary" asp-action="Logout" asp-controller="Account">LogOut</a></li>
+	<ul style="padding: 20px 0">
+	<li><span class="dropdown-item disabled p-0" style="color: black">@User.Identity.Name</span></li>
+		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Profile</a></li>
+		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Order</a></li>
+		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Wish</a></li>
+		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Comparison</a></li>
+	</ul>
+	<div class="button-div">
+		<a class="btn_main btn_main_l" asp-action="Logout" asp-controller="Account">LogOut</a>
+	</div>
 
 	
 }
 else
 {
+	<ul style="padding: 20px 0">
+		<li><a class="dropdown-item p-0" asp-action="" asp-controller="" >Order</a></li>
+		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Wish</a></li>
+		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Comparison</a></li>
+	</ul>
+	<div class="button-div">
+		<a class="btn_main btn_main_d me-2" asp-action="Login" asp-controller="Account">LogIn</a>
+		<a class="btn_main btn_main_l" asp-action="Register" asp-controller="Account">Register</a>
+	</div>
 
-	<li><a class="btn dropdown-item">Order</a></li>
-	<li><a class="btn dropdown-item">Wish</a></li>
-	<li><a class="btn dropdown-item">Comparison</a></li>
-	<li></li>
-	<li class="text-center">
-		<a class="btn btn-primary" asp-action="Login" asp-controller="Account">LogIn</a>
-		<a class="btn btn-primary" asp-action="Register" asp-controller="Account">Register</a>
-	</li>
-
+	
 
 	
 }
 
 <style>
-	a.dropdown-item{
+
+	.button-div {
+		display: flex;
+		background: #f7f7f7;
+		padding: 15px;
+	}
+
+	li {
+		display: block;
+		color: #08a6a8;
+		padding: 0px;
+		padding: 7px 14px;
+		list-style: none;
+	}
+
+		li:hover {
+			color: white;
+			background-color: #08a6a8;
+		}
+
+			li:hover .dropdown-item {
+				color: white;
+			}
+
+
+	.dropdown-item{
 		color: #08a6a8;
 	}
-	a.dropdown-item:hover {
-		color: white;
+	.dropdown-item:hover{
 		background-color: #08a6a8;
+			color: white;
 	}
 </style>
