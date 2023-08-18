@@ -2,11 +2,11 @@
 @if(User.Identity.IsAuthenticated)
 {
 	<ul style="padding: 20px 0">
-	<li><span class="dropdown-item disabled p-0" style="color: black">@User.Identity.Name</span></li>
-		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Profile</a></li>
-		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Order</a></li>
-		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Wish</a></li>
-		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Comparison</a></li>
+		<li class="li_style"><span class="dropdown-item disabled p-0" style="color: black">@User.Identity.Name</span></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Profile</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Order</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Wish</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Comparison</a></li>
 	</ul>
 	<div class="button-div">
 		<a class="btn_main btn_main_l" asp-action="Logout" asp-controller="Account">LogOut</a>
@@ -17,9 +17,9 @@
 else
 {
 	<ul style="padding: 20px 0">
-		<li><a class="dropdown-item p-0" asp-action="" asp-controller="" >Order</a></li>
-		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Wish</a></li>
-		<li><a class="dropdown-item p-0" asp-action="" asp-controller="">Comparison</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Order</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Wish</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Comparison</a></li>
 	</ul>
 	<div class="button-div">
 		<a class="btn_main btn_main_d me-2" asp-action="Login" asp-controller="Account">LogIn</a>
@@ -39,7 +39,7 @@ else
 		padding: 15px;
 	}
 
-	li {
+	.li_style {
 		display: block;
 		color: #08a6a8;
 		padding: 0px;
@@ -47,13 +47,13 @@ else
 		list-style: none;
 	}
 
-		li:hover {
+		.li_style:hover {
 			color: white;
 			background-color: #08a6a8;
 			cursor: pointer;
 		}
 
-			li:hover .dropdown-item {
+			.li_style:hover .dropdown-item {
 				color: white;
 			}
 
