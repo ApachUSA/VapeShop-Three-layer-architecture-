@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,11 @@ namespace VapeShop.Domain.Entity.Client
 
 		public required string Email { get; set; }
 
+		[Required(ErrorMessage = "Password is required")]
 		public required string Password { get; set; }
 
+		[Required(ErrorMessage = "Password confirmation is required")]
+		[Compare("Password", ErrorMessage = "Passwords do not match")]
 		public required string PasswordConfirme { get; set; }
 
 		public int? CommunicationMethodID { get; set; }
