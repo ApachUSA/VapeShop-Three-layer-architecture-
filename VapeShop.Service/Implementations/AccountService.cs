@@ -113,7 +113,7 @@ namespace VapeShop.Service.Implementations
 			}
 		}
 
-		private static string HashPassword(string password) => BitConverter.ToString(SHA256.HashData(Encoding.UTF8.GetBytes(password)));
+		public static string HashPassword(string password) => BitConverter.ToString(SHA256.HashData(Encoding.UTF8.GetBytes(password)));
 
 
 		private static ClaimsIdentity Auth(User user)
