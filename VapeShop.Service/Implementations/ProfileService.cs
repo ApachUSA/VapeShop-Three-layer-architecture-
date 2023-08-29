@@ -83,7 +83,11 @@ namespace VapeShop.Service.Implementations
 		{
 			try
 			{
-				
+				if(model.Password.Length < 30)
+				{
+					model.Password = AccountService.HashPassword(model.Password);
+					model.PasswordConfirme = AccountService.HashPassword(model.PasswordConfirme);
+				}
 				await _userRepository.Update(model);
 
 				return new BaseResponse<User>
