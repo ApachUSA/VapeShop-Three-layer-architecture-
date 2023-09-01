@@ -126,7 +126,7 @@
 					</div>
 				</div>
 				<div class="container-fluid text-center" style="    box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);">
-					<div class="collapse" id="liquidCollapse">
+					<div class="collapse collapse_main" id="liquidCollapse">
 						<div class="row justify-content-md-center">
 							<div class="col-md-auto m-2">
 								<a class="link_hover" asp-action="" asp-controller="">
@@ -161,7 +161,7 @@
 						</div>
 					</div>
 
-					<div class="collapse" id="SaltliquidCollapse">
+					<div class="collapse collapse_main" id="SaltliquidCollapse">
 						<div class="row justify-content-md-center">
 							<div class="col-md-auto m-2">
 								<a class="link_hover" asp-action="" asp-controller="">
@@ -196,7 +196,7 @@
 						</div>
 					</div>
 
-					<div class="collapse" id="flavoringCollapse">
+					<div class="collapse collapse_main" id="flavoringCollapse">
 						<div class="row justify-content-md-center">
 							<div class="col-md-auto m-2">
 								<a class="link_hover" asp-action="" asp-controller="">
@@ -331,7 +331,7 @@
 <script>
 	$(function () {
 		// Get all the collapse elements
-		var collapseElements = $('.collapse');
+		var collapseElements = $('.collapse_main');
 
 		// When a collapse element is opened
 		collapseElements.on('show.bs.collapse', function () {
@@ -347,8 +347,8 @@
 			var $target = $(event.target);
 
 			// Check if the clicked element is not part of the collapse or the link that opens the collapse
-			if (!$target.closest('.collapse').length && !$target.closest('[data-bs-toggle="collapse"]').length) {
-				$('.collapse').collapse('hide');
+			if (!$target.closest('.collapse_main').length && !$target.closest('[data-bs-toggle="collapse"]').length) {
+				$('.collapse_main').collapse('hide');
 			}
 		});
 	});
