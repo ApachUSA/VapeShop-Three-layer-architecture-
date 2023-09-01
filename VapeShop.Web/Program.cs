@@ -16,6 +16,7 @@ builder.Services.AddDbContext<VapeShopDbContext>(options =>
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<ILiquidService, LiquidService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(options =>
