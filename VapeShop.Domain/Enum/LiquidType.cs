@@ -8,8 +8,8 @@ namespace VapeShop.Domain.Enum
 {
 	public enum LiquidType
 	{
-		Normal = 0,
-		Salt = 1,
-		Flavor = 2,
+		Normal = 1,
+		Salt = 2,
+		Flavor = 3,
 	}
 }
