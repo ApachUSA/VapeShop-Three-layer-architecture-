@@ -15,12 +15,17 @@ namespace VapeShop.Web.Controllers
 			this.liquidService = liquidService;
 		}
 
-		public IActionResult Index()
+		public IActionResult Index(int liquidtype, string flavor)
 		{
 			var response = liquidService.GetAll();
 			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
 			{
-				return View("Catalog",response.Value);
+				if (liquidtype != 0) response.Value = response.Value.Where(x => x.LiquidType == (Domain.Enum.LiquidType)liquidtype);
+
+				ViewBag.LiquidType = liquidtype;
+				ViewBag.Flavor = flavor;
+
+				return View("Catalog", response.Value);
 			}
 			return View("Error", $"{response.Descrition}");
 		}
@@ -39,7 +44,7 @@ namespace VapeShop.Web.Controllers
 				}
 				ModelState.AddModelError("", response.Descrition);
 			}
-			return  View(model);
+			return View(model);
 		}
 
 		[HttpGet]
@@ -47,12 +52,49 @@ namespace VapeShop.Web.Controllers
 
 
 		[HttpGet]
-		public IActionResult FilteredProducts(string filter)
+		public IActionResult FilteredProducts(int liquidTypeID, string values, decimal minPrice, decimal maxPrice, string sortOption)
 		{
-			// Здесь выполняйте логику фильтрации товаров на основе переданного фильтра
-			var filteredProducts = liquidService.GetAll().Value.Where(x => x.FlavorID == 2);
+			IEnumerable<Liquid> filteredProducts = liquidService.GetAll().Value; ;
+
+			//liquidType
+			if (liquidTypeID != 0) filteredProducts = ApplyLiquidTypeFilter(filteredProducts, liquidTypeID);
+
+			//Flavors
+			if (values != null) filteredProducts = ApplyFlavorsFilter(filteredProducts, values.Split(','));
+
+			//Price
+			if (filteredProducts.Any()) filteredProducts = ApplyPriceFilter(filteredProducts, minPrice, maxPrice);
+
+			//sort
+			if (filteredProducts.Any()) filteredProducts = ApplySortOrder(filteredProducts, sortOption);
 
 			return PartialView("_CatalogPartial", filteredProducts);
 		}
+
+
+
+
+		//Help methods
+		private static IEnumerable<Liquid> ApplyLiquidTypeFilter(IEnumerable<Liquid> products, int liquidTypeID) => products.Where(x => x.LiquidType == (Domain.Enum.LiquidType)liquidTypeID);
+
+		private static IEnumerable<Liquid> ApplyFlavorsFilter(IEnumerable<Liquid> products, string[]? selectedFlavors) => products.Where(x => selectedFlavors.Contains(x.Flavor.Flavor_name));
+
+		private static IEnumerable<Liquid> ApplyPriceFilter(IEnumerable<Liquid> products, decimal minPrice, decimal maxPrice) => products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
+
+		private static IEnumerable<Liquid> ApplySortOrder(IEnumerable<Liquid> products, string sortOption)
+		{
+			return sortOption switch
+			{
+				"Новинки ниже" => products.OrderBy(x => x.LiquidID),
+				"Новинки выше" => products.OrderByDescending(x => x.LiquidID),
+				"От А до Я" => products.OrderBy(x => x.Name),
+				"От Я до А" => products.OrderByDescending(x => x.Name),
+				"Дешевые выше" => products.OrderBy(x => x.Price),
+				"Дешевые ниже" => products.OrderByDescending(x => x.Price),
+				_ => products,
+			};
+		}
+
+
 	}
 }
