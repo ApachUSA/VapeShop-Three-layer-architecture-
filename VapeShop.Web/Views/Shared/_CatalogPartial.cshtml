@@ -2,14 +2,10 @@
 @model IEnumerable<Liquid>
 
 
-<div class="row mb-3">
-	<div class="col-6">sort</div>
-	<div class="col-6 d-flex justify-content-end">
-		<a class="btn_main btn_main_l" style="width:fit-content">+ Add</a>
-	</div>
-</div>
 
 <div class="row">
+
+	
 	<div class="grid_ist">
 
 
@@ -73,4 +69,299 @@
 	</div>
 </div>
 
-								
+<style>
+	.grid_ist {
+		display: block;
+		min-width: 100%;
+	}
+
+	.category_list {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.column {
+	
+		flex-basis: auto;
+		min-width: 200px;
+		margin-right: 0;
+		display: inline-block;
+		float: left;
+		width: 33.333333333333%;
+		vertical-align: top;
+	}
+
+	.product_card {
+		height: 550px;
+		min-width: 201px;
+		position: relative;
+		padding: 0;
+		margin-bottom: -1px;
+		width: calc(100% + 1px);
+	}
+
+		.product_card:hover {
+			overflow: visible;
+		}
+
+			.product_card:hover .product_card_body {
+				top: -15px;
+				left: -15px;
+				padding: 30px;
+				width: calc(100% + 30px);
+				min-height: calc(100% + 30px) !important;
+				position: relative;
+				z-index: 2;
+				box-shadow: 0 0 5px rgba(35,35,35,0.05), 0 0 10px rgba(35,35,35,0.15);
+			}
+
+			.product_card:hover .hidden {
+				visibility: visible;
+				opacity: 1;
+			}
+
+			.product_card:hover .display {
+				display: block;
+				opacity: 1;
+			}
+
+	.product_card_body {
+		position: relative;
+		background: #fff;
+		padding: 15px 15px 25px;
+		min-height: 550px;
+		margin: 0;
+		box-shadow: inset 0 0 0 1px #efefef;
+		transition: box-shadow 0.1s ease-in-out;
+	}
+
+	.body_image {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		position: relative;
+		border: 0;
+		padding: 0;
+		margin: 0 auto 10px;
+		min-width: 100%;
+		max-width: 100%;
+		overflow: hidden;
+		height: 350px;
+	}
+
+		.body_image img {
+			max-height: 100%;
+			width: fit-content;
+		}
+
+
+		.body_image > a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			height: 100%;
+		}
+
+	.body_image_btn {
+		display: block;
+		opacity: 0;
+		transition-delay: .1s;
+		top: 0;
+		right: 0;
+		position: absolute;
+		width: 36px;
+	}
+
+	.quick_view_btn {
+		border-radius: 6px;
+		display: flex;
+		height: 36px;
+		width: 36px;
+		padding: 7px;
+		margin-bottom: -1px;
+		background-color: #fff;
+		box-shadow: inset 0 0 0 1px #efefef;
+	}
+
+		.quick_view_btn i {
+			color: #8f8f8f;
+			font-size: 22px;
+			line-height: 22px;
+		}
+
+			.quick_view_btn i:hover {
+				color: #08a6a8;
+			}
+
+	.body_price {
+		min-height: 46px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-right: 10px;
+		font-family: MuseoSansBlack,'Helvetica Neue',Arial,-apple-system,sans-serif;
+		font-weight: bolder;
+		font-size: 18px;
+	}
+
+	.body_content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.content_name {
+		flex: 0 0 auto;
+		white-space: normal;
+		text-align: left;
+		margin-bottom: 0 !important;
+	}
+
+	.product_title {
+		font-size: 14px;
+		line-height: 1.2;
+		margin-bottom: 5px;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		display: -webkit-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-height: 2.4em;
+		word-wrap: break-word;
+		-webkit-hyphens: auto;
+		hyphens: auto;
+		color: #434343;
+	}
+
+	.hidden {
+		visibility: hidden;
+	}
+
+	.display {
+		display: none;
+	}
+
+	.content_amount {
+		padding: 0;
+		height: 12px;
+		font-size: 13px;
+		color: #00a9aa;
+	}
+
+	.content_controll {
+		margin-top: 15px;
+		width: 100%;
+		height: 36px;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		align-items: flex-end;
+	}
+
+	.content_bottom {
+		padding-top: 15px;
+		width: 100%;
+		float: left;
+	}
+
+	.dots span {
+		font-size: 13px;
+	}
+
+	ul.dots li {
+		list-style-type: none;
+		clear: both;
+		font-size: 1em;
+		margin: 0;
+		padding: 0;
+	}
+
+		ul.dots li span:first-child {
+			float: left;
+			padding: 0 10px 0 0;
+			color: gray;
+		}
+
+		ul.dots li span + span {
+			float: right;
+			padding: 0 0 0 10px;
+		}
+
+		ul.dots li:after {
+			content: "";
+			display: block;
+			overflow: hidden;
+			height: 0.8em;
+			border-bottom: 1px dotted gray;
+		}
+
+	input[type="checkbox"] {
+		appearance: none;
+		min-height: 1.48em;
+		min-width: 1.48em;
+		margin-top: -2px;
+		background: #fff;
+		border: 1px solid #d6d6d6;
+		box-shadow: inset 0 0 3px rgba(54,54,54,0.05);
+		cursor: pointer;
+		transition: border-color .1s ease;
+		border-radius: 6px;
+	}
+
+		input[type="checkbox"]:checked {
+			border-color: #08a6a8;
+			background: #08a6a8 center no-repeat url(https://cdn-icons-png.flaticon.com/512/8373/8373255.png);
+			background-size: 55%;
+			background-origin: border-box;
+			box-shadow: none;
+		}
+
+
+
+
+	.filter-checkbox {
+		display: flex;
+		align-items: center;
+		min-height: 34px;
+	}
+
+
+
+	.checkbox-label {
+		position: relative;
+		padding-left: 15px;
+		padding-right: 5px;
+		line-height: 0;
+		width: 100%;
+		cursor: pointer;
+	}
+
+	.price_input {
+		font-size: 14px !important;
+		background: #fff;
+		min-height: 36px;
+		height: 36px;
+		border-radius: 6px;
+		transition: all 150ms;
+		font-family: Arial,'Helvetica Neue',-apple-system,sans-serif;
+		outline: none !important;
+		padding: 4px 8px;
+		border: 1px solid #c9c9c9;
+		width: 74px;
+	}
+
+		.price_input:hover {
+			border-color: #08a6a8;
+			box-shadow: 0 0 0 2px rgba(8,166,168,0.1);
+		}
+
+	.collapse_price {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0;
+		color: #909598;
+		margin: 10px 10px;
+	}
+</style>						
