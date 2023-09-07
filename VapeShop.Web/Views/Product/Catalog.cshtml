@@ -1,24 +1,26 @@
 ﻿@using VapeShop.Domain.Entity.Product;
+@using VapeShop.Domain.Enum;
 @model IEnumerable<Liquid>
 
 <div class="container" style="padding-bottom: 100px;">
 	<div class="row"></div>
-	<div class="row mt-4 mb-3" style="padding: 0 20px;border-bottom: 1px solid lightgray;">
-		<h1 style="font-size: 28px; font-family: MuseoSansBlack,'Helvetica Neue',Arial,-apple-system,sans-serif; font-weight: bold;">СОЛЕВАЯ жидкость для POD-систем</h1>
+	<div class="row mt-5 mb-3" style="padding: 0 20px;border-bottom: 1px solid lightgray;">
+		<h1 class="fw-bolder" style="font-size: 28px; font-family: MuseoSansBlack,'Helvetica Neue',Arial,-apple-system,sans-serif;"></h1>
 	</div>
 
 	<div class="row" style="padding-left: 20px;">
 		<div class="side_grid p-0">
 			<div class="main_categories_block">
 				<ul class="main_categories">
-					<li class="categories_item level-0 current-item"><a><span>АРОМАТИЗАТОРЫ VAPEJOY</span></a></li>
-					<li class="categories_item level-0"><a><span>ПРЕМИУМ жидкости для Вейпа</span></a></li>
-					<li class="categories_item level-0"><a><span>СОЛЕВАЯ жидкость для POD-систем</span></a></li>
+					<li class="categories_item top_category level-0" data-liquid-type="0"><a asp-action="Index" asp-controller="Product" asp-route-liquidtype="0"><span>All goods</span></a></li>
+					<li class="categories_item top_category level-0" data-liquid-type="3"><a asp-action="Index" asp-controller="Product" asp-route-liquidtype="3"><span>Vapejoy flavorings</span></a></li>
+					<li class="categories_item top_category level-0" data-liquid-type="1"><a asp-action="Index" asp-controller="Product" asp-route-liquidtype="1"><span>Premium vape liquids</span></a></li>
+					<li class="categories_item top_category level-0" data-liquid-type="2"><a asp-action="Index" asp-controller="Product" asp-route-liquidtype="2"><span>Salt liquid for POD systems</span></a></li>
 				</ul>
 			</div>
 			<div class="main_categories_block mt-3">
 				<ul class="main_categories">
-					<li class="categories_item level-0 disabled"><a><span style="color: #8f8f8f !important">Фильтры товаров</span></a></li>
+					<li class="categories_item level-0 disabled"><a><span style="color: #8f8f8f !important; font-weight: 600">Фильтры товаров</span></a></li>
 					<li class="categories_item filter level-0">
 						<a data-bs-toggle="collapse" data-bs-target="#collapseExample"><span>Вкус</span></a>
 
@@ -27,44 +29,45 @@
 						<ul class="main_categories">
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
-									<input id="fruits" type="checkbox">
+									<input id="Fruits" class="filter-checkbox" type="checkbox">
 									<label class="checkbox-label" for="fruits"><span>Фрукты</span></label>
 								</div>
 
 							</li>
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
-									<input id="tabacco" type="checkbox">
+									<input id="Tobacco" class="filter-checkbox" type="checkbox">
 									<label class="checkbox-label" for="tabacco"><span>Табачка</span></label>
 								</div>
 
 							</li>
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
-									<input id="drinks" type="checkbox">
+									<input id="Drinks" class="filter-checkbox" type="checkbox">
 									<label class="checkbox-label" for="drinks"><span>Напитки</span></label>
 								</div>
 
 							</li>
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
-									<input id="dessert" type="checkbox">
+									<input id="Dessert" class="filter-checkbox" type="checkbox">
 									<label class="checkbox-label" for="dessert"><span>Десерты</span></label>
 								</div>
-
 							</li>
-							@*<li class="categories_item level-1"><a class="w-100 filter-button" data-filter="fruit"><span>Табачка</span></a></li>
-							<li class="categories_item level-1"><a class="w-100"><span>Фрукты</span></a></li>
-							<li class="categories_item level-1"><a class="w-100"><span>Фрукты</span></a></li>*@
-
 						</ul>
 					</div>
 					<li class="categories_item filter level-0"><a data-bs-toggle="collapse" data-bs-target="#collapseExample2"><span>Цена</span></a></li>
 					<div class="collapse" id="collapseExample2">
 						<div class="collapse_price">
-							<input type="search" class="price_input" />
+							<input type="search" class="price_input" value="@if(Model.Any())
+							@Math.Round(@Model.Min(x => x.Price))
+
+" />
 							<label> грн   - </label>
-							<input type="search" class="price_input" />
+							<input type="search" class="price_input" value="@if(Model.Any())
+							@Math.Round(@Model.Max(x => x.Price))
+
+" />
 							<label> грн</label>
 						</div>
 
@@ -73,27 +76,113 @@
 				</ul>
 			</div>
 		</div>
-		<div class="main_content" style="float: right;    width: calc(100% - 280px);">
-			<partial name="_CatalogPartial" model="@Model" />
+		<div style=" padding-left: 20px; padding-right: 20px; float: right; width: calc(100% - 250px);">
+			<div class="row mb-3">
+				<div class="col-6">
+					<div class="sorting_menu">
+						<div class="sort_dropdown d-flex">
+							<div class="sort_label"><i class="bi bi-filter-left"></i> Cортировать по: </div>
+							<a id="sw_elm_sort_fields" class="dropdown_wrapper" data-bs-toggle="dropdown">
+								<span id="selected-sort-option"></span>
+							</a>
+							<ul id="elm_sort_fields" class="dropdown_content dropdown-menu">
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Новинки ниже')">Новинки ниже</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Новинки выше')">Новинки выше</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('От Я до А')">От Я до А</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('От А до Я')">От А до Я</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Дешевые выше')">Дешевые выше</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Дорогие выше')">Дорогие выше</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-6 d-flex justify-content-end">
+					<a class="btn_main btn_main_l" style="width:fit-content" a asp-action="Create" asp-controller="Product">+ Add</a>
+				</div>
+			</div>
+			<div class="main_content">
+				<partial name="_CatalogPartial" model="@Model" />
+			</div>
 		</div>
 	</div>
 
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function () {
-		// Обработчик события для фильтрации товаров
-		$(".filter-button").click(function () {
-			var filterValue = $(this).data("filter"); // Получаем значение фильтра
-			$.ajax({
-				url: "@Url.Action("FilteredProducts", "Product")", // Замените на соответствующий URL вашего контроллера
-				type: "GET",
-				data: { filter: filterValue },
-				success: function (data) {
-					$(".main_content").html(data); // Обновляем список товаров
-				}
-			});
+		var liquidType = '@ViewBag.LiquidType';
+		var flavor = '@ViewBag.Flavor';
+
+		// Set the selected liquid type as 'current-item'
+		if (liquidType !== null && liquidType !== undefined && liquidType !== 0) {
+			$('.categories_item[data-liquid-type="' + liquidType + '"]').addClass('current-item');
+			switch (liquidType) {
+				case '0': $('h1').text('Все товары');
+					break;
+				case '1': $('h1').text('Жидкость на органическом никотине для вейпа - VapeJOY');
+					break;
+				case '2': $('h1').text('СОЛЕВАЯ жидкость для POD-систем');
+					break;
+				case '3': $('h1').text('Ароматизаторы для Вейпа - VapeJOY');
+					break;
+
+			}
+		}
+
+		// Check the flavor checkbox
+		if (flavor !== null && flavor !== "") {
+			$('#' + flavor).trigger('click');
+		}
+	});
+</script>
+
+<script>
+	function filterProductsByFlavorAndPrice() {
+		var selectedValues = [];
+
+		// Получаем выбранные флажки
+		$(".filter-checkbox:checked").each(function () {
+			selectedValues.push($(this).attr("id"));
 		});
+
+		var minPrice = $(".price_input:first").val();
+		var maxPrice = $(".price_input:last").val();
+
+		// Преобразуем выбранные значения в строку для передачи
+		var filterValues = selectedValues.join(",");
+
+		var currentLiquidType = $(".current-item").data("liquid-type");
+
+		var selectedOption = document.getElementById('selected-sort-option').textContent;
+		$.ajax({
+			url: "@Url.Action("FilteredProducts", "Product")",
+			type: "GET",
+			data: {
+				liquidTypeID: currentLiquidType,
+				values: filterValues,
+				minPrice: minPrice,
+				maxPrice: maxPrice,
+				sortOption: selectedOption
+			}, // Замените 1 на соответствующий liquidTypeID
+			success: function (data) {
+				$(".main_content").html(data); // Обновляем список товаров
+			}
+		});
+	}
+
+	// Обработчик события для фильтрации товаров
+	$(".filter-checkbox").click(function () {
+		filterProductsByFlavorAndPrice();
+	});
+
+	$(".price_input").on("blur keypress", function (e) {
+		// Проверяем, нажата ли клавиша Enter (код клавиши 13)
+		if (e.type === "keypress" && e.which !== 13) {
+			return;
+		}
+		filterProductsByFlavorAndPrice();
 	});
 </script>
 <script>
@@ -103,7 +192,120 @@
 		});
 	});
 </script>
+<script>
+	
+	window.onload = function () {
+		changeSelectedOption('От А до Я');
+	};
+</script>
+<script>
+	function changeSelectedOption(optionText) {
+		var selectedOptionElement = document.getElementById('selected-sort-option');
+		selectedOptionElement.textContent = optionText;
+
+		var selectedOptionIndex = -1;
+		var items = document.querySelectorAll('.dropdown_content_item_a');
+
+		items.forEach(function (item) {
+			item.parentNode.style.display = 'block';
+		});
+		
+		for (var i = 0; i < items.length; i++) {
+			if (items[i].textContent === optionText) {
+				selectedOptionIndex = i;
+				break;
+			}
+		}
+
+		if (selectedOptionIndex >= 0) {
+			items[selectedOptionIndex].parentNode.style.display = 'none';
+		}
+
+		filterProductsByFlavorAndPrice();
+	}
+</script>
 <style>
+
+	.sorting_menu {
+		display: inline-block;
+		width: 100%;
+		text-align: left;
+	}
+
+	.sort_dropdown {
+		display: inline-block;
+	}
+
+		.sort_dropdown:first-child {
+			position: relative;
+		}
+
+	.sort_label {
+		float: left;
+		display: inline-block;
+		line-height: 36px;
+		padding-right: 5px;
+		color: #8f8f8f;
+	}
+
+	.dropdown_wrapper {
+		display: flex;
+		align-items: center;
+		height: 36px;
+		padding: 0 10px 0 0;
+		line-height: 100%;
+		color: #08a6a8;
+		transition: all 150ms;
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+		.dropdown_wrapper span {
+			max-width: 160px;
+			margin-bottom: -1px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			text-decoration: underline;
+			text-underline-offset: 1.3px;
+			text-decoration-style: dotted;
+			text-decoration-thickness: 1px;
+		}
+
+			.dropdown_wrapper span:hover {
+				text-decoration-color: #0c7071;
+			}
+
+		.dropdown_wrapper:active dropdown_content{
+			display:block;
+		}
+
+		.dropdown_content {
+		background: #fff;
+		margin-top: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		position: absolute;
+		z-index: 100;
+		top: 40px;
+		min-width: 200px;
+		box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 5px 15px 0 rgba(0,0,0,0.22);
+	}
+
+		.dropdown_content li{
+			margin: 0;
+			padding: 2px 0;
+			text-indent: 0;
+			list-style: none;
+		}
+
+	.dropdown_content_item_a {
+		text-decoration: none;
+		padding: 7px 14px;
+		color: #08a6a8;
+		display: block;
+	}
 
 	.side_grid {
 		width: 250px;
@@ -212,298 +414,6 @@
 	.filter.collapsed span:after {
 		content: "\2212"; /* Иконка минуса */
 		transform: rotate(180deg); /* Вращение для создания эффекта минуса */
-	}
-
-
-
-	.grid_ist {
-		display: block;
-		min-width: 100%;
-	}
-
-	.category_list {
-		display: flex;
-		flex-wrap: wrap;
-		width: 100%;
-	}
-
-	.column {
-		flex: 1;
-		flex-basis: auto;
-		min-width: 200px;
-		margin-right: 0;
-		display: inline-block;
-		float: left;
-		width: 33.333333333333%;
-		vertical-align: top;
-	}
-
-	.product_card {
-		height: 527px;
-		min-width: 201px;
-		position: relative;
-		padding: 0;
-		margin-bottom: -1px;
-		width: calc(100% + 1px);
-	}
-
-		.product_card:hover {
-			overflow: visible;
-		}
-
-			.product_card:hover .product_card_body {
-				position: relative;
-				z-index: 2;
-				box-shadow: 0 0 5px rgba(35,35,35,0.05), 0 0 10px rgba(35,35,35,0.15);
-			}
-
-			.product_card:hover .hidden {
-				visibility: visible;
-				opacity: 1;
-			}
-
-			.product_card:hover .display {
-				display: block;
-				opacity: 1;
-			}
-
-	.product_card_body {
-		position: relative;
-		background: #fff;
-		padding: 15px 15px 25px;
-		min-height: 527px;
-		margin: 0;
-		box-shadow: inset 0 0 0 1px #efefef;
-		transition: box-shadow 0.1s ease-in-out;
-	}
-
-	.body_image {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-		position: relative;
-		border: 0;
-		padding: 0;
-		margin: 0 auto 10px;
-		min-width: 100%;
-		max-width: 100%;
-		overflow: hidden;
-		height: 350px;
-	}
-
-		.body_image img {
-			max-height: 100%;
-			width: fit-content;
-		}
-
-
-		.body_image > a {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			height: 100%;
-		}
-
-	.body_image_btn {
-		display: block;
-		opacity: 0;
-		transition-delay: .1s;
-		top: 0;
-		right: 0;
-		position: absolute;
-		width: 36px;
-	}
-
-	.quick_view_btn {
-		border-radius: 6px;
-		display: flex;
-		height: 36px;
-		width: 36px;
-		padding: 7px;
-		margin-bottom: -1px;
-		background-color: #fff;
-		box-shadow: inset 0 0 0 1px #efefef;
-	}
-
-		.quick_view_btn i {
-			color: #8f8f8f;
-			font-size: 22px;
-			line-height: 22px;
-		}
-
-			.quick_view_btn i:hover {
-				color: #08a6a8;
-			}
-
-	.body_price {
-		min-height: 46px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-right: 10px;
-		font-family: MuseoSansBlack,'Helvetica Neue',Arial,-apple-system,sans-serif;
-		font-weight: bolder;
-		font-size: 18px;
-	}
-
-	.body_content {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.content_name {
-		flex: 0 0 auto;
-		white-space: normal;
-		text-align: left;
-		margin-bottom: 0 !important;
-	}
-
-	.product_title {
-		font-size: 14px;
-		line-height: 1.2;
-		margin-bottom: 5px;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		display: -webkit-box;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		max-height: 2.4em;
-		word-wrap: break-word;
-		-webkit-hyphens: auto;
-		hyphens: auto;
-		color: #434343;
-	}
-
-	.hidden {
-		visibility: hidden;
-	}
-
-	.display {
-		display: none;
-	}
-
-	.content_amount {
-		padding: 0;
-		height: 12px;
-		font-size: 13px;
-		color: #00a9aa;
-	}
-
-	.content_controll {
-		margin-top: 15px;
-		width: 100%;
-		height: 36px;
-		flex-direction: row-reverse;
-		justify-content: flex-end;
-		align-items: flex-end;
-	}
-
-	.content_bottom {
-		padding-top: 15px;
-		width: 100%;
-		float: left;
-	}
-
-	.dots span {
-		font-size: 13px;
-	}
-
-	ul.dots li {
-		list-style-type: none;
-		clear: both;
-		font-size: 1em;
-		margin: 0;
-		padding: 0;
-	}
-
-		ul.dots li span:first-child {
-			float: left;
-			padding: 0 10px 0 0;
-			color: gray;
-		}
-
-		ul.dots li span + span {
-			float: right;
-			padding: 0 0 0 10px;
-		}
-
-		ul.dots li:after {
-			content: "";
-			display: block;
-			overflow: hidden;
-			height: 0.8em;
-			border-bottom: 1px dotted gray;
-		}
-
-	input[type="checkbox"] {
-		appearance: none;
-		min-height: 1.48em;
-		min-width: 1.48em;
-		margin-top: -2px;
-		background: #fff;
-		border: 1px solid #d6d6d6;
-		box-shadow: inset 0 0 3px rgba(54,54,54,0.05);
-		cursor: pointer;
-		transition: border-color .1s ease;
-		border-radius: 6px;
-	}
-
-		input[type="checkbox"]:checked {
-			border-color: #08a6a8;
-			background: #08a6a8 center no-repeat url(https://cdn-icons-png.flaticon.com/512/8373/8373255.png);
-			background-size: 55%;
-			background-origin: border-box;
-			box-shadow: none;
-		}
-
-
-
-
-	.filter-checkbox {
-		display: flex;
-		align-items: center;
-		min-height: 34px;
-	}
-
-
-
-	.checkbox-label {
-		position: relative;
-		padding-left: 15px;
-		padding-right: 5px;
-		line-height: 0;
-		width: 100%;
-		cursor: pointer;
-	}
-
-	.price_input {
-		font-size: 14px !important;
-		background: #fff;
-		min-height: 36px;
-		height: 36px;
-		border-radius: 6px;
-		transition: all 150ms;
-		font-family: Arial,'Helvetica Neue',-apple-system,sans-serif;
-		outline: none !important;
-		padding: 4px 8px;
-		border: 1px solid #c9c9c9;
-		width: 74px;
-	}
-
-		.price_input:hover {
-			border-color: #08a6a8;
-			box-shadow: 0 0 0 2px rgba(8,166,168,0.1);
-		}
-
-	.collapse_price {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0;
-		color: #909598;
-		margin: 10px 10px;
 	}
 
 </style>
