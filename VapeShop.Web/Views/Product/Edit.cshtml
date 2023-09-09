@@ -1,0 +1,231 @@
+﻿@using VapeShop.Domain.Entity.Product;
+@model Liquid
+
+<div class="container">
+	<form asp-action="Edit">
+		<div class="row"></div>
+		<div class="row mt-4">
+			<div class="form-group col-4 mb-3">
+				<input asp-for="LiquidID" hidden />
+				<h5 class="fw-bold">
+					<label asp-for="Name"></label>
+					<input asp-for="Name" class="form-control" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</h5>
+			</div>
+			<div class="form-group col-8 mb-3">
+				<h5 class="fw-bold">
+					<label asp-for="LongName"></label>
+					<input asp-for="LongName" class="form-control" />
+					<span asp-validation-for="LongName" class="text-danger"></span>
+				</h5>
+			</div>
+		</div>
+
+		<div class="row mt-4" style="padding: 25px; margin: 0 10px 0 0;">
+			<div class="col-6">
+				<img id="previewImage" height="450" src="" />
+				<label asp-for="Image"></label>
+				<input id="imageInput" asp-for="Image" class="form-control" oninput="updateImagePreview()" />
+				<span asp-validation-for="Image" class="text-danger"></span>
+			</div>
+
+			<div class="col-6" style="box-shadow: 0 0.1rem 2rem rgba(54,54,54,0.1); border-radius: 8px; ">
+
+				<div class="row text-end" style="line-height: 30px; border-bottom: 1px solid lightgray">
+					<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">КОД: </p>
+				</div>
+
+				<div class="row mt-3">
+					<div class="col-6 ms-4">
+
+
+
+						<div class="col">
+							<h5 class="fw-bold">
+								<label asp-for="Price"></label>
+								<input asp-for="Price" class="form-control" />
+								<span asp-validation-for="Price" class="text-danger"></span>
+							</h5>
+						</div>
+
+
+
+					</div>
+
+					<div class="col-5 text-start">
+						<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
+							<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+								<i class="bi bi-truck"></i>
+								Доставка
+							</a>
+							<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample">
+								- Новая Почта
+								<br />
+								- Bolt  доставка (Заророжье)
+							</p>
+						</div>
+						<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
+							<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample">
+								<i class="bi bi-credit-card"></i>
+								Варианты оплаты
+							</a>
+							<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample2">
+								— Картами Visa и MasterCard	<br />
+								— Оплата на карту	<br />
+								— Наличными при получении в Магазине
+							</p>
+						</div>
+						<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
+							<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample">
+								<i class="bi bi-star"></i>
+								Наши преимущества
+							</a>
+							<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample3">
+								— Собственное производство	<br />
+								— Широкий ассортимент<br />
+								— Быстрая отправка<br />
+								— Доступные цены<br />
+								— Гарантии соблюдения всех  производственых норм и условий правил хранения
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
+					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Characteristics</button>
+				</div>
+			</nav>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+					<a class="link_hover" href="https://wordtohtml.net/site/index?tinyeditor">{ Website for creating html text }</a>
+					<textarea rows="30" class="w-100" style="border: none" asp-for="Description" class="form-control"></textarea>
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+					<div class="content_features">
+						<div class="row">
+							<div class="col-6">
+								<div class="filter_container" style="column-count: 1">
+									<div class="product_feature">
+										<div class="product_feature_label"><span><label asp-for="FlavorID"></label></span></div>
+										<div class="product_feature_value"><select asp-for="FlavorID" asp-items="ViewBag.Flavor" class="form-control"></select><span asp-validation-for="FlavorID" class="text-danger"></span></div>
+									</div>
+									<div class="product_feature">
+										<div class="product_feature_label"><span><label asp-for="Volume"></label></span></div>
+										<div class="product_feature_value"><select asp-for="Volume" class="form-control" asp-items="ViewBag.Volume"></select><span asp-validation-for="Volume" class="text-danger"></span></div>
+									</div>
+									<div class="product_feature">
+										<div class="product_feature_label"><span><label asp-for="LiquidType"></label></span></div>
+										<div class="product_feature_value"><select asp-for="LiquidType" class="form-control" asp-items="ViewBag.LiquidType"></select><span asp-validation-for="LiquidType" class="text-danger"></span></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 ">
+								<div class="partial_content">
+									<partial name="_EditPartial" model="@Model" />
+								</div>
+								
+								<a class="btn_main btn_main_d add_param" style="width: 100%">Add Row</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+				</div>
+			</div>
+		</div>
+		<button class="btn_main btn_main_l" style="width:100%; margin-top: 10px" type="submit">Save</button>
+	</form>
+</div>
+@{
+	var pgVgJson = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.PG_VG);
+	var nicotineJson = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Nicotine);
+}
+
+<style>
+	td a {
+		display: block; /* Чтобы элемент занимал всю ширину ячейки */
+		text-align: center; /* Выравнивание по центру горизонтально */
+		margin: 0 auto; /* Выравнивание по центру вертикально и по горизонтали */
+	}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () { updateImagePreview(); });
+	function updateImagePreview() {
+		var imageInput = document.getElementById("imageInput");
+		var previewImage = document.getElementById("previewImage");
+
+		// Получаем значение из input
+		var imageUrl = imageInput.value;
+
+		// Устанавливаем полученное значение в атрибут src элемента img
+		previewImage.src = imageUrl;
+	}
+</script>
+
+<script>
+	// Обработчик события для фильтрации товаров
+	$(".add_param").click(function () {
+		$.ajax({
+			url: "@Url.Action("CreateLiquid_Params", "Product")",
+			type: "GET",
+			data: {
+				liquid_id: @Model.LiquidID
+				}, // Замените 1 на соответствующий liquidTypeID
+			success: function (data) {
+				$(".partial_content").html(data); // Обновляем список товаров
+			}
+		});
+	});
+
+	
+</script>
+
+
+
+@*<script>
+	const table = document.getElementById('liquidTable');
+	const addButton = document.getElementById('addRowButton');
+	let rowCount = @Model.Liquid_Params.Count;
+
+	// Преобразование данных из ViewBag в JavaScript объект
+	const pgVgData = @Html.Raw(Json.Serialize(ViewBag.PG_VG));
+	const nicotineData = @Html.Raw(Json.Serialize(ViewBag.Nicotine));
+
+	addButton.addEventListener('click', function () {
+		const newRow = document.createElement('tr');
+		newRow.innerHTML = `<input hidden="" type="number" data-val="true" data-val-required="The LiquidParamID field is required." id="Liquid_Params_${rowCount}__LiquidParamID" name="Liquid_Params[${rowCount}].LiquidParamID" value="3">
+							<td><select class="form-control m-2" id="Liquid_Params_${rowCount}__PG_VGID" name="Liquid_Params[${rowCount}].PG_VGID"></select></td>
+							<td><select class="form-control m-2" id="Liquid_Params_${rowCount}__NicotineID" name="Liquid_Params[${rowCount}].NicotineID"></select></td>
+							<td><input class="form-control m-2 input-validation-error" type="number" data-val="true" data-val-required="The Available_quantity field is required." id="Liquid_Params_${rowCount}__Available_quantity" name="Liquid_Params[${rowCount}].Available_quantity" value=""></td>
+						`;
+		table.appendChild(newRow);
+		// Добавление элементов <option> в <select> с использованием данных из JavaScript объектов
+		const pgVgSelect = newRow.querySelector(`select[id="Liquid_Params_${rowCount}__PG_VGID"]`);
+		const nicotineSelect = newRow.querySelector(`select[id="Liquid_Params_${rowCount}__NicotineID"]`);
+
+		pgVgData.forEach(option => {
+			const optionElement = document.createElement('option');
+			optionElement.value = option.value;
+			optionElement.textContent = option.text;
+			pgVgSelect.appendChild(optionElement);
+		});
+
+		nicotineData.forEach(option => {
+			const optionElement = document.createElement('option');
+			optionElement.value = option.value;
+			optionElement.textContent = option.text;
+			nicotineSelect.appendChild(optionElement);
+		});
+
+		rowCount++;
+	});
+</script>*@
+
