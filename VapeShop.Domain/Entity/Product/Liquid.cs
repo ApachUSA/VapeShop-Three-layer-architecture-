@@ -31,9 +31,9 @@ namespace VapeShop.Domain.Entity.Product
 
         public LiquidType LiquidType { get; set; }
 
-		public ICollection<Liquid_param>? Liquid_Params { get; set; }
+		public List<Liquid_param>? Liquid_Params { get; set; }
 
-		public ICollection<ComparisonList>? ComparisonLists { get; set; }
+		public List<ComparisonList>? ComparisonLists { get; set; }
 
 	}
 }
