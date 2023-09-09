@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using VapeShop.Domain.Entity.Product;
 using VapeShop.Domain.ViewModels;
 using VapeShop.Service.Interfaces;
@@ -9,10 +11,12 @@ namespace VapeShop.Web.Controllers
 	{
 
 		private readonly ILiquidService liquidService;
+		private readonly ILiquidParamService liquidParamService;
 
-		public ProductController(ILiquidService liquidService)
+		public ProductController(ILiquidService liquidService, ILiquidParamService liquidParamService)
 		{
 			this.liquidService = liquidService;
+			this.liquidParamService = liquidParamService;
 		}
 
 		public IActionResult Index(int liquidtype, string flavor)
@@ -30,10 +34,14 @@ namespace VapeShop.Web.Controllers
 			return View("Error", $"{response.Descrition}");
 		}
 
-		public IActionResult Create() => View();
+		public IActionResult Create()
+		{
+			FillViewData();
+			return View();
+		}
 
 		[HttpPost]
-		public async Task<IActionResult> Create(Liquid model)
+		public async Task<IActionResult> Create(CreateLiquidVM model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -47,8 +55,84 @@ namespace VapeShop.Web.Controllers
 			return View(model);
 		}
 
+		public async Task<IActionResult> Delete(int liquid_id)
+		{
+			var response = await liquidService.Delete(liquid_id);
+			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			{
+				return RedirectToAction("Index");
+			}
+			return RedirectToAction("Details", new { id = liquid_id });
+		}
+
+
 		[HttpGet]
-		public IActionResult Details(int id) => View("Details", liquidService.Get(id));
+		public async Task<IActionResult> Edit(int id)
+		{
+			var response = await liquidService.Get(id);
+
+			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			{
+				FillViewData();
+				return View(response.Value);
+			}
+			return View("Error", $"{response.Descrition}");
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Edit(Liquid model)
+		{
+			var response = await liquidService.Update(model);
+			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			{
+				return RedirectToAction("Edit", new { id = response.Value.LiquidID });
+			}
+			return View("Error", $"{response.Descrition}");
+		}
+
+		private async Task<IActionResult> IndexEdit(int liquid_id)
+		{
+			var liquid_response = await liquidService.Get(liquid_id);
+			liquid_response.Value.Liquid_Params = liquid_response.Value.Liquid_Params.OrderBy(x => x.LiquidParamID).ToList();
+
+			FillViewData();
+
+			return PartialView("_EditPartial", liquid_response.Value);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> CreateLiquid_Params(int liquid_id)
+		{
+			var response = await liquidParamService.Create(new Liquid_param { LiquidID = liquid_id });
+			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			{
+				return await IndexEdit(liquid_id);
+			}
+			return View("Error", $"{response.Descrition}");
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> DeleteLiquid_Params(int liquid_id, int liquid_param_id)
+		{
+			var response = await liquidParamService.Delete(liquid_param_id);
+			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			{
+				return await IndexEdit(liquid_id);
+			}
+			return View("Error", $"{response.Descrition}");
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Details(int id)
+		{
+			var response = await liquidService.Get(id);
+
+			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			{
+				return View("Details", response.Value);
+			}
+			return View("Error", $"{response.Descrition}");
+		}
 
 
 		[HttpGet]
@@ -93,6 +177,25 @@ namespace VapeShop.Web.Controllers
 				"Дешевые ниже" => products.OrderByDescending(x => x.Price),
 				_ => products,
 			};
+		}
+
+		private IEnumerable<PG_VG> GetPG_VGs() => liquidParamService.GetPG_VG().Value;
+		private IEnumerable<Nicotine> GetNicotines() => liquidParamService.GetNicotine().Value;
+		private IEnumerable<Flavor> GetFlavors() => liquidParamService.GetFlavors().Value;
+
+		private void FillViewData()
+		{
+			var nicotinesWithInfo = GetNicotines().Select(n => new
+			{
+				NicotineID = n.NicotineID,
+				NicotineInfo = $"{n.Nicotine_type} - {n.Nicotine_concentration}"
+			}).ToList();
+
+			ViewData["PG_VG"] = new SelectList(GetPG_VGs(), "PG_VG_ID", "PG_VG_name");
+			ViewData["Nicotine"] = new SelectList(nicotinesWithInfo, "NicotineID", "NicotineInfo");
+			ViewData["Flavor"] = new SelectList(GetFlavors(), "FlavorID", "Flavor_name");
+			ViewData["Volume"] = new SelectList(Enum.GetValues(typeof(Domain.Enum.Volume)));
+			ViewData["LiquidType"] = new SelectList(Enum.GetValues(typeof(Domain.Enum.LiquidType)));
 		}
 
 
