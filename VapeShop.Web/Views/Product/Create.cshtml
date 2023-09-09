@@ -5,17 +5,20 @@
 	<form asp-action="Create">
 		<div class="row"></div>
 		<div class="row mt-4">
-			<h3 class="fw-bold">
-				<div class="input-group mb-3">
+			<div class="form-group col-4 mb-3">
+				<h5 class="fw-bold">
 					<label asp-for="Name"></label>
 					<input asp-for="Name" class="form-control" />
 					<span asp-validation-for="Name" class="text-danger"></span>
+				</h5>
+			</div>
+			<div class="form-group col-8 mb-3">
+				<h5 class="fw-bold">
 					<label asp-for="LongName"></label>
 					<input asp-for="LongName" class="form-control" />
 					<span asp-validation-for="LongName" class="text-danger"></span>
-				</div>
-				
-			</h3>
+				</h5>
+			</div>
 		</div>
 
 		<div class="row mt-4" style="padding: 25px; margin: 0 10px 0 0;">
@@ -29,7 +32,7 @@
 			<div class="col-6" style="box-shadow: 0 0.1rem 2rem rgba(54,54,54,0.1); border-radius: 8px; ">
 
 				<div class="row text-end" style="line-height: 30px; border-bottom: 1px solid lightgray">
-					<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">КОД: 635885584CF57</p>
+					<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">КОД: </p>
 				</div>
 
 				<div class="row mt-3">
@@ -38,23 +41,21 @@
 
 
 						<div class="col">
-							<h3 class="fw-bold">
+							<h5 class="fw-bold">
 								<label asp-for="Price"></label>
 								<input asp-for="Price" class="form-control" />
 								<span asp-validation-for="Price" class="text-danger"></span>
-							</h3>
+							</h5>
 						</div>
 
-						
+
 
 					</div>
 
-					<div class="col-5 text-center">
+					<div class="col-5 text-start">
 						<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
 							<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-bar-chart" viewBox="0 0 16 16">
-									<path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-								</svg>
+								<i class="bi bi-truck"></i>
 								Доставка
 							</a>
 							<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample">
@@ -65,10 +66,7 @@
 						</div>
 						<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
 							<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample">
-								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-bar-chart" viewBox="0 0 16 16">
-									<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
-									<path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
-								</svg>
+								<i class="bi bi-credit-card"></i>
 								Варианты оплаты
 							</a>
 							<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample2">
@@ -79,9 +77,7 @@
 						</div>
 						<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
 							<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample">
-								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-bar-chart" viewBox="0 0 16 16">
-									<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-								</svg>
+								<i class="bi bi-star"></i>
 								Наши преимущества
 							</a>
 							<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample3">
@@ -106,105 +102,68 @@
 			</nav>
 			<div class="tab-content" id="nav-tabContent">
 				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-					
+					<a class="link_hover" href="https://wordtohtml.net/site/index?tinyeditor">{ Website for creating html text }</a>
 					<textarea rows="30" class="w-100" style="border: none" asp-for="Description" class="form-control"></textarea>
 					<span asp-validation-for="Description" class="text-danger"></span>
 				</div>
 				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-					<div class="container">
+					<div class="content_features">
 						<div class="row">
 							<div class="col-6">
-								<ul class="dots" style="width: 70%; float: left; font-family: Arial;">
-									<li><span><label asp-for="FlavorID"></label></span><span><input asp-for="FlavorID" class="form-control" /><span asp-validation-for="FlavorID" class="text-danger"></span></span></li>
-									<li><span><label asp-for="Volume"></label></span><span><input asp-for="Volume" class="form-control" /><span asp-validation-for="Volume" class="text-danger"></span></span></li>
-									<li><span><label asp-for="LiquidType"></label></span><span><input asp-for="LiquidType" class="form-control" /><span asp-validation-for="LiquidType" class="text-danger"></span></span></li>
-								</ul>
+								<div class="filter_container" style="column-count: 1">
+									<div class="product_feature">
+										<div class="product_feature_label"><span><label asp-for="FlavorID"></label></span></div>
+										<div class="product_feature_value"><select asp-for="FlavorID" asp-items="ViewBag.Flavor" class="form-control"></select><span asp-validation-for="FlavorID" class="text-danger"></span></div>
+									</div>
+									<div class="product_feature">
+										<div class="product_feature_label"><span><label asp-for="Volume"></label></span></div>
+										<div class="product_feature_value"><select asp-for="Volume" class="form-control" asp-items="ViewBag.Volume"></select><span asp-validation-for="Volume" class="text-danger"></span></div>
+									</div>
+									<div class="product_feature">
+										<div class="product_feature_label"><span><label asp-for="LiquidType"></label></span></div>
+										<div class="product_feature_value"><select asp-for="LiquidType" class="form-control" asp-items="ViewBag.LiquidType"></select><span asp-validation-for="LiquidType" class="text-danger"></span></div>
+									</div>
+								</div>
 							</div>
 							<div class="col-6">
-								<table id="liquidTable">
-									<tr>
-										<th>PG/VG</th>
-										<th>Nicotine</th>
-										<th>Count</th>
-									</tr>
-									@for (int i = 0; i < 1; i++)
-									{
-										<tr>
-											<td><input asp-for="Liquid_Params[i].PG_VGID" class="form-control" /></td>
-											<td><input asp-for="Liquid_Params[i].NicotineID" class="form-control" /></td>
-											<td><input asp-for="Liquid_Params[i].Available_quantity" class="form-control" /></td>
+								<table id="liquidTable" width="95%">
+									<col style="width:30%">
+									<col style="width:40%">
+									<col style="width:30%">
+									<thead>
+										<tr class="text-center">
+											<th>PG/VG</th>
+											<th>Nicotine</th>
+											<th>Count</th>
 										</tr>
-									}
+									</thead>
+									<tbody>
+										@for (int i = 0; i < 1; i++)
+										{
+											<tr>
+												<td><select asp-for="Liquid_Params[i].PG_VGID" asp-items="ViewBag.PG_VG" class="form-control m-2"></select></td>
+												<td><select asp-for="Liquid_Params[i].NicotineID" asp-items="ViewBag.Nicotine" class="form-control m-2"></select></td>
+												<td><input asp-for="Liquid_Params[i].Available_quantity" min="0" class="form-control m-2" /></td>
+											</tr>
+										}
+									</tbody>
 								</table>
-								<button type="button" id="addRowButton">Add Row</button>
+								<button type="button" class="btn_main btn_main_d" style="width: 100%" id="addRowButton">Add Row</button>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-					
 				</div>
 			</div>
 		</div>
-		<button class="form-control" style="width:100%; margin-top: 10px" type="submit">Створити</button>
+		<button class="btn_main btn_main_l" style="width:100%; margin-top: 10px" type="submit">Створити</button>
 	</form>
 </div>
-
-<style>
-
-	.nav-tabs .nav-link.active {
-		border-color: #fff #fff #08a6a8 #fff;
-		border-width: 0 0 4px 0;
-		color: black;
-	}
-
-	.nav-tabs .nav-link:hover {
-		color: #08a6a8;
-	}
-
-	.nav-tabs .nav-link {
-		border-color: #fff #fff lightgray #fff;
-		border-width: 0 0 4px 0;
-		color: #8f8f8f;
-	}
-
-	.nav-tabs {
-		border: none;
-	}
-
-	.tab-content {
-		border: 1px lightgray solid;
-		width: 99%;
-		margin-left: 5px
-	}
-
-	ul.dots li {
-		list-style-type: none;
-		clear: both;
-		font-size: 1em;
-		margin: 0;
-		padding: 0;
-	}
-
-		ul.dots li span:first-child {
-			float: left;
-			padding: 0 10px 0 0;
-			color: gray;
-		}
-
-		ul.dots li span + span {
-			float: right;
-			padding: 0 0 0 10px;
-		}
-
-		ul.dots li:after {
-			content: "";
-			display: block;
-			overflow: hidden;
-			height: 0.8em;
-			border-bottom: 1px dotted gray;
-		}
-</style>
+@{
+	var pgVgJson = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.PG_VG);
+	var nicotineJson = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Nicotine);
+}
 
 <script>
 	function updateImagePreview() {
@@ -224,14 +183,37 @@
 	const addButton = document.getElementById('addRowButton');
 	let rowCount = 1;
 
+	// Преобразование данных из ViewBag в JavaScript объект
+	const pgVgData = @Html.Raw(Json.Serialize(ViewBag.PG_VG));
+	const nicotineData = @Html.Raw(Json.Serialize(ViewBag.Nicotine));
+
 	addButton.addEventListener('click', function () {
 		const newRow = document.createElement('tr');
 		newRow.innerHTML = `
-					<td><input name="Liquid_Params[${rowCount}].PG_VGID" class="form-control" /></td>
-					<td><input name="Liquid_Params[${rowCount}].NicotineID" class="form-control" /></td>
-					<td><input name="Liquid_Params[${rowCount}].Available_quantity" class="form-control" /></td>
-			`;
+						<td><select class="form-control m-2" id="Liquid_Params_${rowCount}__PG_VGID" name="Liquid_Params[${rowCount}].PG_VGID"></select></td>
+						<td><select class="form-control m-2" id="Liquid_Params_${rowCount}__NicotineID" name="Liquid_Params[${rowCount}].NicotineID"></select></td>
+						<td><input class="form-control m-2 input-validation-error" type="number" data-val="true" data-val-required="The Available_quantity field is required." id="Liquid_Params_${rowCount}__Available_quantity" name="Liquid_Params[${rowCount}].Available_quantity" value=""></td>
+					`;
 		table.appendChild(newRow);
+		// Добавление элементов <option> в <select> с использованием данных из JavaScript объектов
+		const pgVgSelect = newRow.querySelector(`select[id="Liquid_Params_${rowCount}__PG_VGID"]`);
+		const nicotineSelect = newRow.querySelector(`select[id="Liquid_Params_${rowCount}__NicotineID"]`);
+
+		pgVgData.forEach(option => {
+			const optionElement = document.createElement('option');
+			optionElement.value = option.value;
+			optionElement.textContent = option.text;
+			pgVgSelect.appendChild(optionElement);
+		});
+
+		nicotineData.forEach(option => {
+			const optionElement = document.createElement('option');
+			optionElement.value = option.value;
+			optionElement.textContent = option.text;
+			nicotineSelect.appendChild(optionElement);
+		});
+
 		rowCount++;
 	});
 </script>
+
