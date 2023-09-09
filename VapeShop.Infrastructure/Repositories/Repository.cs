@@ -25,7 +25,7 @@ namespace VapeShop.Infrastructure.Repositories
 
 		public async Task Delete(T entity)
 		{
-			_dbContext.Set<T>().Remove(entity);
+			 _dbContext.Set<T>().Remove(entity);
 			await _dbContext.SaveChangesAsync();
 		}
 
