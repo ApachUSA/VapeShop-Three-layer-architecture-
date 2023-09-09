@@ -1,0 +1,50 @@
+﻿@using VapeShop.Domain.Entity.Product;
+
+@model Liquid
+
+
+	<table id="liquidTable" width="100%">
+		<col style="width:30%">
+		<col style="width:40%">
+		<col style="width:20%">
+		<col style="width:10%">
+		<thead>
+			<tr class="text-center">
+				<th>PG/VG</th>
+				<th>Nicotine</th>
+				<th>Count</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < Model.Liquid_Params.Count; i++)
+			{
+				<tr>
+					<input asp-for="Liquid_Params[i].LiquidParamID" hidden />
+					<td><select asp-for="Liquid_Params[i].PG_VGID" asp-items="ViewBag.PG_VG" class="form-control m-2"></select></td>
+					<td><select asp-for="Liquid_Params[i].NicotineID" asp-items="ViewBag.Nicotine" class="form-control m-2"></select></td>
+					<td><input asp-for="Liquid_Params[i].Available_quantity" min="0" class="form-control m-2" /></td>
+					<td>
+					<a class="remove_param" onclick="remove(@Model.Liquid_Params[i].LiquidParamID, @Model.LiquidID)">
+							<i class="fa-solid fa-xmark"></i>
+						</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+<script>
+	function remove(paramid, liquidid) {
+		 $.ajax({
+			url: "@Url.Action("DeleteLiquid_Params", "Product")",
+			type: "GET",
+			data: {
+				liquid_id: liquidid,
+				liquid_param_id: paramid
+			}, // Замените 1 на соответствующий liquidTypeID
+			success: function (data) {
+				$(".partial_content").html(data); // Обновляем список товаров
+			}
+		});
+	}
+</script>
