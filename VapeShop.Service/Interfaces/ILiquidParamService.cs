@@ -15,17 +15,21 @@ namespace VapeShop.Service.Interfaces
 
 		Task<BaseResponse<IEnumerable<Liquid_param>>> GetAll();
 
-		Task<BaseResponse<Liquid_param>> Create(Liquid_param model);
+		Task<BaseResponse<bool>> Create(Liquid_param model);
+		Task<BaseResponse<bool>> Create(List<Liquid_param> model);
 
 		Task<BaseResponse<Liquid_param>> Update(Liquid_param model);
 
 		Task<BaseResponse<bool>> Delete(Liquid_param model);
+		Task<BaseResponse<bool>> Delete(int liquidParamID);
 
 		BaseResponse<IEnumerable<Nicotine>> GetNicotine();
-		BaseResponse<IEnumerable<Nicotine>> GetNicotine(int liquid_id);
+		Task<BaseResponse<IEnumerable<Nicotine>>> GetNicotine(int liquid_id);
 
 		BaseResponse<IEnumerable<PG_VG>> GetPG_VG();
-		BaseResponse<IEnumerable<PG_VG>> GetPG_VG(int liquid_id);
+		Task<BaseResponse<IEnumerable<PG_VG>>> GetPG_VG(int liquid_id);
+
+		BaseResponse<IEnumerable<Flavor>> GetFlavors();
 
 	}
 }
