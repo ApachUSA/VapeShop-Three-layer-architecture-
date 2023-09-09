@@ -195,7 +195,11 @@
 <script>
 	
 	window.onload = function () {
-		changeSelectedOption('От А до Я');
+		var savedOption = getSelectedOptionFromCookie();
+		if (savedOption) {
+			changeSelectedOption(savedOption);
+		}
+		else { changeSelectedOption('От А до Я'); }
 	};
 </script>
 <script>
@@ -203,13 +207,17 @@
 		var selectedOptionElement = document.getElementById('selected-sort-option');
 		selectedOptionElement.textContent = optionText;
 
+		// Сохраняем выбор пользователя в cookie с именем "selectedOption"
+		document.cookie = "selectedOption=" + optionText + "; path=/";
+
+
 		var selectedOptionIndex = -1;
 		var items = document.querySelectorAll('.dropdown_content_item_a');
 
 		items.forEach(function (item) {
 			item.parentNode.style.display = 'block';
 		});
-		
+
 		for (var i = 0; i < items.length; i++) {
 			if (items[i].textContent === optionText) {
 				selectedOptionIndex = i;
@@ -223,6 +231,24 @@
 
 		filterProductsByFlavorAndPrice();
 	}
+
+	function getSelectedOptionFromCookie() {
+		var name = "selectedOption=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var cookieArray = decodedCookie.split(';');
+
+		for (var i = 0; i < cookieArray.length; i++) {
+			var cookie = cookieArray[i];
+			while (cookie.charAt(0) === ' ') {
+				cookie = cookie.substring(1);
+			}
+			if (cookie.indexOf(name) === 0) {
+				return cookie.substring(name.length, cookie.length);
+			}
+		}
+		return "";
+	}
+	
 </script>
 <style>
 
