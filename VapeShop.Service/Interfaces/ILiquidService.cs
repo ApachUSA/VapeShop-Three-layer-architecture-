@@ -14,7 +14,7 @@ namespace VapeShop.Service.Interfaces
 	{
 		Task<BaseResponse<Liquid>> Get(int id);
 
-		BaseResponse<IEnumerable<Liquid>> GetAll();
+		Task<BaseResponse<IEnumerable<Liquid>>> GetAll();
 
 		Task<BaseResponse<Liquid>> Create(CreateLiquidVM model);
 
