@@ -19,9 +19,9 @@ namespace VapeShop.Web.Controllers
 			this.liquidParamService = liquidParamService;
 		}
 
-		public IActionResult Index(int liquidtype, string flavor)
+		public async Task<IActionResult> Index(int liquidtype, string flavor)
 		{
-			var response = liquidService.GetAll();
+			var response = await liquidService.GetAll();
 			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
 			{
 				if (liquidtype != 0) response.Value = response.Value.Where(x => x.LiquidType == (Domain.Enum.LiquidType)liquidtype);
@@ -126,7 +126,6 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> Details(int id)
 		{
 			var response = await liquidService.Get(id);
-
 			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
 			{
 				return View("Details", response.Value);
@@ -135,24 +134,31 @@ namespace VapeShop.Web.Controllers
 		}
 
 
+
+
 		[HttpGet]
-		public IActionResult FilteredProducts(int liquidTypeID, string values, decimal minPrice, decimal maxPrice, string sortOption)
+		public async Task<IActionResult> FilteredProducts(int liquidTypeID, string values, decimal minPrice, decimal maxPrice, string sortOption)
 		{
-			IEnumerable<Liquid> filteredProducts = liquidService.GetAll().Value; ;
+			var filteredProducts = await liquidService.GetAll();
 
-			//liquidType
-			if (liquidTypeID != 0) filteredProducts = ApplyLiquidTypeFilter(filteredProducts, liquidTypeID);
+			if(filteredProducts.StatusCode == Domain.Enum.StatusCode.Succes)
+			{
+				//liquidType
+				if (liquidTypeID != 0) filteredProducts.Value = ApplyLiquidTypeFilter(filteredProducts.Value, liquidTypeID);
 
-			//Flavors
-			if (values != null) filteredProducts = ApplyFlavorsFilter(filteredProducts, values.Split(','));
+				//Flavors
+				if (values != null) filteredProducts.Value = ApplyFlavorsFilter(filteredProducts.Value, values.Split(','));
 
-			//Price
-			if (filteredProducts.Any()) filteredProducts = ApplyPriceFilter(filteredProducts, minPrice, maxPrice);
+				//Price
+				if (filteredProducts.Value.Any()) filteredProducts.Value = ApplyPriceFilter(filteredProducts.Value, minPrice, maxPrice);
 
-			//sort
-			if (filteredProducts.Any()) filteredProducts = ApplySortOrder(filteredProducts, sortOption);
+				//sort
+				if (filteredProducts.Value.Any()) filteredProducts.Value = ApplySortOrder(filteredProducts.Value, sortOption);
 
-			return PartialView("_CatalogPartial", filteredProducts);
+				return PartialView("_CatalogPartial", filteredProducts.Value);
+			}
+			return View("Error", $"{filteredProducts.Descrition}");
+
 		}
 
 
