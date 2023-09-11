@@ -31,7 +31,7 @@ namespace VapeShop.Web.Controllers
 
 				return View("Catalog", response.Value);
 			}
-			return View("Error", $"{response.Descrition}");
+			return View("Error", $"{response.Description}");
 		}
 
 		public IActionResult Create()
@@ -50,7 +50,7 @@ namespace VapeShop.Web.Controllers
 				{
 					return RedirectToAction("Index");
 				}
-				ModelState.AddModelError("", response.Descrition);
+				ModelState.AddModelError("", response.Description);
 			}
 			return View(model);
 		}
@@ -76,7 +76,7 @@ namespace VapeShop.Web.Controllers
 				FillViewData();
 				return View(response.Value);
 			}
-			return View("Error", $"{response.Descrition}");
+			return View("Error", $"{response.Description}");
 		}
 
 		[HttpPost]
@@ -87,7 +87,7 @@ namespace VapeShop.Web.Controllers
 			{
 				return RedirectToAction("Edit", new { id = response.Value.LiquidID });
 			}
-			return View("Error", $"{response.Descrition}");
+			return View("Error", $"{response.Description}");
 		}
 
 		private async Task<IActionResult> IndexEdit(int liquid_id)
@@ -108,7 +108,7 @@ namespace VapeShop.Web.Controllers
 			{
 				return await IndexEdit(liquid_id);
 			}
-			return View("Error", $"{response.Descrition}");
+			return View("Error", $"{response.Description}");
 		}
 
 		[HttpGet]
@@ -119,7 +119,7 @@ namespace VapeShop.Web.Controllers
 			{
 				return await IndexEdit(liquid_id);
 			}
-			return View("Error", $"{response.Descrition}");
+			return View("Error", $"{response.Description}");
 		}
 
 		[HttpGet]
@@ -130,7 +130,7 @@ namespace VapeShop.Web.Controllers
 			{
 				return View("Details", response.Value);
 			}
-			return View("Error", $"{response.Descrition}");
+			return View("Error", $"{response.Description}");
 		}
 
 
@@ -157,7 +157,7 @@ namespace VapeShop.Web.Controllers
 
 				return PartialView("_CatalogPartial", filteredProducts.Value);
 			}
-			return View("Error", $"{filteredProducts.Descrition}");
+			return View("Error", $"{filteredProducts.Description}");
 
 		}
 

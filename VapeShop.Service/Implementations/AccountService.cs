@@ -35,7 +35,7 @@ namespace VapeShop.Service.Implementations
 				{
 					return new BaseResponse<ClaimsIdentity>
 					{
-						Descrition = "User not found"
+						Description = "User not found"
 					};
 				}
 
@@ -43,7 +43,7 @@ namespace VapeShop.Service.Implementations
 				{
 					return new BaseResponse<ClaimsIdentity>
 					{
-						Descrition = "Wrong login or password"
+						Description = "Wrong login or password"
 					};
 				}
 
@@ -57,7 +57,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return new BaseResponse<ClaimsIdentity>
 				{
-					Descrition = e.Message,
+					Description = e.Message,
 					StatusCode = StatusCode.InternalServerError
 				};
 			}
@@ -71,7 +71,7 @@ namespace VapeShop.Service.Implementations
 				{
 					return new BaseResponse<ClaimsIdentity>()
 					{
-						Descrition = "User already exist"
+						Description = "User already exist"
 					};
 				}
 			
@@ -97,7 +97,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<ClaimsIdentity>()
 				{
 					Value = Auth(NewUser),
-					Descrition = "User added",
+					Description = "User added",
 					StatusCode = StatusCode.Succes
 
 				};
@@ -108,7 +108,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return new BaseResponse<ClaimsIdentity>()
 				{
-					Descrition = e.Message
+					Description = e.Message
 				};
 			}
 		}

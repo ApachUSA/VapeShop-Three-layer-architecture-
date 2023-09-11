@@ -51,13 +51,13 @@ namespace VapeShop.Service.Implementations
 					model.Liquid_Params.ForEach(x => x.LiquidID = liquid.LiquidID);
 					var response = await _liquid_paramRepository.Create(model.Liquid_Params);
 
-					if (response.StatusCode == StatusCode.InternalServerError) throw new Exception(response.Descrition);
+					if (response.StatusCode == StatusCode.InternalServerError) throw new Exception(response.Description);
 				}
 
 				return new BaseResponse<Liquid>()
 				{
 					Value = liquid,
-					Descrition = "Liquid added",
+					Description = "Liquid added",
 					StatusCode = StatusCode.Succes
 
 				};
@@ -67,7 +67,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<Liquid>()
 				{
 					Value = liquid,
-					Descrition = $"[CreateLiquid] : {ex.Message}",
+					Description = $"[CreateLiquid] : {ex.Message}",
 					StatusCode = StatusCode.InternalServerError
 
 				};
@@ -93,7 +93,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return new BaseResponse<bool>()
 				{
-					Descrition = $"[DeleteLiquid] : {ex.Message}",
+					Description = $"[DeleteLiquid] : {ex.Message}",
 					StatusCode = StatusCode.InternalServerError
 
 				};
@@ -120,7 +120,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return new BaseResponse<bool>()
 				{
-					Descrition = $"[DeleteLiquid] : {ex.Message}",
+					Description = $"[DeleteLiquid] : {ex.Message}",
 					StatusCode = StatusCode.InternalServerError
 
 				};
@@ -144,7 +144,7 @@ namespace VapeShop.Service.Implementations
 				{
 					return new BaseResponse<Liquid>()
 					{
-						Descrition = "Liquid not found",
+						Description = "Liquid not found",
 						StatusCode = StatusCode.InternalServerError
 
 					};
@@ -161,7 +161,7 @@ namespace VapeShop.Service.Implementations
 
 				return new BaseResponse<Liquid>()
 				{
-					Descrition = $"[GetLiquid] : {ex.Message}",
+					Description = $"[GetLiquid] : {ex.Message}",
 					StatusCode = StatusCode.InternalServerError
 
 				};
@@ -179,7 +179,7 @@ namespace VapeShop.Service.Implementations
 				{
 					return new BaseResponse<IEnumerable<Liquid>>()
 					{
-						Descrition = "Liquids not found",
+						Description = "Liquids not found",
 						StatusCode = StatusCode.InternalServerError
 
 					};
@@ -196,7 +196,7 @@ namespace VapeShop.Service.Implementations
 
 				return new BaseResponse<IEnumerable<Liquid>>()
 				{
-					Descrition = $"[GetLiquids] : {ex.Message}",
+					Description = $"[GetLiquids] : {ex.Message}",
 					StatusCode = StatusCode.InternalServerError
 
 				};
@@ -219,7 +219,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return new BaseResponse<Liquid>()
 				{
-					Descrition = $"[UpdateLiquids] : {ex.Message}",
+					Description = $"[UpdateLiquids] : {ex.Message}",
 					StatusCode = StatusCode.InternalServerError
 
 				};

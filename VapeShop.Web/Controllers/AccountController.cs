@@ -41,7 +41,7 @@ namespace VapeShop.Web.Controllers
 
 				}
 				FillSelects();
-				ModelState.AddModelError("", response.Descrition);
+				ModelState.AddModelError("", response.Description);
 			}
 			return View(model);
 		}
@@ -61,7 +61,7 @@ namespace VapeShop.Web.Controllers
 					return RedirectToAction("Index", "Home");
 
 				}
-				ModelState.AddModelError("", response.Descrition);
+				ModelState.AddModelError("", response.Description);
 			}
 			return View(model);
 		}
@@ -86,7 +86,7 @@ namespace VapeShop.Web.Controllers
 					return RedirectToAction("Profile");
 
 				}
-				ModelState.AddModelError("", response.Descrition);
+				ModelState.AddModelError("", response.Description);
 			}
 			FillSelects();
 			return View(model);

@@ -54,7 +54,7 @@ namespace VapeShop.Service.Implementations
 					return new BaseResponse<User>
 					{
 						StatusCode = Domain.Enum.StatusCode.UserNotFound,
-						Descrition = "User not found",
+						Description = "User not found",
 					};
 				}
 
@@ -69,7 +69,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return new BaseResponse<User>()
 				{
-					Descrition = ex.Message
+					Description = ex.Message
 				};
 			}
 		}
@@ -101,7 +101,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return new BaseResponse<User>()
 				{
-					Descrition = ex.Message
+					Description = ex.Message
 				};
 			}
 		}
