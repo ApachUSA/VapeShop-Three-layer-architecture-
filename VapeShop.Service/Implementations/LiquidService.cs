@@ -43,17 +43,17 @@ namespace VapeShop.Service.Implementations
 
 			try
 			{
-				
+
 				await _liquidRepository.Create(liquid);
-				
-				if(model.Liquid_Params.Any())
+
+				if (model.Liquid_Params.Any())
 				{
 					model.Liquid_Params.ForEach(x => x.LiquidID = liquid.LiquidID);
 					var response = await _liquid_paramRepository.Create(model.Liquid_Params);
 
 					if (response.StatusCode == StatusCode.InternalServerError) throw new Exception(response.Descrition);
 				}
-					
+
 				return new BaseResponse<Liquid>()
 				{
 					Value = liquid,
@@ -72,9 +72,9 @@ namespace VapeShop.Service.Implementations
 
 				};
 			}
-			
 
-			
+
+
 		}
 
 		public async Task<BaseResponse<bool>> Delete(Liquid model)
@@ -98,9 +98,9 @@ namespace VapeShop.Service.Implementations
 
 				};
 			}
-			
 
-			
+
+
 		}
 
 		public async Task<BaseResponse<bool>> Delete(int model_id)
@@ -131,7 +131,14 @@ namespace VapeShop.Service.Implementations
 		{
 			try
 			{
-				var liquid = await _liquidRepository.Get().Include(x => x.Flavor).Include(x => x.Liquid_Params).FirstOrDefaultAsync(x => x.LiquidID == id);
+				var liquid = await _liquidRepository.Get()
+					.Include(x => x.Flavor)
+					.Include(x => x.Liquid_Params)
+					.ThenInclude(lp => lp.PG_VG)
+					.Include(x => x.Liquid_Params)
+					.ThenInclude(lp => lp.Nicotine)
+					.FirstOrDefaultAsync(x => x.LiquidID == id);
+
 
 				if (liquid == null)
 				{
@@ -162,11 +169,11 @@ namespace VapeShop.Service.Implementations
 
 		}
 
-		public  BaseResponse<IEnumerable<Liquid>> GetAll()
+		public async Task<BaseResponse<IEnumerable<Liquid>>> GetAll()
 		{
 			try
 			{
-				var liquids =  _liquidRepository.Get().Include(x => x.Flavor).ToList();
+				var liquids = await _liquidRepository.Get().Include(x => x.Flavor).ToListAsync();
 
 				if (liquids == null)
 				{
