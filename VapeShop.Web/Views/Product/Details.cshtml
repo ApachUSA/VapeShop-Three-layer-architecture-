@@ -14,7 +14,7 @@
 			<a class="btn_main btn_main_d" asp-action="Edit" asp-controller="Product" asp-route-id="@Model.LiquidID"><i class="fa-regular fa-pen-to-square"></i></a>
 			<a class="btn_main btn_main_d" asp-action="Delete" asp-controller="Product" asp-route-liquid_id="@Model.LiquidID"><i class="fa-solid fa-trash"></i></i></a>
 		</div>
-		
+
 	</div>
 
 	<div class="row mt-4" style="padding: 25px; margin: 0 10px 0 0;">
@@ -30,52 +30,55 @@
 
 			<div class="row mt-3">
 				<div class="col-6 ms-4">
-
-					<form asp-action="AddToCart">
-
-						<div class="col"><h3 class="fw-bold">@Model.Price grn</h3></div>
+					@{
+						var liquid_pgvg = Model.Liquid_Params.Select(x => x.PG_VG).Distinct().ToDictionary(x => x.PG_VG_ID, x => x.PG_VG_name);
+					}
+				
+						<div class="col"><h3 class="fw-bold price">@Model.Price grn</h3></div>
 						<div class="col">
 							<p style="color: #08a6a8">
 								<i class="fa-regular fa-circle-check"></i>  в наличии
 							</p>
 						</div>
 						<br />
-
 						<div class="col fw-bold">Соотношение PG/VG</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-							<label class="form-check-label" for="flexRadioDefault1">
-								30/70 - для вейпов
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-							<label class="form-check-label" for="flexRadioDefault2">
-								50/50 - для POD-систем
-							</label>
-						</div>
+						@foreach (var item in liquid_pgvg)
+						{
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="liquidSelection" value="@item.Key">
+								<label class="form-check-label" for="flexRadioDefault1">
+									@item.Value
+								</label>
+							</div>
+						}
 						<br />
 
 						<div class="col fw-bold">Никотин</div>
 						<div class="col">
-							<select class="form-select">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+							<select class="form-select" id="selectNicotine">
+								<option selected>Выберите PG/VG</option>
 							</select>
 						</div>
-						<br />
-
-						<div class="col-5"></div>
-						<div class="col-7">
-							<button class="btn_main btn_main_l" style="width:100%" type="submit">
-								<span class="icon">
-									<i class="fa-solid fa-cart-shopping"></i>
-								</span>
-								<span class="text">To cart</span>
-							</button>
+						<div class="row mt-3">
+							<div class="col-5  pe-0">
+								<div class="ty-qty">
+									<div class="ty-value-changer">
+										<a class="ty-value-changer__increase">+</a>
+										<input type="text" size="5" class="ty-value-changer__input" value="1" id="countInput">
+										<a class="ty-value-changer__decrease">−</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-7 ps-0">
+								<button class="btn_main btn_main_l" style="height: 50px; width: 100%;" id="addToCartButton">
+									<span class="icon">
+										<i class="fa-solid fa-cart-shopping pe-2"></i>
+									</span>
+									<span class="text">To cart</span>
+								</button>
+							</div>
 						</div>
+						
 						<div class="col mt-2 text-center">
 							<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8">
 								<i class="fa-regular fa-heart"></i>
@@ -88,8 +91,7 @@
 							</a>
 
 						</div>
-					</form>
-
+				
 				</div>
 
 				<div class="col-5 text-start">
@@ -177,5 +179,216 @@
 
 </div>
 
+<style>
 
+	.buttnon-group{
+		margin: 10px 0 20px;
+	}
+
+
+
+	.ty-qty{
+		margin-bottom: 0;
+	}
+
+	.ty-value-changer{
+		height: 50px;
+		width: 90px;
+		padding: 0;
+		text-align: center;
+		background: #fff;
+		border: 1px solid #d6d6d6;
+		box-shadow: inset 3px 3px 1px 0 rgba(0,0,0,0.03);
+		border-radius: 6px;
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
+		justify-content: center;
+	}
+	
+		.ty-value-changer:hover{
+			border-color: #bcbcbc;
+			outline: none;
+		}
+
+	.ty-value-changer a{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 30px;
+			border-width: 0;
+			font-size: 20px;
+			font-family: monospace;
+			border-radius: 0;
+			background: none;
+			color: rgba(54,54,54,0.5);
+		
+	}
+
+	.ty-value-changer__increase{
+		position: relative;
+		float: right;
+		width: 14px;
+		height: 14px;
+		border: 1px solid #c9c9c9;
+		color: #c9c9c9;
+		font-size: 16px;
+		line-height: 13px;
+		cursor: pointer;
+		margin-bottom: 1px;
+	}
+
+	.ty-value-changer__decrease{
+		position: relative;
+		float: right;
+		width: 14px;
+		height: 14px;
+		border: 1px solid #c9c9c9;
+		color: #c9c9c9;
+		font-size: 16px;
+		line-height: 13px;
+		cursor: pointer;
+	}
+
+	.ty-value-changer__input{
+		width: 27px;
+		text-align: center;
+		color: #363636;
+		font-size: 16px !important;
+		border-radius: 0;
+		border: 0;
+		background: transparent;
+		box-shadow: none !important;
+	
+	}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		// Находим элементы по их id
+		var selectElement = $('#selectNicotine');
+		var quantityInput = $('#countInput');
+		var addToCartButton = $('#addToCartButton');
+
+		// Добавляем обработчик события click на кнопку
+		addToCartButton.click(function () {
+			// Получаем выбранное значение из <select>
+			var selected = selectElement.find('option:selected');
+			var param_ID = selected.data("paramid");
+			// Получаем значение из <input>
+			var count = quantityInput.val();
+
+			// Вы можете выполнить дополнительную обработку данных здесь, если это необходимо.
+
+			// Отправляем данные в контроллер (здесь вы можете использовать Ajax-запрос или другой способ отправки данных на сервер)
+			$.ajax({
+				type: 'POST',
+				url: "@Url.Action("Index", "Order")",
+				data: { liquid_paramID: param_ID, count: count },
+				success: function (response) {
+					// Обработка успешного ответа от сервера, если это необходимо
+				},
+				error: function (error) {
+					// Обработка ошибки, если это необходимо
+				}
+			});
+		});
+	});
+</script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var increaseButton = document.querySelector(".ty-value-changer__increase");
+		var decreaseButton = document.querySelector(".ty-value-changer__decrease");
+		var inputField = document.querySelector(".ty-value-changer__input");
+
+		increaseButton.addEventListener("click", function () {
+			var currentValue = parseInt(inputField.value);
+			inputField.value = currentValue + 1;
+		});
+
+		decreaseButton.addEventListener("click", function () {
+			var currentValue = parseInt(inputField.value);
+			if (currentValue > 1) {
+				inputField.value = currentValue - 1;
+			}
+		});
+	});
+</script>
+
+<script>
+	var selectElement = document.getElementById("selectNicotine");
+	var priceElement = document.querySelector(".price"); // Найти элемент с классом "price"
+
+	selectElement.addEventListener("change", function () {
+		// Получить выбранный элемент <option>
+		var selectedOption = selectElement.options[selectElement.selectedIndex];
+
+		// Получить дополнительную информацию о цене из data-атрибута
+		var additionalPrice = parseFloat(selectedOption.getAttribute("data-price")); // Преобразовать значение в число
+
+		// Получить текущую цену
+		var currentPrice = parseFloat(@Model.Price); // Убрать " grn" и преобразовать в число
+
+		// Обновить цену с учетом дополнительной информации
+		var newPrice = currentPrice + additionalPrice;
+
+		// Установить новое значение цены с добавлением " grn" и обновить отображение
+		priceElement.textContent = newPrice.toFixed(2) + " grn"; // Округлить до двух знаков после запятой и добавить " grn"
+	});
+
+</script>
+
+<script>
+	function fillSelect() {
+		var selectedValue = document.querySelector('input[name="liquidSelection"]:checked').value;
+		var selectListData = @Html.Raw(Json.Serialize(Model.Liquid_Params.Select(x => new
+			{
+			param_id = x.LiquidParamID,
+			pg_vg = x.PG_VG.PG_VG_ID,
+			nicotineid = x.Nicotine.NicotineID,
+			nicotineName = x.Nicotine.Nicotine_concentration.ToString()+"мг " + " - " + x.Nicotine.Nicotine_type + " ( + " + x.Nicotine.Additional_price +"  грн)",
+			price = x.Nicotine.Additional_price
+			})));
+
+		// Найдите элемент select по его id
+		var selectElement = document.getElementById("selectNicotine");
+
+		// Очистите существующие элементы внутри select
+		selectElement.innerHTML = "";
+
+		// Добавьте элементы из JSON в select
+		for (var i = 0; i < selectListData.length; i++) {
+			if (selectListData[i].pg_vg == selectedValue) {
+				var option = document.createElement("option");
+				option.value = selectListData[i].nicotineid;
+				option.text = selectListData[i].nicotineName;
+				option.setAttribute("data-price", selectListData[i].price);
+				option.setAttribute("data-paramID", selectListData[i].param_id);
+				selectElement.appendChild(option);
+			}
+		}
+
+		// Создайте инициирующее событие "change"
+		var event = new Event("change", {
+			bubbles: true,
+			cancelable: true,
+		});
+
+		// Вызовите событие "change" на элементе select
+		selectElement.dispatchEvent(event);
+	}
+
+	// Вызовите функцию fillSelect при загрузке страницы
+	window.onload = fillSelect;
+
+	// Обработчик события изменения радио-переключателя
+	var radios = document.querySelectorAll('input[name="liquidSelection"]');
+	var selectNicotine = document.getElementById('selectNicotine');
+
+	radios.forEach(function (radio) {
+		radio.addEventListener('change', fillSelect);
+	});
+
+</script>
 
