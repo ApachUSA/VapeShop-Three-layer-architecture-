@@ -107,7 +107,7 @@
 								</li>
 								<li class="menu_item">
 									<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1">
-										<img class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__9_1_png.webp" />
+										<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/black-Ejuices.png" />
 										<bdi>LIQUID FOR VAPE</bdi>
 										<i class="fa-solid fa-caret-down  ms-2"></i>
 									</a>
@@ -115,9 +115,9 @@
 										<div class="submenu_items">
 											<div class="submenu_item">
 												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Fruits">
-													
+
 													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__23_1_png.webp">
-													<bdi>Fruits</bdi>	
+													<bdi>Fruits</bdi>
 												</a>
 											</div>
 											<div class="submenu_item">
@@ -144,7 +144,7 @@
 								</li>
 								<li class="menu_item">
 									<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2">
-										<img class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__8_1_png.webp" />
+										<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/salt_57tb-pk.png" />
 										<bdi>
 											SALT LIQUID
 										</bdi>
@@ -182,7 +182,7 @@
 								</li>
 								<li class="menu_item">
 									<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3">
-										<img class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%B0%D1%80%D0%BE%D0%BC%D0%B83_5k9c-oc_png.webp" />
+										<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/Flavors_xu48-6p.png" />
 										<bdi>FLAVORING</bdi>
 										<i class="fa-solid fa-caret-down ms-2"></i>
 									</a>
@@ -292,6 +292,7 @@
 
 	.menu {
 		max-height: 50px;
+		padding: 0 20px;
 	}
 
 	.menu_items {
@@ -316,48 +317,47 @@
 		list-style: none;
 	}
 
-		.menu_item:hover{
+		.menu_item:hover {
 			background: #2b2b2b;
 		}
 
-	.menu_item:hover  .submenu{
-			display: inline-block;
-			
-			background: #fff;
-			box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);
-			z-index: 200;
-			overflow: hidden;
-	}
+			.menu_item:hover .submenu {
+				display: inline-block;
+				background: #fff;
+				box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);
+				z-index: 200;
+				overflow: hidden;
+			}
 
-		.menu_item:hover .submenu_items{
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			align-content: flex-start;
-			padding: 20px 15px;
-			margin: 0 auto;
-			border: 0 none;
-			position: relative;
-			overflow-y: auto;
-		}
+			.menu_item:hover .submenu_items {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				align-content: flex-start;
+				padding: 20px 15px;
+				margin: 0 auto;
+				border: 0 none;
+				position: relative;
+				overflow-y: auto;
+			}
 
-		.menu_item:hover .submenu_item{
-			width: 20%;
-			display: flex;
-			justify-content: center;
-			margin-bottom: 20px;
-		}
+			.menu_item:hover .submenu_item {
+				width: 20%;
+				display: flex;
+				justify-content: center;
+				margin-bottom: 20px;
+			}
 
-		.menu_item:hover .submenu_item_link{
-			display: inline-flex;
-			align-items: center;
-			flex-direction: column;
-			width: auto;
-			font-weight: bold;
-			font-size: 14px;
-			color: #363636;
-			padding-right: 20px;
-		}
+			.menu_item:hover .submenu_item_link {
+				display: inline-flex;
+				align-items: center;
+				flex-direction: column;
+				width: auto;
+				font-weight: bold;
+				font-size: 14px;
+				color: #363636;
+				padding-right: 20px;
+			}
 
 	.menu_item_link {
 		white-space: nowrap;
@@ -371,6 +371,15 @@
 		height: 50px;
 	}
 
+		.menu_item_link bdi {
+			font-size: 14px;
+			font-weight: normal;
+			unicode-bidi: isolate;
+		}
+
+		.menu_item_link i {
+			font-size: 14px;
+		}
 
 
 	.submenu {
@@ -406,20 +415,21 @@
 		margin-bottom: 5px;
 	}
 
-	.submenu_item_link{
+	.submenu_item_link {
 		padding-right: 20px;
 	}
 
-	.submenu_item img{
+	.submenu_item img {
 		margin-bottom: 10px;
 	}
-		.submenu_item a {
-			color: #696969;
-			padding: 0;
-			display: inline-block;
-			width: 100%;
-			font-size: 16px;
-			line-height: 1.2;
-		}
+
+	.submenu_item a {
+		color: #696969;
+		padding: 0;
+		display: inline-block;
+		width: 100%;
+		font-size: 16px;
+		line-height: 1.2;
+	}
 
 </style>
