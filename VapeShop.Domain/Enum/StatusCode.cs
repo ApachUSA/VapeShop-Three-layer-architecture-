@@ -11,7 +11,8 @@ namespace VapeShop.Domain.Enum
 		UserNotFound = 0,
 		UserAlreadyExists = 1,
 
-		OrderNotFound = 20,
+		ItemNotFound = 20,
+		ItemAlreadyExist = 21,
 
 		Success = 200,
 		InternalServerError = 500
