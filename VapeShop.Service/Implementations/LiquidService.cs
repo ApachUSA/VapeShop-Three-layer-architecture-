@@ -173,7 +173,7 @@ namespace VapeShop.Service.Implementations
 		{
 			try
 			{
-				var liquids = await _liquidRepository.Get().Include(x => x.Flavor).ToListAsync();
+				var liquids = await _liquidRepository.Get().Include(x => x.Flavor).Include(x => x.Liquid_Params).ToListAsync();
 
 				if (liquids == null)
 				{
