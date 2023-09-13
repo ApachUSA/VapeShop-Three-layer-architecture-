@@ -18,5 +18,7 @@ namespace VapeShop.Service.Interfaces
 
 		Task<BaseResponse<bool>> Delete(int wishListID);
 		Task<BaseResponse<bool>> DeleteAll(int userID);
+
+		Task<BaseResponse<int>> GetCount(int userID);
 	}
 }

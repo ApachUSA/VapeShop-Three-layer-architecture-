@@ -35,12 +35,15 @@
 
 							<div class="col-auto d-flex">
 								<div class="icon_btn icon_btn_left">
-									<a class="" asp-controller="Wish" asp-action="Index">
+								
+									<a class="position-relative" asp-controller="Wish" asp-action="Index">
+										<span id="wishCount" class="count">
+										</span>
 										<i class="far fa-heart"></i>
 									</a>
-								</div>
+								</div>	
 								<div class="icon_btn icon_btn_right">
-									<a>
+									<a asp-controller="Comparsion" asp-action="ComparsionIndex">
 										<i class="bi bi-bar-chart"></i>
 									</a>
 								</div>
@@ -272,6 +275,33 @@
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script>
+	function UpdateWishCount() {
+		$.ajax({
+			url: "@Url.Action("GetCount", "Wish")",
+			type: "GET",
+			data: {},
+			success: function (data) {
+				if (data === 0) {
+					// Спрятать span
+					$("#wishCount").hide();
+				} else {
+					// Показать span
+					$("#wishCount").show();
+					$("#wishCount").text(data);
+				}
+				
+
+			}
+		});
+	}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		UpdateWishCount();
+	});
+</script>
 <style>
 	.icon_btn {
 		border: 1px solid #e2e2e2;
@@ -316,10 +346,31 @@
 			color: #08a6a8;
 	}
 
+	.count{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #ff5722;
+		color: white;
+		padding: 0 4px;
+		min-width: 18px;
+		height: 18px;
+		font-family: Arial,Helvetica,sans-serif;
+		font-size: 12px;
+		line-height: 0;
+		text-align: center;
+		position: absolute;
+		top: 5px;
+		left: 50%;
+		border-radius: 9px;
+	}
+
 	.link_hover {
 		color: #363636;
 		font-family: Arial,'Helvetica Neue',-apple-system,sans-serif;
 	}
+
+
 
 		.link_hover:hover {
 			color: #08a6a8 !important;

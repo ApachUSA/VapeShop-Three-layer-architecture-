@@ -142,5 +142,14 @@ namespace VapeShop.Service.Implementations
 			}
 		}
 
+		public async Task<BaseResponse<int>> GetCount(int userID)
+		{
+			var response = await GetAll(userID);
+			if(response.StatusCode == StatusCode.Success && response.Value != null)
+			{
+				return ResponseHelper.CreateResponse(response.Value.Count(), null, StatusCode.Success);
+			}
+			return ResponseHelper.CreateResponse(0, null, StatusCode.Success);
+		}
 	}
 }

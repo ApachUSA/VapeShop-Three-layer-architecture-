@@ -318,6 +318,7 @@
 					$("#s_toastText").text(toastText);
 					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
 					Toast.show();
+					UpdateWishCount();
 				},
 				error: function (error) {
 				 // Здесь предполагается, что текст ошибки возвращается как "message" в JSON

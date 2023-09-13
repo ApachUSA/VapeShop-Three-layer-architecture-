@@ -65,5 +65,15 @@ namespace VapeShop.Web.Controllers
 			}
 			return View("Error", $"{response.Description}");
 		}
+
+		public async Task<IActionResult> GetCount()
+		{
+			var response = await wishService.GetCount(int.Parse(HttpContext.User.FindFirst("UserID").Value));
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
+			{
+				return Ok(response.Value);
+			}
+			return View("Error", $"{response.Description}");
+		}
 	}
 }
