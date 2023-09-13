@@ -41,9 +41,13 @@
 			data: {
 				liquid_id: liquidid,
 				liquid_param_id: paramid
-			}, // Замените 1 на соответствующий liquidTypeID
+			}, 
 			success: function (data) {
-				$(".partial_content").html(data); // Обновляем список товаров
+				$(".partial_content").html(data);
+				var toastText = "Liquid parametr removed";
+				$("#s_toastText").text(toastText);
+				var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+				Toast.show();
 			}
 		});
 	}

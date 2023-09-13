@@ -35,7 +35,7 @@
 
 							<div class="col-auto d-flex">
 								<div class="icon_btn icon_btn_left">
-									<a>
+									<a asp-controller="Wish" asp-action="Index">
 										<i class="far fa-heart"></i>
 									</a>
 								</div>
@@ -228,15 +228,45 @@
 	<div class="container">
 		<main role="main" class="pb-3" style="background-color: #fff">
 			@RenderBody()
+
 		</main>
 	</div>
 
+
+	<div class="toast-container position-fixed top-0 end-0 p-3">
+		<div id="successToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<img src="https://cdn-icons-png.flaticon.com/512/6785/6785304.png" width="15" height="15" class="rounded me-2" alt="...">
+				<strong class="me-auto">Success</strong>
+				<small>now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+			</div>
+			<div class="toast-body">
+				<span id="s_toastText"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="toast-container position-fixed top-0 end-0 p-3">
+		<div id="errorToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="15" height="15" class="rounded me-2" alt="...">
+				<strong class="me-auto">Error</strong>
+				<small>now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+			</div>
+			<div class="toast-body">
+				<span id="e_toastText"></span>
+			</div>
+		</div>
+	</div>
 	<footer class="border-top footer text-muted">
 		<div class="container">
 			&copy; 2023 - VapeShop.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 		</div>
 	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)

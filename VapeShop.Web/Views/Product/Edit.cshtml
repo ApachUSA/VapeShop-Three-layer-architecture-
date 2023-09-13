@@ -178,54 +178,16 @@
 			type: "GET",
 			data: {
 				liquid_id: @Model.LiquidID
-				}, // Замените 1 на соответствующий liquidTypeID
+				}, 
 			success: function (data) {
-				$(".partial_content").html(data); // Обновляем список товаров
+				$(".partial_content").html(data);
+				var toastText = "Liquid parametr added";
+				$("#s_toastText").text(toastText);
+				var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+				Toast.show();
 			}
 		});
 	});
 
 	
 </script>
-
-
-
-@*<script>
-	const table = document.getElementById('liquidTable');
-	const addButton = document.getElementById('addRowButton');
-	let rowCount = @Model.Liquid_Params.Count;
-
-	// Преобразование данных из ViewBag в JavaScript объект
-	const pgVgData = @Html.Raw(Json.Serialize(ViewBag.PG_VG));
-	const nicotineData = @Html.Raw(Json.Serialize(ViewBag.Nicotine));
-
-	addButton.addEventListener('click', function () {
-		const newRow = document.createElement('tr');
-		newRow.innerHTML = `<input hidden="" type="number" data-val="true" data-val-required="The LiquidParamID field is required." id="Liquid_Params_${rowCount}__LiquidParamID" name="Liquid_Params[${rowCount}].LiquidParamID" value="3">
-							<td><select class="form-control m-2" id="Liquid_Params_${rowCount}__PG_VGID" name="Liquid_Params[${rowCount}].PG_VGID"></select></td>
-							<td><select class="form-control m-2" id="Liquid_Params_${rowCount}__NicotineID" name="Liquid_Params[${rowCount}].NicotineID"></select></td>
-							<td><input class="form-control m-2 input-validation-error" type="number" data-val="true" data-val-required="The Available_quantity field is required." id="Liquid_Params_${rowCount}__Available_quantity" name="Liquid_Params[${rowCount}].Available_quantity" value=""></td>
-						`;
-		table.appendChild(newRow);
-		// Добавление элементов <option> в <select> с использованием данных из JavaScript объектов
-		const pgVgSelect = newRow.querySelector(`select[id="Liquid_Params_${rowCount}__PG_VGID"]`);
-		const nicotineSelect = newRow.querySelector(`select[id="Liquid_Params_${rowCount}__NicotineID"]`);
-
-		pgVgData.forEach(option => {
-			const optionElement = document.createElement('option');
-			optionElement.value = option.value;
-			optionElement.textContent = option.text;
-			pgVgSelect.appendChild(optionElement);
-		});
-
-		nicotineData.forEach(option => {
-			const optionElement = document.createElement('option');
-			optionElement.value = option.value;
-			optionElement.textContent = option.text;
-			nicotineSelect.appendChild(optionElement);
-		});
-
-		rowCount++;
-	});
-</script>*@
-

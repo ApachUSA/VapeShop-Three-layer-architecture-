@@ -33,65 +33,65 @@
 					@{
 						var liquid_pgvg = Model.Liquid_Params.Select(x => x.PG_VG).Distinct().ToDictionary(x => x.PG_VG_ID, x => x.PG_VG_name);
 					}
-				
-						<div class="col"><h3 class="fw-bold price">@Model.Price grn</h3></div>
-						<div class="col">
-							<p style="color: #08a6a8">
-								<i class="fa-regular fa-circle-check"></i>  в наличии
-							</p>
-						</div>
-						<br />
-						<div class="col fw-bold">Соотношение PG/VG</div>
-						@foreach (var item in liquid_pgvg)
-						{
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="liquidSelection" value="@item.Key">
-								<label class="form-check-label" for="flexRadioDefault1">
-									@item.Value
-								</label>
-							</div>
-						}
-						<br />
 
-						<div class="col fw-bold">Никотин</div>
-						<div class="col">
-							<select class="form-select" id="selectNicotine">
-								<option selected>Выберите PG/VG</option>
-							</select>
+					<div class="col"><h3 class="fw-bold price">@Model.Price grn</h3></div>
+					<div class="col">
+						<p style="color: #08a6a8">
+							<i class="fa-regular fa-circle-check"></i>  в наличии
+						</p>
+					</div>
+					<br />
+					<div class="col fw-bold">Соотношение PG/VG</div>
+					@foreach (var item in liquid_pgvg)
+					{
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="liquidSelection" value="@item.Key">
+							<label class="form-check-label" for="flexRadioDefault1">
+								@item.Value
+							</label>
 						</div>
-						<div class="row mt-3">
-							<div class="col-5  pe-0">
-								<div class="ty-qty">
-									<div class="ty-value-changer">
-										<a class="ty-value-changer__increase">+</a>
-										<input type="text" size="5" class="ty-value-changer__input" value="1" id="countInput">
-										<a class="ty-value-changer__decrease">−</a>
-									</div>
+					}
+					<br />
+
+					<div class="col fw-bold">Никотин</div>
+					<div class="col">
+						<select class="form-select" id="selectNicotine">
+							<option selected>Выберите PG/VG</option>
+						</select>
+					</div>
+					<div class="row mt-3">
+						<div class="col-5  pe-0">
+							<div class="ty-qty">
+								<div class="ty-value-changer">
+									<a class="ty-value-changer__increase">+</a>
+									<input type="text" size="5" class="ty-value-changer__input" value="1" id="countInput">
+									<a class="ty-value-changer__decrease">−</a>
 								</div>
 							</div>
-							<div class="col-7 ps-0">
-								<button class="btn_main btn_main_l" style="height: 50px; width: 100%;" id="addToCartButton">
-									<span class="icon">
-										<i class="fa-solid fa-cart-shopping pe-2"></i>
-									</span>
-									<span class="text">To cart</span>
-								</button>
-							</div>
 						</div>
-						
-						<div class="col mt-2 text-center">
-							<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8">
-								<i class="fa-regular fa-heart"></i>
-								Отложить
-							</a>
-
-							<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8">
-								<i class="bi bi-bar-chart"></i>
-								Сравнить
-							</a>
-
+						<div class="col-7 ps-0">
+							<button class="btn_main btn_main_l" style="height: 50px; width: 100%;" id="addToCartButton">
+								<span class="icon">
+									<i class="fa-solid fa-cart-shopping pe-2"></i>
+								</span>
+								<span class="text">To cart</span>
+							</button>
 						</div>
-				
+					</div>
+
+					<div class="col mt-2 text-center">
+						<a id="addToWish" class="link_hover" style="color: #08a6a8">
+							<i class="fa-regular fa-heart"></i>
+							<span>Отложить</span>
+						</a>
+
+						<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8">
+							<i class="bi bi-bar-chart"></i>
+							Сравнить
+						</a>
+
+					</div>
+
 				</div>
 
 				<div class="col-5 text-start">
@@ -181,17 +181,17 @@
 
 <style>
 
-	.buttnon-group{
+	.buttnon-group {
 		margin: 10px 0 20px;
 	}
 
 
 
-	.ty-qty{
+	.ty-qty {
 		margin-bottom: 0;
 	}
 
-	.ty-value-changer{
+	.ty-value-changer {
 		height: 50px;
 		width: 90px;
 		padding: 0;
@@ -205,13 +205,13 @@
 		align-items: center;
 		justify-content: center;
 	}
-	
-		.ty-value-changer:hover{
+
+		.ty-value-changer:hover {
 			border-color: #bcbcbc;
 			outline: none;
 		}
 
-	.ty-value-changer a{
+		.ty-value-changer a {
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -222,10 +222,9 @@
 			border-radius: 0;
 			background: none;
 			color: rgba(54,54,54,0.5);
-		
-	}
+		}
 
-	.ty-value-changer__increase{
+	.ty-value-changer__increase {
 		position: relative;
 		float: right;
 		width: 14px;
@@ -238,7 +237,7 @@
 		margin-bottom: 1px;
 	}
 
-	.ty-value-changer__decrease{
+	.ty-value-changer__decrease {
 		position: relative;
 		float: right;
 		width: 14px;
@@ -250,7 +249,7 @@
 		cursor: pointer;
 	}
 
-	.ty-value-changer__input{
+	.ty-value-changer__input {
 		width: 27px;
 		text-align: center;
 		color: #363636;
@@ -259,10 +258,12 @@
 		border: 0;
 		background: transparent;
 		box-shadow: none !important;
-	
 	}
 </style>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 	$(document).ready(function () {
 		// Находим элементы по их id
@@ -290,6 +291,39 @@
 				},
 				error: function (error) {
 					// Обработка ошибки, если это необходимо
+				}
+			});
+		});
+	});
+</script>
+
+<script>
+	$(document).ready(function () {
+		// Находим элементы по их id
+		var selectElement = $('#selectNicotine');
+		var liquidID = '@Model.LiquidID';
+		var addToWish = $('#addToWish');
+
+		// Добавляем обработчик события click на кнопку
+		addToWish.click(function () {
+			// Получаем выбранное значение из <select>
+			var selected = selectElement.find('option:selected');
+			var param_ID = selected.data("paramid");
+			$.ajax({
+				type: 'POST',
+				url: "@Url.Action("AddItem", "Wish")",
+				data: { liquidID: liquidID, liquid_pramaID: param_ID },
+				success: function (response) {
+					var toastText = "Item added to wish";
+					$("#s_toastText").text(toastText);
+					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+					Toast.show();
+				},
+				error: function (error) {
+				 // Здесь предполагается, что текст ошибки возвращается как "message" в JSON
+					$("#e_toastText").text(error.responseText);
+					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+					errorToast.show();
 				}
 			});
 		});

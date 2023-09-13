@@ -109,6 +109,9 @@
 
 </div>
 
+
+<!-- JavaScript-код для отображения toast -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function () {
@@ -137,7 +140,6 @@
 		}
 	});
 </script>
-
 <script>
 	function filterProductsByFlavorAndPrice() {
 		var selectedValues = [];
@@ -167,7 +169,13 @@
 				sortOption: selectedOption
 			}, // Замените 1 на соответствующий liquidTypeID
 			success: function (data) {
-				$(".main_content").html(data); // Обновляем список товаров
+				$(".main_content").html(data);
+			
+				var toastText = "Filters are applied"; 
+				$("#s_toastText").text(toastText);
+				var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+				Toast.show();
+				
 			}
 		});
 	}
