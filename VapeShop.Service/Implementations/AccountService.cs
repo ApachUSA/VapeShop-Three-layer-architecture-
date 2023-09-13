@@ -50,7 +50,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<ClaimsIdentity>
 				{
 					Value = Auth(user),
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception e)
@@ -98,7 +98,7 @@ namespace VapeShop.Service.Implementations
 				{
 					Value = Auth(NewUser),
 					Description = "User added",
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 
 				};
 

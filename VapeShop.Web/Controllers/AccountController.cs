@@ -34,7 +34,7 @@ namespace VapeShop.Web.Controllers
 			if(ModelState.IsValid)
 			{
 				var response = await _accountService.Register(model);
-				if(response.StatusCode == Domain.Enum.StatusCode.Succes)
+				if(response.StatusCode == Domain.Enum.StatusCode.Success)
 				{
 					await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new System.Security.Claims.ClaimsPrincipal(response.Value));
 					return RedirectToAction("Index", "Home");
@@ -55,7 +55,7 @@ namespace VapeShop.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				var response = await _accountService.Login(model);
-				if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+				if (response.StatusCode == Domain.Enum.StatusCode.Success)
 				{
 					await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new System.Security.Claims.ClaimsPrincipal(response.Value));
 					return RedirectToAction("Index", "Home");
@@ -81,7 +81,7 @@ namespace VapeShop.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				var response = await _profileService.Update(model);
-				if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+				if (response.StatusCode == Domain.Enum.StatusCode.Success)
 				{
 					return RedirectToAction("Profile");
 

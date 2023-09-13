@@ -30,7 +30,7 @@ namespace VapeShop.Service.Implementations
 			{
 				var response = await GetAll(model.UserID);
 
-				if(response.Value != null &&  response.StatusCode == StatusCode.Succes)
+				if(response.Value != null &&  response.StatusCode == StatusCode.Success)
 				{
 					foreach (var item in response.Value)
 					{
@@ -41,7 +41,7 @@ namespace VapeShop.Service.Implementations
 				}
 				await _wishRepository.Create(model);
 
-				return ResponseHelper.CreateResponse(true, "Wish added", StatusCode.Succes);
+				return ResponseHelper.CreateResponse(true, "Wish added", StatusCode.Success);
 
 			}
 			catch (Exception ex)
@@ -62,7 +62,7 @@ namespace VapeShop.Service.Implementations
 				}
 
 				await _wishRepository.Delete(wishModel);
-				return ResponseHelper.CreateResponse(true, "Wish deleted", StatusCode.Succes);
+				return ResponseHelper.CreateResponse(true, "Wish deleted", StatusCode.Success);
 
 			}
 			catch (Exception ex)
@@ -78,7 +78,7 @@ namespace VapeShop.Service.Implementations
 				IEnumerable<WishList> wishLists;
 
 				var response = await GetAll(userID);
-				if (response.StatusCode == StatusCode.Succes)
+				if (response.StatusCode == StatusCode.Success)
 				{
 					wishLists = response.Value;
 				}
@@ -92,7 +92,7 @@ namespace VapeShop.Service.Implementations
 					await _wishRepository.Delete(item);
 				}
 
-				return ResponseHelper.CreateResponse(true, "Wishs deleted", StatusCode.Succes);
+				return ResponseHelper.CreateResponse(true, "Wishs deleted", StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
@@ -111,7 +111,7 @@ namespace VapeShop.Service.Implementations
 					return ResponseHelper.CreateResponse<WishList>(wishModel, "Wish not found", StatusCode.InternalServerError);
 				}
 
-				return ResponseHelper.CreateResponse(wishModel, null, StatusCode.Succes);
+				return ResponseHelper.CreateResponse(wishModel, null, StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
@@ -133,10 +133,10 @@ namespace VapeShop.Service.Implementations
 
 				if (!wishModel.Any())
 				{
-					return ResponseHelper.CreateResponse<IEnumerable<WishList>>(null, "Wishs not found", StatusCode.Succes);
+					return ResponseHelper.CreateResponse<IEnumerable<WishList>>(null, "Wishs not found", StatusCode.Success);
 				}
 
-				return ResponseHelper.CreateResponse<IEnumerable<WishList>>(wishModel, null, StatusCode.Succes);
+				return ResponseHelper.CreateResponse<IEnumerable<WishList>>(wishModel, null, StatusCode.Success);
 			}
 			catch (Exception ex)
 			{

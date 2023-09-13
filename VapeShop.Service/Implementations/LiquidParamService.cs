@@ -36,7 +36,7 @@ namespace VapeShop.Service.Implementations
 				{
 					Value = true,
 					Description = "Liquid_param added",
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 
 				};
 			}
@@ -60,7 +60,7 @@ namespace VapeShop.Service.Implementations
 				{
 					Value = true,
 					Description = "Liquid_params added",
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 
 				};
 			}
@@ -84,7 +84,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<bool>()
 				{
 					Value = true,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 
 				};
 
@@ -111,7 +111,7 @@ namespace VapeShop.Service.Implementations
 					return new BaseResponse<bool>()
 					{
 						Value = true,
-						StatusCode = StatusCode.Succes
+						StatusCode = StatusCode.Success
 
 					};
 				}
@@ -152,7 +152,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<Liquid_param>()
 				{
 					Value = liquid,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception ex)
@@ -191,7 +191,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<IEnumerable<Flavor>>()
 				{
 					Value = flavors,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception ex)
@@ -225,7 +225,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<IEnumerable<Nicotine>>()
 				{
 					Value = nicotines,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception ex)
@@ -264,7 +264,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<IEnumerable<PG_VG>>()
 				{
 					Value = pG_VGs,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception ex)

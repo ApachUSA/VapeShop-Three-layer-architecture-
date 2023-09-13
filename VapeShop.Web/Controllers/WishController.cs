@@ -25,7 +25,7 @@ namespace VapeShop.Web.Controllers
 
 			var response = await wishService.GetAll(int.Parse(HttpContext.User.FindFirst("UserID").Value));
 
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return View(response.Value);
 			}
@@ -37,7 +37,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> AddItem(int liquidID, int? liquid_pramaID = null)
 		{
 			var response = await wishService.Create(new WishList { LiquidID = liquidID, Liquid_paramID = liquid_pramaID, UserID = int.Parse(HttpContext.User.FindFirst("UserID").Value) });
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return Ok();
 			}
@@ -47,7 +47,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> DeleteItem(int wishListID)
 		{
 			var response = await wishService.Delete(wishListID);
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return RedirectToAction("Index");
 			}

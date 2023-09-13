@@ -13,7 +13,7 @@ namespace VapeShop.Domain.Enum
 
 		OrderNotFound = 20,
 
-		Succes = 200,
+		Success = 200,
 		InternalServerError = 500
 	}
 }

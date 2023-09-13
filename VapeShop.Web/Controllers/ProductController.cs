@@ -22,7 +22,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> Index(int liquidtype, string flavor)
 		{
 			var response = await liquidService.GetAll();
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				if (liquidtype != 0) response.Value = response.Value.Where(x => x.LiquidType == (Domain.Enum.LiquidType)liquidtype);
 
@@ -46,7 +46,7 @@ namespace VapeShop.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				var response = await liquidService.Create(model);
-				if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+				if (response.StatusCode == Domain.Enum.StatusCode.Success)
 				{
 					return RedirectToAction("Index");
 				}
@@ -58,7 +58,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> Delete(int liquid_id)
 		{
 			var response = await liquidService.Delete(liquid_id);
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return RedirectToAction("Index");
 			}
@@ -71,7 +71,7 @@ namespace VapeShop.Web.Controllers
 		{
 			var response = await liquidService.Get(id);
 
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				FillViewData();
 				return View(response.Value);
@@ -83,7 +83,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> Edit(Liquid model)
 		{
 			var response = await liquidService.Update(model);
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return RedirectToAction("Edit", new { id = response.Value.LiquidID });
 			}
@@ -104,7 +104,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> CreateLiquid_Params(int liquid_id)
 		{
 			var response = await liquidParamService.Create(new Liquid_param { LiquidID = liquid_id });
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return await IndexEdit(liquid_id);
 			}
@@ -115,7 +115,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> DeleteLiquid_Params(int liquid_id, int liquid_param_id)
 		{
 			var response = await liquidParamService.Delete(liquid_param_id);
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return await IndexEdit(liquid_id);
 			}
@@ -126,7 +126,7 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> Details(int id)
 		{
 			var response = await liquidService.Get(id);
-			if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return View("Details", response.Value);
 			}
@@ -141,7 +141,7 @@ namespace VapeShop.Web.Controllers
 		{
 			var filteredProducts = await liquidService.GetAll();
 
-			if(filteredProducts.StatusCode == Domain.Enum.StatusCode.Succes)
+			if(filteredProducts.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				//liquidType
 				if (liquidTypeID != 0) filteredProducts.Value = ApplyLiquidTypeFilter(filteredProducts.Value, liquidTypeID);

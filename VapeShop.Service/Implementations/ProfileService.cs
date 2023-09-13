@@ -61,7 +61,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<User>
 				{
 					Value = user,
-					StatusCode = Domain.Enum.StatusCode.Succes,
+					StatusCode = Domain.Enum.StatusCode.Success,
 				};
 
 			}
@@ -93,7 +93,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<User>
 				{
 					Value = model,
-					StatusCode = Domain.Enum.StatusCode.Succes,
+					StatusCode = Domain.Enum.StatusCode.Success,
 				};
 
 			}

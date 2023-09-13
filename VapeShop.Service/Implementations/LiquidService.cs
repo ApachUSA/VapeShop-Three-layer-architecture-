@@ -58,7 +58,7 @@ namespace VapeShop.Service.Implementations
 				{
 					Value = liquid,
 					Description = "Liquid added",
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 
 				};
 			}
@@ -85,7 +85,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<bool>()
 				{
 					Value = true,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 
 				};
 			}
@@ -112,7 +112,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<bool>()
 				{
 					Value = true,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 
 				};
 			}
@@ -153,7 +153,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<Liquid>()
 				{
 					Value = liquid,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception ex)
@@ -188,7 +188,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<IEnumerable<Liquid>>()
 				{
 					Value = liquids,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception ex)
@@ -212,7 +212,7 @@ namespace VapeShop.Service.Implementations
 				return new BaseResponse<Liquid>()
 				{
 					Value = model,
-					StatusCode = StatusCode.Succes
+					StatusCode = StatusCode.Success
 				};
 			}
 			catch (Exception ex)
