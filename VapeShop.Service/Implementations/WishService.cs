@@ -106,7 +106,7 @@ namespace VapeShop.Service.Implementations
 				var wishModel = await _wishRepository.Get().Include(x => x.Liquid).Include(x => x.Liquid_param).FirstOrDefaultAsync(x => x.UserID.Equals(userID));
 				if (wishModel == null)
 				{
-					return ResponseHelper.CreateResponse<WishList>(wishModel, "Wish not found", StatusCode.InternalServerError);
+					return ResponseHelper.CreateResponse(wishModel, "Wish not found", StatusCode.InternalServerError);
 				}
 
 				return ResponseHelper.CreateResponse(wishModel, null, StatusCode.Success);

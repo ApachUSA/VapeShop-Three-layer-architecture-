@@ -35,7 +35,7 @@
 
 							<div class="col-auto d-flex">
 								<div class="icon_btn icon_btn_left">
-									<a asp-controller="Wish" asp-action="Index">
+									<a class="" asp-controller="Wish" asp-action="Index">
 										<i class="far fa-heart"></i>
 									</a>
 								</div>
@@ -282,6 +282,13 @@
 		line-height: 50px;
 		transition: .4s cubic-bezier(.4,0,.2,1);
 		color: #8f8f8f;
+		display: flex; /* Добавьте этот стиль */
+		justify-content: center; /* Добавьте этот стиль */
+		align-items: center; /* Добавьте этот стиль */
+	}
+
+	.icon_btn a{
+			color: #8f8f8f;
 	}
 
 	.icon_btn_left {
@@ -303,6 +310,10 @@
 		color: #08a6a8;
 		transition: .4s cubic-bezier(.4,0,.2,1);
 		cursor: pointer;
+	}
+
+	.icon_btn:hover  a{
+			color: #08a6a8;
 	}
 
 	.link_hover {

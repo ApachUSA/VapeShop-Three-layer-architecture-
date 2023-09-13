@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VapeShop.Domain.Entity.Client;
 using VapeShop.Domain.Entity.Functions;
@@ -9,6 +10,7 @@ using VapeShop.Web.Models;
 
 namespace VapeShop.Web.Controllers
 {
+	[Authorize]
 	public class WishController : Controller
 	{
 
@@ -47,6 +49,16 @@ namespace VapeShop.Web.Controllers
 		public async Task<IActionResult> DeleteItem(int wishListID)
 		{
 			var response = await wishService.Delete(wishListID);
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
+			{
+				return RedirectToAction("Index");
+			}
+			return View("Error", $"{response.Description}");
+		}
+
+		public async Task<IActionResult> DeleteAllItems()
+		{
+			var response = await wishService.DeleteAll(int.Parse(HttpContext.User.FindFirst("UserID").Value));
 			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
 				return RedirectToAction("Index");
