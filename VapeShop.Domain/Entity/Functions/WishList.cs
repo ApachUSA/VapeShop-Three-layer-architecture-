@@ -12,12 +12,16 @@ namespace VapeShop.Domain.Entity.Functions
 	{
 		public int WishListID { get; set; }
 
-		public int UserID { get; set; }
+		public required int UserID { get; set; }
 
-		public int Liquid_paramID { get; set; }
+		public required int LiquidID { get; set; }
 
-		public required User User { get; set; }
+		public  int? Liquid_paramID { get; set; }
 
-		public required Liquid_param Liquid_param { get; set; }
+		public  User? User { get; set; }
+
+		public  Liquid_param? Liquid_param { get; set; }
+
+		public  Liquid? Liquid { get; set; }
 	}
 }
