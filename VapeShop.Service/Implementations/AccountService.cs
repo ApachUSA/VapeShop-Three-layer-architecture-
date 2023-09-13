@@ -122,7 +122,7 @@ namespace VapeShop.Service.Implementations
 			{
 				new Claim(ClaimsIdentity.DefaultNameClaimType, user.Surname + " " + user.Name),
 				new Claim(ClaimsIdentity.DefaultRoleClaimType, Role.User.ToString()),
-
+				new Claim("UserId", user.UserID.ToString())
 			};
 
 			return new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
