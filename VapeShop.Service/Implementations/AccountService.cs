@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VapeShop.Domain.Entity.Client;
 using VapeShop.Domain.Enum;
+using VapeShop.Domain.Helpers;
 using VapeShop.Domain.Response;
 using VapeShop.Domain.ViewModels;
 using VapeShop.Infrastructure.Interfaces;
@@ -30,36 +32,22 @@ namespace VapeShop.Service.Implementations
 		{
 			try
 			{
-				var user = _userRespository.Get().Where(x => x.Email == model.Email).FirstOrDefault();
+				var user = await _userRespository.Get().Where(x => x.Email == model.Email).FirstOrDefaultAsync();
 				if (user == null)
 				{
-					return new BaseResponse<ClaimsIdentity>
-					{
-						Description = "User not found"
-					};
+					return ResponseHelper.CreateResponse<ClaimsIdentity>(null, "User not found", StatusCode.UserNotFound);
 				}
 
 				if(user.Password != HashPassword(model.Password))
 				{
-					return new BaseResponse<ClaimsIdentity>
-					{
-						Description = "Wrong login or password"
-					};
+					return ResponseHelper.CreateResponse<ClaimsIdentity>(null, "Wrong login or password", StatusCode.InternalServerError);
 				}
 
-				return new BaseResponse<ClaimsIdentity>
-				{
-					Value = Auth(user),
-					StatusCode = StatusCode.Success
-				};
+				return ResponseHelper.CreateResponse(Auth(user),null, StatusCode.Success);
 			}
 			catch (Exception e)
 			{
-				return new BaseResponse<ClaimsIdentity>
-				{
-					Description = e.Message,
-					StatusCode = StatusCode.InternalServerError
-				};
+				return ResponseHelper.CreateResponse<ClaimsIdentity>(null, $"[Login] : {e.Message}", StatusCode.InternalServerError);
 			}
 		}
 
@@ -69,10 +57,7 @@ namespace VapeShop.Service.Implementations
 			{
 				if(_userRespository.Get().Any(x => x.Email == model.Email))
 				{
-					return new BaseResponse<ClaimsIdentity>()
-					{
-						Description = "User already exist"
-					};
+					return ResponseHelper.CreateResponse<ClaimsIdentity>(null, "User already exist", StatusCode.UserAlreadyExists);
 				}
 			
 				var NewUser = new User
@@ -87,6 +72,7 @@ namespace VapeShop.Service.Implementations
 				};
 
 				await _userRespository.Create(NewUser);
+
 				var Delivery = new DeliveryAddress
 				{
 					UserID = NewUser.UserID,
@@ -94,22 +80,13 @@ namespace VapeShop.Service.Implementations
 
 				await _DeliveryRepository.Create(Delivery);
 
-				return new BaseResponse<ClaimsIdentity>()
-				{
-					Value = Auth(NewUser),
-					Description = "User added",
-					StatusCode = StatusCode.Success
-
-				};
+				return ResponseHelper.CreateResponse(Auth(NewUser), "User added", StatusCode.Success);
 
 
 
 			}catch(Exception e)
 			{
-				return new BaseResponse<ClaimsIdentity>()
-				{
-					Description = e.Message
-				};
+				return ResponseHelper.CreateResponse<ClaimsIdentity>(null, $"[Register] : {e.Message}", StatusCode.InternalServerError);
 			}
 		}
 

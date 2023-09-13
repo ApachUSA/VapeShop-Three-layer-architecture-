@@ -75,22 +75,20 @@ namespace VapeShop.Service.Implementations
 		{
 			try
 			{
-				IEnumerable<WishList> wishLists;
-
 				var response = await GetAll(userID);
-				if (response.StatusCode == StatusCode.Success)
+				if (response.StatusCode == StatusCode.Success && response.Value != null)
 				{
-					wishLists = response.Value;
+					foreach (var item in response.Value)
+					{
+						await _wishRepository.Delete(item);
+					}
 				}
 				else
 				{
 					return ResponseHelper.CreateResponse(false, response.Description, StatusCode.InternalServerError);
 				}
 
-				foreach (var item in wishLists)
-				{
-					await _wishRepository.Delete(item);
-				}
+				
 
 				return ResponseHelper.CreateResponse(true, "Wishs deleted", StatusCode.Success);
 			}

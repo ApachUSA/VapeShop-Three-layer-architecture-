@@ -10,10 +10,10 @@ namespace VapeShop.Domain.Response
 {
 	public interface IBaseResponse<T>
 	{
-		string Description { get; set; }
+		string? Description { get; set; }
 
 		StatusCode StatusCode { get; set; }
 
-		T Value { get; set; }
+		T? Value { get; set; }
 	}
 }

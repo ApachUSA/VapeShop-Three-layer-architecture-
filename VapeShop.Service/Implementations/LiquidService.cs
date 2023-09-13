@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VapeShop.Domain.Entity.Product;
 using VapeShop.Domain.Enum;
+using VapeShop.Domain.Helpers;
 using VapeShop.Domain.Response;
 using VapeShop.Domain.ViewModels;
 using VapeShop.Infrastructure.Interfaces;
@@ -46,31 +47,20 @@ namespace VapeShop.Service.Implementations
 
 				await _liquidRepository.Create(liquid);
 
-				if (model.Liquid_Params.Any())
+				if (model.Liquid_Params != null && model.Liquid_Params.Any())
 				{
 					model.Liquid_Params.ForEach(x => x.LiquidID = liquid.LiquidID);
 					var response = await _liquid_paramRepository.Create(model.Liquid_Params);
 
-					if (response.StatusCode == StatusCode.InternalServerError) throw new Exception(response.Description);
+					if (response.StatusCode == StatusCode.InternalServerError) 
+						return ResponseHelper.CreateResponse<Liquid>(null, response.Description, StatusCode.InternalServerError); 
 				}
 
-				return new BaseResponse<Liquid>()
-				{
-					Value = liquid,
-					Description = "Liquid added",
-					StatusCode = StatusCode.Success
-
-				};
+				return ResponseHelper.CreateResponse(liquid, "Liquid added", StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<Liquid>()
-				{
-					Value = liquid,
-					Description = $"[CreateLiquid] : {ex.Message}",
-					StatusCode = StatusCode.InternalServerError
-
-				};
+				return ResponseHelper.CreateResponse<Liquid>(null, $"[CreateLiquid] : {ex.Message}", StatusCode.InternalServerError);
 			}
 
 
@@ -82,21 +72,11 @@ namespace VapeShop.Service.Implementations
 			try
 			{
 				await _liquidRepository.Delete(model);
-				return new BaseResponse<bool>()
-				{
-					Value = true,
-					StatusCode = StatusCode.Success
-
-				};
+				return ResponseHelper.CreateResponse(true, $"Liquid (id : {model.LiquidID}) deleted", StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<bool>()
-				{
-					Description = $"[DeleteLiquid] : {ex.Message}",
-					StatusCode = StatusCode.InternalServerError
-
-				};
+				return ResponseHelper.CreateResponse(false, $"[DeleteLiquid] : {ex.Message}", StatusCode.InternalServerError);
 			}
 
 
@@ -108,22 +88,13 @@ namespace VapeShop.Service.Implementations
 			try
 			{
 				var model = await _liquidRepository.Get().FirstOrDefaultAsync(x => x.LiquidID == model_id);
+				if(model == null) return ResponseHelper.CreateResponse(false, $"Liquid (id : {model_id}) not found", StatusCode.ItemNotFound);
 				await _liquidRepository.Delete(model);
-				return new BaseResponse<bool>()
-				{
-					Value = true,
-					StatusCode = StatusCode.Success
-
-				};
+				return ResponseHelper.CreateResponse(true, $"Liquid (id : {model.LiquidID}) deleted", StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<bool>()
-				{
-					Description = $"[DeleteLiquid] : {ex.Message}",
-					StatusCode = StatusCode.InternalServerError
-
-				};
+				return ResponseHelper.CreateResponse(false, $"[DeleteLiquid] : {ex.Message}", StatusCode.InternalServerError);
 			}
 		}
 
@@ -140,31 +111,14 @@ namespace VapeShop.Service.Implementations
 					.FirstOrDefaultAsync(x => x.LiquidID == id);
 
 
-				if (liquid == null)
-				{
-					return new BaseResponse<Liquid>()
-					{
-						Description = "Liquid not found",
-						StatusCode = StatusCode.InternalServerError
+				if (liquid == null) return ResponseHelper.CreateResponse<Liquid>(null, $"Liquid (id : {id}) not found", StatusCode.ItemNotFound);
 
-					};
-				}
-
-				return new BaseResponse<Liquid>()
-				{
-					Value = liquid,
-					StatusCode = StatusCode.Success
-				};
+				return ResponseHelper.CreateResponse(liquid, null, StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
+				return ResponseHelper.CreateResponse<Liquid>(null, $"[GetLiquid] : {ex.Message}", StatusCode.InternalServerError);
 
-				return new BaseResponse<Liquid>()
-				{
-					Description = $"[GetLiquid] : {ex.Message}",
-					StatusCode = StatusCode.InternalServerError
-
-				};
 			}
 
 		}
@@ -177,29 +131,15 @@ namespace VapeShop.Service.Implementations
 
 				if (liquids == null)
 				{
-					return new BaseResponse<IEnumerable<Liquid>>()
-					{
-						Description = "Liquids not found",
-						StatusCode = StatusCode.InternalServerError
-
-					};
+					return ResponseHelper.CreateResponse<IEnumerable<Liquid>>(null, "Liquids not found", StatusCode.ItemNotFound);
 				}
 
-				return new BaseResponse<IEnumerable<Liquid>>()
-				{
-					Value = liquids,
-					StatusCode = StatusCode.Success
-				};
+				return ResponseHelper.CreateResponse<IEnumerable<Liquid>>(liquids, null, StatusCode.Success);
+
 			}
 			catch (Exception ex)
 			{
-
-				return new BaseResponse<IEnumerable<Liquid>>()
-				{
-					Description = $"[GetLiquids] : {ex.Message}",
-					StatusCode = StatusCode.InternalServerError
-
-				};
+				return ResponseHelper.CreateResponse<IEnumerable<Liquid>>(null, $"[GetLiquids] : {ex.Message}", StatusCode.InternalServerError);
 			}
 		}
 
@@ -209,20 +149,11 @@ namespace VapeShop.Service.Implementations
 			{
 				await _liquidRepository.Update(model);
 
-				return new BaseResponse<Liquid>()
-				{
-					Value = model,
-					StatusCode = StatusCode.Success
-				};
+				return ResponseHelper.CreateResponse(model, null, StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<Liquid>()
-				{
-					Description = $"[UpdateLiquids] : {ex.Message}",
-					StatusCode = StatusCode.InternalServerError
-
-				};
+				return ResponseHelper.CreateResponse<Liquid>(null, $"[UpdateLiquids (id {model.LiquidID})] : {ex.Message}", StatusCode.InternalServerError);
 			}
 		}
 	}

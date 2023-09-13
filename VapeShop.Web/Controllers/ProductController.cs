@@ -24,7 +24,7 @@ namespace VapeShop.Web.Controllers
 			var response = await liquidService.GetAll();
 			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
-				if (liquidtype != 0) response.Value = response.Value.Where(x => x.LiquidType == (Domain.Enum.LiquidType)liquidtype);
+				if (liquidtype != 0) response.Value = response.Value?.Where(x => x.LiquidType == (Domain.Enum.LiquidType)liquidtype);
 
 				ViewBag.LiquidType = liquidtype;
 				ViewBag.Flavor = flavor;
@@ -50,7 +50,7 @@ namespace VapeShop.Web.Controllers
 				{
 					return RedirectToAction("Index");
 				}
-				ModelState.AddModelError("", response.Description);
+				ModelState.AddModelError("", response.Description?? string.Empty);
 			}
 			return View(model);
 		}
@@ -85,7 +85,7 @@ namespace VapeShop.Web.Controllers
 			var response = await liquidService.Update(model);
 			if (response.StatusCode == Domain.Enum.StatusCode.Success)
 			{
-				return RedirectToAction("Edit", new { id = response.Value.LiquidID });
+				return RedirectToAction("Edit", new { id = response.Value?.LiquidID });
 			}
 			return View("Error", $"{response.Description}");
 		}
@@ -93,7 +93,7 @@ namespace VapeShop.Web.Controllers
 		private async Task<IActionResult> IndexEdit(int liquid_id)
 		{
 			var liquid_response = await liquidService.Get(liquid_id);
-			liquid_response.Value.Liquid_Params = liquid_response.Value.Liquid_Params.OrderBy(x => x.LiquidParamID).ToList();
+			liquid_response.Value.Liquid_Params = liquid_response.Value?.Liquid_Params?.OrderBy(x => x.LiquidParamID).ToList();
 
 			FillViewData();
 
@@ -141,7 +141,7 @@ namespace VapeShop.Web.Controllers
 		{
 			var filteredProducts = await liquidService.GetAll();
 
-			if(filteredProducts.StatusCode == Domain.Enum.StatusCode.Success)
+			if (filteredProducts.StatusCode == Domain.Enum.StatusCode.Success && filteredProducts.Value != null)
 			{
 				//liquidType
 				if (liquidTypeID != 0) filteredProducts.Value = ApplyLiquidTypeFilter(filteredProducts.Value, liquidTypeID);
@@ -167,7 +167,7 @@ namespace VapeShop.Web.Controllers
 		//Help methods
 		private static IEnumerable<Liquid> ApplyLiquidTypeFilter(IEnumerable<Liquid> products, int liquidTypeID) => products.Where(x => x.LiquidType == (Domain.Enum.LiquidType)liquidTypeID);
 
-		private static IEnumerable<Liquid> ApplyFlavorsFilter(IEnumerable<Liquid> products, string[]? selectedFlavors) => products.Where(x => selectedFlavors.Contains(x.Flavor.Flavor_name));
+		private static IEnumerable<Liquid> ApplyFlavorsFilter(IEnumerable<Liquid> products, string[]? selectedFlavors) => products.Where(x => selectedFlavors.Contains(x.Flavor?.Flavor_name));
 
 		private static IEnumerable<Liquid> ApplyPriceFilter(IEnumerable<Liquid> products, decimal minPrice, decimal maxPrice) => products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
 

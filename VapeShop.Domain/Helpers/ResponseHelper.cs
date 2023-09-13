@@ -10,7 +10,7 @@ namespace VapeShop.Domain.Helpers
 {
 	public static class ResponseHelper
 	{
-		public static BaseResponse<T> CreateResponse<T>(T value, string description, StatusCode statusCode)
+		public static BaseResponse<T> CreateResponse<T>(T? value, string? description, StatusCode statusCode)
 		{
 			return new BaseResponse<T>
 			{
