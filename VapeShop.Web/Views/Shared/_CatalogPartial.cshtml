@@ -30,7 +30,7 @@
 										<i class="far fa-heart"></i>
 									</a>
 
-									<a class="quick_view_btn">
+									<a class="quick_view_btn add-to-comparisonList" data-liquid-id="@liquid.LiquidID">
 										<i class="bi bi-bar-chart"></i>
 									</a>
 								</div>
@@ -52,7 +52,9 @@
 									</svg>  в наличии
 								</div>
 								<div class="content_controll hidden">
-									<a class="btn_main btn_main_l"><i class="fa-solid fa-cart-shopping"></i>Add to Cart</a>
+									<a class="btn_main btn_main_l" asp-action="Details" asp-controller="Product" asp-route-id="@liquid.LiquidID">
+										<i class="fa-solid fa-cart-shopping pe-2"></i> Move to product
+									</a>
 								</div>
 								<div class="content_bottom display">
 									<ul class="dots" style="padding: 0; font-family: Arial;">
@@ -79,11 +81,9 @@
 		$('.add-to-wishlist').click(function (e) {
 			e.preventDefault(); // Предотвращаем стандартное действие ссылки
 
-			// Получаем данные из атрибутов элемента
 			var liquidID = $(this).data('liquid-id');
 			var liquidPramaID = $(this).data('liquid-prama-id');
 
-			// Отправляем AJAX-запрос на сервер
 			$.ajax({
 				type: 'POST',
 				url: "@Url.Action("AddItem", "Wish")",
@@ -96,7 +96,35 @@
 					UpdateWishCount();
 				},
 				error: function (error) {
-					// Здесь предполагается, что текст ошибки возвращается как "message" в JSON
+					$("#e_toastText").text(error.responseText);
+					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+					errorToast.show();
+				}
+			});
+		});
+	});
+
+</script>
+
+<script>
+	$(document).ready(function () {
+		$('.add-to-comparisonList').click(function (e) {
+			e.preventDefault(); // Предотвращаем стандартное действие ссылки
+
+			var liquidID = $(this).data('liquid-id');
+
+			$.ajax({
+				type: 'POST',
+				url: "@Url.Action("AddItem", "Comparison")",
+				data: { liquidID: liquidID },
+				success: function (response) {
+					var toastText = "Product has been added to comparison list";
+					$("#s_toastText").text(toastText);
+					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+					Toast.show();
+					UpdateComparisonCount();
+				},
+				error: function (error) {
 					$("#e_toastText").text(error.responseText);
 					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
 					errorToast.show();

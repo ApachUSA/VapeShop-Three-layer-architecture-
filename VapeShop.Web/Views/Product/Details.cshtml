@@ -71,10 +71,8 @@
 						</div>
 						<div class="col-7 ps-0">
 							<button class="btn_main btn_main_l" style="height: 50px; width: 100%;" id="addToCartButton">
-								<span class="icon">
-									<i class="fa-solid fa-cart-shopping pe-2"></i>
-								</span>
-								<span class="text">To cart</span>
+
+									<i class="fa-solid fa-cart-shopping pe-2"></i> Add to cart
 							</button>
 						</div>
 					</div>
@@ -85,7 +83,7 @@
 							<span>Отложить</span>
 						</a>
 
-						<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8">
+						<a class="link_hover" id="addToComparison" style="color: #08a6a8">
 							<i class="bi bi-bar-chart"></i>
 							Сравнить
 						</a>
@@ -297,6 +295,8 @@
 	});
 </script>
 
+
+
 <script>
 	$(document).ready(function () {
 		// Находим элементы по их id
@@ -322,6 +322,35 @@
 				},
 				error: function (error) {
 				 // Здесь предполагается, что текст ошибки возвращается как "message" в JSON
+					$("#e_toastText").text(error.responseText);
+					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+					errorToast.show();
+				}
+			});
+		});
+	});
+</script>
+
+<script>
+	$(document).ready(function () {
+		// Находим элементы по их id
+		var liquidID = '@Model.LiquidID';
+		var addToComparison = $('#addToComparison');
+
+		// Добавляем обработчик события click на кнопку
+		addToComparison.click(function () {
+			$.ajax({
+				type: 'POST',
+				url: "@Url.Action("AddItem", "Comparison")",
+				data: { liquidID: liquidID },
+				success: function (response) {
+					var toastText = "Product has been added to comparison list";
+					$("#s_toastText").text(toastText);
+					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+					Toast.show();
+					UpdateComparisonCount();
+				},
+				error: function (error) {
 					$("#e_toastText").text(error.responseText);
 					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
 					errorToast.show();
