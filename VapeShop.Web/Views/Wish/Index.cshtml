@@ -24,8 +24,8 @@
 								<div class="product_card_body">
 
 									<div class="body_image">
-										<a asp-action="Details" asp-controller="Product" asp-route-id="@item.Liquid.LiquidID">
-											<img src="@item.Liquid.Image" alt="Product Image">
+										<a asp-action="Details" asp-controller="Product" asp-route-id="@item.Liquid?.LiquidID">
+											<img src="@item.Liquid?.Image" alt="Product Image">
 										</a>
 
 										<div class="body_image_btn hidden">
@@ -62,8 +62,8 @@
 										<div class="content_bottom display">
 											<ul class="dots" style="padding: 0; font-family: Arial;">
 												<li><span>Brand</span><span>VapeJoy</span></li>
-												<li><span>Flavor</span><span>@item.Liquid.Flavor.Flavor_name</span></li>
-													<li><span>Volume</span><span>@((int)item.Liquid.Volume) ml</span></li>
+												<li><span>Flavor</span><span>@item.Liquid?.Flavor?.Flavor_name</span></li>
+													<li><span>Volume</span><span>@((int)item.Liquid?.Volume) ml</span></li>
 											</ul>
 
 										</div>
