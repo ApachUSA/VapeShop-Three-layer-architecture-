@@ -10,15 +10,15 @@ namespace VapeShop.Domain.Entity.Functions
 {
 	public class ComparisonList
 	{
-		public int ComparsionListID { get; set; }
+		public int ComparisonListID { get; set; }
 
-		public int UserID { get; set; }
+		public required int UserID { get; set; }
 
-		public int LiquidID { get; set; }
+		public required int LiquidID { get; set; }
 
-		public required User User { get; set; }
+		public  User User { get; set; }
 
-		public required Liquid Liquid { get; set; }
+		public  Liquid Liquid { get; set; }
 
 	}
 }
