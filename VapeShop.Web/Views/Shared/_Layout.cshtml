@@ -10,224 +10,220 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="~/font-awesome/css/all.css" />
+	<link rel="preload" crossorigin="anonymous" as="font" href="https://vapejoy.com.ua/design/themes/abt__unitheme2/media/custom_fonts/MuseoSansBlack.woff?1694437935" type="font/woff">
 
 </head>
 <body>
-	<header>
-		<nav>
-			<div class="container-fluid text-center p-0" style="background-color: #fff">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="row d-flex align-items-center justify-content-between" style="height: 80px">
-							<div class="col-auto">
-								<a asp-action="Index" asp-controller="Home"><img src="https://vapejoy.com.ua/images/ab__webp/logos/10/Vapejoy_logo__1__png.webp" style="max-height: 40px" /></a>
+	<nav class="fixed-top">
+		<div class="container-fluid text-center p-0" style="background-color: #fff;     box-shadow: 0 3px 4px 0 rgba(0,0,0,0.1);">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="row d-flex align-items-center justify-content-between" style="height: 80px">
+						<div class="col-auto">
+							<a asp-action="Index" asp-controller="Home"><img src="https://vapejoy.com.ua/images/ab__webp/logos/10/Vapejoy_logo__1__png.webp" style="max-height: 40px" /></a>
 
+						</div>
+
+						<div class="col-6">
+							<div class="input-group" style="height: 50px">
+								<input type="search" style="background-color: #f7f7f7;border: 0; border-radius: 6px;" class="form-control" placeholder="Search product" aria-label="Search" aria-describedby="search-addon" />
+								<button type="button" class="icon_btn icon_btn_center" style="background-color: #f7f7f7; border: none">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+							</div>
+						</div>
+
+						<div class="col-auto d-flex">
+							<div class="icon_btn icon_btn_left">
+
+								<a id="wishLink" class="position-relative" asp-controller="Wish" asp-action="Index">
+									<span id="wishCount" class="count">
+									</span>
+									<i class="far fa-heart"></i>
+								</a>
+							</div>
+							<div class="icon_btn icon_btn_right">
+								<a id="comparisonLink" class="position-relative" asp-controller="Comparison" asp-action="ComparisonIndex">
+									<span id="comparisonCount" class="count">
+									</span>
+									<i class="bi bi-bar-chart"></i>
+								</a>
+							</div>
+							<div class="ms-2">
+								<a class="link_hover" asp-action="" asp-controller="" style="line-height: 20px; font-size: 18px; font-weight: bold;">
+									+380(50)248-90-89
+								</a><br />
+								<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8; text-decoration: underline; line-height: 30px; font-size: 12px; font-weight: bold;">
+									Заказать обратный звонок
+								</a>
 							</div>
 
-							<div class="col-6">
-								<div class="input-group" style="height: 50px">
-									<input type="search" style="background-color: #f7f7f7;border: 0; border-radius: 6px;" class="form-control" placeholder="Search product" aria-label="Search" aria-describedby="search-addon" />
-									<button type="button" class="icon_btn icon_btn_center" style="background-color: #f7f7f7; border: none">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</button>
+
+
+						</div>
+
+						<div class="col-auto">
+							<div class="dropdown">
+								<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">
+										<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+										<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+									</svg><br />
+									<span>Аккаунт</span>
+								</button>
+								<div class="dropdown-menu dropdown-menu-start custom-dropdown-menu p-0">
+									<partial name="_LoginPartial" />
 								</div>
 							</div>
-
-							<div class="col-auto d-flex">
-								<div class="icon_btn icon_btn_left">
-								
-									<a class="position-relative" asp-controller="Wish" asp-action="Index">
-										<span id="wishCount" class="count">
-										</span>
-										<i class="far fa-heart"></i>
-									</a>
-								</div>	
-								<div class="icon_btn icon_btn_right">
-									<a asp-controller="Comparsion" asp-action="ComparsionIndex">
-										<i class="bi bi-bar-chart"></i>
-									</a>
-								</div>
-								<div class="ms-2">
-									<a class="link_hover" asp-action="" asp-controller="" style="line-height: 20px; font-size: 18px; font-weight: bold;">
-										+380(50)248-90-89
-									</a><br />
-									<a class="link_hover" asp-action="" asp-controller="" style="color: #08a6a8; text-decoration: underline; line-height: 30px; font-size: 12px; font-weight: bold;">
-										Заказать обратный звонок
-									</a>
-								</div>
-
-
-
-							</div>
-
-							<div class="col-auto">
-								<div class="dropdown">
-									<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
-										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">
-											<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-											<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-										</svg><br />
-										<span>Аккаунт</span>
-									</button>
-									<div class="dropdown-menu dropdown-menu-start custom-dropdown-menu p-0">
-										<partial name="_LoginPartial" />
-									</div>
-								</div>
-							</div>
-							<div class="col-auto">
-								<div class="dropdown">
-									<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
-										<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
-											<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-										</svg><br />
-										<span>Корзина</span>
-									</button>
-									<div class="dropdown-menu ">
-										<div class="container-fluid">
-											<div class="row">
-											</div>
+						</div>
+						<div class="col-auto">
+							<div class="dropdown">
+								<button type="button" class="bg-light align-items-center p-0" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="color: gray; border: none;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="gray" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+										<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+									</svg><br />
+									<span>Корзина</span>
+								</button>
+								<div class="dropdown-menu ">
+									<div class="container-fluid">
+										<div class="row">
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-
-
 					</div>
-				</div>
-
-				<div class="container-fluid" style="background: #363636;">
-					<div class="container justify-content-md-center fw-bold">
-						<div class="menu">
-							<ul class="menu_items">
-								<li class="menu_item">
-									<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="0">
-										<img class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/icons_all_png.webp" />
-										<bdi>ALL GOODS</bdi>
-
-									</a>
-								</li>
-								<li class="menu_item">
-									<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1">
-										<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/black-Ejuices.png" />
-										<bdi>LIQUID FOR VAPE</bdi>
-										<i class="fa-solid fa-caret-down  ms-2"></i>
-									</a>
-									<div class="submenu">
-										<div class="submenu_items">
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Fruits">
-
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__23_1_png.webp">
-													<bdi>Fruits</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Dessert">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__22%D1%83__png.webp">
-													<bdi>Dessert</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Tobacco">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__13_1_png.webp">
-													<bdi>Tobacco</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Drinks">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%BD%D0%B0%D0%BF%D0%B8%D1%82%D0%BA%D0%B8_200_k2pr-l1_png.webp">
-													<bdi>Drinks</bdi>
-												</a>
-											</div>
-										</div>
-
-									</div>
-								</li>
-								<li class="menu_item">
-									<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2">
-										<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/salt_57tb-pk.png" />
-										<bdi>
-											SALT LIQUID
-										</bdi>
-										<i class="fa-solid fa-caret-down  ms-2"></i>
-									</a>
-									<div class="submenu">
-										<div class="submenu_items">
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Fruits">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__259__png.webp">
-													<bdi>Fruits</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Dessert">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__241__png.webp">
-													<bdi>Dessert</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Tobacco">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__2%D1%838__png.webp">
-													<bdi>Tobacco</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Drinks">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__251__png.webp">
-													<bdi>Drinks</bdi>
-												</a>
-											</div>
-										</div>
-
-									</div>
-								</li>
-								<li class="menu_item">
-									<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3">
-										<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/Flavors_xu48-6p.png" />
-										<bdi>FLAVORING</bdi>
-										<i class="fa-solid fa-caret-down ms-2"></i>
-									</a>
-									<div class="submenu">
-										<div class="submenu_items">
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Fruits">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/fruktovyie_aromatizatoryi_dlya_vape_vapejoy_png.webp">
-													<bdi>Fruits</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Dessert">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B_%D0%B0%D1%80%D0%BE%D0%BC%D1%8B_vapejoy_png.webp">
-													<bdi>Dessert</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Tobacco">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/tabachnyiy_aromatizator_vapejoy_png.webp">
-													<bdi>Tobacco</bdi>
-												</a>
-											</div>
-											<div class="submenu_item">
-												<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Drinks">
-													<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/napitki_aromatizatoryi_vapejoy_png.webp">
-													<bdi>Drinks</bdi>
-												</a>
-											</div>
-										</div>
-
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="container-fluid text-center">
 				</div>
 			</div>
-		</nav>
-	</header>
+
+		</div>
+	</nav>
+	<div class="container-fluid" style="background: #363636; margin-top: 80px">
+		<div class="container justify-content-md-center fw-bold">
+			<div class="menu">
+				<ul class="menu_items">
+					<li class="menu_item">
+						<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="0">
+							<img class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/icons_all_png.webp" />
+							<bdi>ALL GOODS</bdi>
+
+						</a>
+					</li>
+					<li class="menu_item">
+						<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1">
+							<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/black-Ejuices.png" />
+							<bdi>LIQUID FOR VAPE</bdi>
+							<i class="fa-solid fa-caret-down  ms-2"></i>
+						</a>
+						<div class="submenu">
+							<div class="submenu_items">
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Fruits">
+
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__23_1_png.webp">
+										<bdi>Fruits</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Dessert">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__22%D1%83__png.webp">
+										<bdi>Dessert</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Tobacco">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__13_1_png.webp">
+										<bdi>Tobacco</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="1" asp-route-flavor="Drinks">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%BD%D0%B0%D0%BF%D0%B8%D1%82%D0%BA%D0%B8_200_k2pr-l1_png.webp">
+										<bdi>Drinks</bdi>
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</li>
+					<li class="menu_item">
+						<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2">
+							<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/salt_57tb-pk.png" />
+							<bdi>
+								SALT LIQUID
+							</bdi>
+							<i class="fa-solid fa-caret-down  ms-2"></i>
+						</a>
+						<div class="submenu">
+							<div class="submenu_items">
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Fruits">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__259__png.webp">
+										<bdi>Fruits</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Dessert">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__241__png.webp">
+										<bdi>Dessert</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Tobacco">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__2%D1%838__png.webp">
+										<bdi>Tobacco</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="2" asp-route-flavor="Drinks">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/11/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B9_%D1%81%D0%B5%D0%B9%D1%87%D0%B0%D1%81__251__png.webp">
+										<bdi>Drinks</bdi>
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</li>
+					<li class="menu_item">
+						<a class="menu_item_link" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3">
+							<img style="filter: brightness(10) opacity(80%);" class="me-2" height="24" width="24" src="https://vapejoy.com.ua/images/abt__ut2/menu-with-icon/12/Flavors_xu48-6p.png" />
+							<bdi>FLAVORING</bdi>
+							<i class="fa-solid fa-caret-down ms-2"></i>
+						</a>
+						<div class="submenu">
+							<div class="submenu_items">
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Fruits">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/fruktovyie_aromatizatoryi_dlya_vape_vapejoy_png.webp">
+										<bdi>Fruits</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Dessert">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B_%D0%B0%D1%80%D0%BE%D0%BC%D1%8B_vapejoy_png.webp">
+										<bdi>Dessert</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Tobacco">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/tabachnyiy_aromatizator_vapejoy_png.webp">
+										<bdi>Tobacco</bdi>
+									</a>
+								</div>
+								<div class="submenu_item">
+									<a class="submenu_item_link link_hover" asp-action="Index" asp-controller="Product" asp-route-liquidtype="3" asp-route-flavor="Drinks">
+										<img height="70" width="100" src="https://vapejoy.com.ua/images/ab__webp/abt__ut2/menu-with-icon/9/napitki_aromatizatoryi_vapejoy_png.webp">
+										<bdi>Drinks</bdi>
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<main role="main" class="pb-3" style="background-color: #fff">
 			@RenderBody()
@@ -285,12 +281,36 @@
 				if (data === 0) {
 					// Спрятать span
 					$("#wishCount").hide();
+					$("#wishLink").removeClass("active");
 				} else {
 					// Показать span
 					$("#wishCount").show();
 					$("#wishCount").text(data);
+					$("#wishLink").addClass("active");
 				}
-				
+
+
+			}
+		});
+	}
+
+	function UpdateComparisonCount() {
+		$.ajax({
+			url: "@Url.Action("GetCount", "Comparison")",
+			type: "GET",
+			data: {},
+			success: function (data) {
+				if (data === 0) {
+					// Спрятать span
+					$("#comparisonCount").hide();
+					$("#comparisonLink").removeClass("active");
+				} else {
+					// Показать span
+					$("#comparisonCount").show();
+					$("#comparisonCount").text(data);
+					$("#comparisonLink").addClass("active");
+				}
+
 
 			}
 		});
@@ -300,6 +320,7 @@
 <script>
 	$(document).ready(function () {
 		UpdateWishCount();
+		UpdateComparisonCount();
 	});
 </script>
 <style>
@@ -317,9 +338,13 @@
 		align-items: center; /* Добавьте этот стиль */
 	}
 
-	.icon_btn a{
+		.icon_btn a {
 			color: #8f8f8f;
-	}
+		}
+
+		.icon_btn .active {
+			color: #08a6a8;
+		}
 
 	.icon_btn_left {
 		border-radius: 6px 0 0 6px;
@@ -342,11 +367,11 @@
 		cursor: pointer;
 	}
 
-	.icon_btn:hover  a{
+		.icon_btn:hover a {
 			color: #08a6a8;
-	}
+		}
 
-	.count{
+	.count {
 		display: flex;
 		align-items: center;
 		justify-content: center;
