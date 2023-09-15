@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VapeShop.Domain.Entity.Functions;
 using VapeShop.Service.Implementations;
 using VapeShop.Service.Interfaces;
@@ -59,6 +60,7 @@ namespace VapeShop.Web.Controllers
 			return View("Error", $"{response.Description}");
 		}
 
+		[Authorize]
 		public async Task<IActionResult> GetCount()
 		{
 			var response = await _comparisonService.GetCount(int.Parse(HttpContext.User.FindFirst("UserID").Value));
