@@ -16,7 +16,7 @@
 						<div class="ty-column4">
 							<div class="product_card">
 								<div class="ty-twishlist-item">
-									<a asp-action="DeleteItem" asp-controller="Wish" asp-route-wishListID="@item.WishListID" class="ty-twishlist-item__remove ty-remove" title="Удалить">
+									<a asp-action="DeleteItem" asp-controller="Wish" asp-route-wishListID="@item.WishListID"  class="ty-twishlist-item__remove ty-remove" title="Удалить">
 										<span class="ty-icon ty-icon-cancel-circle ty-remove__icon"></span>
 										<span class="ty-twishlist-item__txt ty-remove__txt">Удалить</span>
 									</a>
@@ -24,7 +24,7 @@
 								<div class="product_card_body">
 
 									<div class="body_image">
-										<a asp-action="Details" asp-controller="Product" asp-route-id="@item.Liquid?.LiquidID">
+											<a asp-action="DetailsWithParam" asp-controller="Product" asp-route-id="@item.LiquidID" asp-route-liquid_paramID="@item.Liquid_paramID">
 											<img src="@item.Liquid?.Image" alt="Product Image">
 										</a>
 
@@ -57,7 +57,8 @@
 											</svg>  в наличии
 										</div>
 										<div class="content_controll hidden">
-												<a class="btn_main btn_main_l"><i class="fa-solid fa-cart-shopping pe-2"></i> Move to product</a>
+													<a class="btn_main btn_main_l" asp-action="DetailsWithParam" asp-controller="Product" asp-route-id="@item.LiquidID" asp-route-liquid_paramID="@item.Liquid_paramID">
+														<i class="fa-solid fa-cart-shopping pe-2"></i> Move to product</a>
 										</div>
 										<div class="content_bottom display">
 											<ul class="dots" style="padding: 0; font-family: Arial;">
