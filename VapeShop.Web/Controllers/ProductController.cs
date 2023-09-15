@@ -133,6 +133,20 @@ namespace VapeShop.Web.Controllers
 			return View("Error", $"{response.Description}");
 		}
 
+		[HttpGet]
+		public async Task<IActionResult> DetailsWithParam(int id, int liquid_paramID)
+		{
+			var response = await liquidService.Get(id);
+			if (response.StatusCode == Domain.Enum.StatusCode.Success)
+			{
+				var selected_param = response.Value?.Liquid_Params?.Where(x => x.LiquidParamID == liquid_paramID).FirstOrDefault();
+				ViewBag.SelectedPG_VG = selected_param?.PG_VG?.PG_VG_ID;
+				ViewBag.SelectedParamID = liquid_paramID;
+				return View("Details", response.Value);
+			}
+			return View("Error", $"{response.Description}");
+		}
+
 
 
 
