@@ -9,5 +9,10 @@ namespace VapeShop.Web.Controllers
 		{
 			return View();
 		}
+
+		public IActionResult CartIndex()
+		{
+			return View();
+		}
 	}
 }
