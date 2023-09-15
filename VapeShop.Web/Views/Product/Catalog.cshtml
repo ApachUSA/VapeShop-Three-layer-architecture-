@@ -25,7 +25,7 @@
 						<a data-bs-toggle="collapse" data-bs-target="#collapseExample"><span>Вкус</span></a>
 
 					</li>
-					<div class="collapse" id="collapseExample">
+					<div class="collapse show" id="collapseExample">
 						<ul class="main_categories">
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
@@ -56,8 +56,8 @@
 							</li>
 						</ul>
 					</div>
-					<li class="categories_item filter level-0"><a data-bs-toggle="collapse" data-bs-target="#collapseExample2"><span>Цена</span></a></li>
-					<div class="collapse" id="collapseExample2">
+					<li class="categories_item filter level-0"><a  data-bs-toggle="collapse" data-bs-target="#collapseExample2"><span>Цена</span></a></li>
+					<div class="collapse show" id="collapseExample2">
 						<div class="collapse_price">
 							<input type="search" class="price_input" value="@if(Model.Any())
 							@Math.Round(@Model.Min(x => x.Price))
@@ -439,14 +439,14 @@
 		}
 
 	.filter span:after {
-		content: "\2b"; /* Иконка плюса */
+		content: "\2212"; /* Иконка плюса */
 		right: 15px;
 		position: absolute;
 		transition: transform 0.3s; /* Анимация для плавного перехода */
 	}
 
 	.filter.collapsed span:after {
-		content: "\2212"; /* Иконка минуса */
+		content: "\2b "; /* Иконка минуса */
 		transform: rotate(180deg); /* Вращение для создания эффекта минуса */
 	}
 
