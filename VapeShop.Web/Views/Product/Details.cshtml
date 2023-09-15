@@ -177,6 +177,11 @@
 
 </div>
 
+@{
+	var selectedPG_VG = ViewBag.SelectedPG_VG;
+	var selectedNicotine = ViewBag.SelectedNicotine;
+}
+
 <style>
 
 	.buttnon-group {
@@ -444,7 +449,7 @@
 	}
 
 	// Вызовите функцию fillSelect при загрузке страницы
-	window.onload = fillSelect;
+	//window.onload = fillSelect;
 
 	// Обработчик события изменения радио-переключателя
 	var radios = document.querySelectorAll('input[name="liquidSelection"]');
@@ -456,3 +461,26 @@
 
 </script>
 
+<script>
+	var selectedPG_VG = '@ViewBag.SelectedPG_VG';
+	var selectedParamID = '@ViewBag.SelectedParamID';
+	var selectElement = document.getElementById("selectNicotine");
+
+	if (selectedPG_VG !== null && selectedParamID !== null) {
+		var radioElement = document.querySelector('input[name="liquidSelection"][value="' + selectedPG_VG + '"]');
+		if (radioElement) {
+			radioElement.checked = true;
+		}
+		fillSelect();
+		for (var i = 0; i < selectElement.options.length; i++) {
+			var option = selectElement.options[i];
+			var paramID = option.getAttribute('data-paramID');
+			if (paramID === selectedParamID) {
+				option.selected = true; // Устанавливаем в выбранное состояние, если нашли совпадение
+				break; // Выход из цикла после установки значения
+			}
+		}
+
+		
+	}
+</script>
