@@ -66,6 +66,7 @@ namespace VapeShop.Web.Controllers
 			return View("Error", $"{response.Description}");
 		}
 
+		[Authorize]
 		public async Task<IActionResult> GetCount()
 		{
 			var response = await wishService.GetCount(int.Parse(HttpContext.User.FindFirst("UserID").Value));
