@@ -18,7 +18,7 @@
 			<form asp-action="Profile">
 				<input asp-for="UserID" type="hidden" />
 				<div class="row">
-					<h4 class="fw-bold">Информация об учетной записи пользователя</h4>
+					<h4 class="fw-bold">User account information</h4>
 					<div class="form-group mb-3">
 						<label class="fw-bold" asp-for="Email"></label>
 						<input asp-for="Email" class="form-control"/>
@@ -30,14 +30,14 @@
 						<span asp-validation-for="Password" class="text-danger"></span>
 					</div>
 					<div class="form-group mb-3">
-						<label asp-for="PasswordConfirme"></label>
+						<label asp-for="PasswordConfirme">Password confirmation</label>
 						<input asp-for="PasswordConfirme" value="@Model.PasswordConfirme"  type="password" class="form-control" />
 						<span asp-validation-for="PasswordConfirme" class="text-danger"></span>
 					</div>
 				</div>
 
 				<div class="row mt-3">
-					<h4 class="fw-bold">Контактная информация</h4>
+					<h4 class="fw-bold">Contact information</h4>
 					<div class="form-group col-6 mb-3">
 						<label asp-for="Name"></label>
 						<input asp-for="Name" class="form-control" />
@@ -56,7 +56,7 @@
 						<span asp-validation-for="Phone" class="text-danger"></span>
 					</div>
 					<div class="form-group mb-3">
-						<label asp-for="CommunicationMethod"></label><br />
+						<label asp-for="CommunicationMethod">Communication method</label><br />
 						@foreach (CommunicationMethod commMethod in ViewBag.CommMethod)
 						{
 							<label class="m-2" style="font-weight: 500">
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 				<div class="row mt-3">
-					<h4 class="fw-bold">Адрес доставки</h4>
+					<h4 class="fw-bold">Delivery address</h4>
 					<input asp-for="DeliveryAddress.User" type="hidden" />
 					<input asp-for="DeliveryAddress.UserID" type="hidden" />
 					<input asp-for="DeliveryAddress.DeliveryAddressID" type="hidden" />
@@ -114,15 +114,15 @@
 
 		<div class="col-6" style="padding: 50px">
 			<div>
-				<h4 class="fw-bold">Детали учетной записи</h4>
+				<h4 class="fw-bold">Account details</h4>
 				<br />
-				<p>На этой странице вы можете изменить данные для авторизации и персональную информацию для её использования при размещении заказов.</p>
-				<p>Чтобы повысить уровень безопасности своей учетной записи, рекомендуется избегать паролей, в которых используются:</p>
+				<p>On this page you can change your login details and personal information for use when placing orders.</p>
+				<p>To increase the security of your account, we recommend avoiding passwords that use:</p>
 				<ul>
-					<li>Слова из словарей на любом языке.</li>
-					<li>Слова, написанные задом наперед, и аббревиатуры.</li>
-					<li>Последовательности символов или повторяющиеся символы. Например: 12345678, 222222, abcdefg или соседние буквы на вашей клавиатуре (qwerty).</li>
-					<li>Персональную информацию. ваше имя, дата рождения, номер водительских прав, номер паспорта или подобную информацию.</li>
+					<li>Words from dictionaries in any language.</li>
+					<li>Backward words and abbreviations.</li>
+					<li>Sequences of characters or repeated characters. For example: 12345678, 222222, abcdefg or adjacent letters on your keyboard (qwerty).</li>
+					<li>Personal information. your name, date of birth, driver's license number, passport number or similar information.</li>
 				</ul>
 			</div>
 		</div>
