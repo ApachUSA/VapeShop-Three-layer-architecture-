@@ -1,7 +1,7 @@
 # Vape Shop
 
 ## Introduction
-This is my first attempt at applying the three-tier architecture pattern. For this purpose, I decided to replicate an already existing vape shop site. The attempt to exactly replicate the look of the site was wrong, I spent a lot of time and effort on it. In the end I didn't have time to finish some of the features. <br/>
+This is my first attempt at applying the three-tier architecture pattern. For this purpose, I decided to replicate an already existing vape shop site. The attempt to exactly replicate the look of the site was wrong, I spent a lot of time and effort on it. In the end I didn't have time to finish some of the features.
 But I gained invaluable experience and the next project, written on the same architecture, came out much better (<a href="https://github.com/ApachUSA/SES-Education-System">SES-Education-System</a>).
 
 ## Technologies
