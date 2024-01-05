@@ -8,7 +8,7 @@
 	<div class="row"></div>
 	<div class="row mt-4">
 		<div class="col-11">
-			<h3 class="fw-bold">@Model.Name - @Model.LongName @((int)Model.Volume)мл</h3>
+			<h3 class="fw-bold">@Model.Name - @Model.LongName @((int)Model.Volume)ml</h3>
 		</div>
 		<div class="col-1 d-inline-flex">
 			<a class="btn_main btn_main_d" asp-action="Edit" asp-controller="Product" asp-route-id="@Model.LiquidID"><i class="fa-regular fa-pen-to-square"></i></a>
@@ -25,7 +25,7 @@
 		<div class="col-6" style="box-shadow: 0 0.1rem 2rem rgba(54,54,54,0.1); border-radius: 8px; ">
 
 			<div class="row text-end" style="line-height: 30px; border-bottom: 1px solid lightgray">
-				<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">КОД: @Model.LiquidID</p>
+				<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">CODE: @Model.LiquidID</p>
 			</div>
 
 			<div class="row mt-3">
@@ -37,11 +37,11 @@
 					<div class="col"><h3 class="fw-bold price">@Model.Price grn</h3></div>
 					<div class="col">
 						<p style="color: #08a6a8">
-							<i class="fa-regular fa-circle-check"></i>  в наличии
+							<i class="fa-regular fa-circle-check"></i>  available
 						</p>
 					</div>
 					<br />
-					<div class="col fw-bold">Соотношение PG/VG</div>
+					<div class="col fw-bold">Ratio PG/VG</div>
 					@foreach (var item in liquid_pgvg)
 					{
 						<div class="form-check">
@@ -53,10 +53,10 @@
 					}
 					<br />
 
-					<div class="col fw-bold">Никотин</div>
+					<div class="col fw-bold">Nicotine</div>
 					<div class="col">
 						<select class="form-select" id="selectNicotine">
-							<option selected>Выберите PG/VG</option>
+							<option selected>Select PG/VG</option>
 						</select>
 					</div>
 					<div class="row mt-3">
@@ -80,12 +80,12 @@
 					<div class="col mt-2 text-center">
 						<a id="addToWish" class="link_hover" style="color: #08a6a8">
 							<i class="fa-regular fa-heart"></i>
-							<span>Отложить</span>
+							<span>Wish</span>
 						</a>
 
 						<a class="link_hover" id="addToComparison" style="color: #08a6a8">
 							<i class="bi bi-bar-chart"></i>
-							Сравнить
+							Compare
 						</a>
 
 					</div>
@@ -96,7 +96,7 @@
 					<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
 						<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
 							<i class="bi bi-truck"></i>
-							Доставка
+							Delivery
 						</a>
 						<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample">
 							- Новая Почта
@@ -107,18 +107,17 @@
 					<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
 						<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample">
 							<i class="bi bi-credit-card"></i>
-							Варианты оплаты
+							Payment options
 						</a>
-						<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample2">
-							— Картами Visa и MasterCard	<br />
-							— Оплата на карту	<br />
-							— Наличными при получении в Магазине
+						<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample2"><br />
+							— Payment by card	<br />
+							— Cash on delivery at the Store
 						</p>
 					</div>
 					<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
 						<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample">
 							<i class="bi bi-star"></i>
-							Наши преимущества
+							Our advantages
 						</a>
 						<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample3">
 							— Собственное производство	<br />

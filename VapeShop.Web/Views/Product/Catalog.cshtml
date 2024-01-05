@@ -20,9 +20,9 @@
 			</div>
 			<div class="main_categories_block mt-3">
 				<ul class="main_categories">
-					<li class="categories_item level-0 disabled"><a><span style="color: #8f8f8f !important; font-weight: 600">Фильтры товаров</span></a></li>
+					<li class="categories_item level-0 disabled"><a><span style="color: #8f8f8f !important; font-weight: 600">Product filters</span></a></li>
 					<li class="categories_item filter level-0">
-						<a data-bs-toggle="collapse" data-bs-target="#collapseExample"><span>Вкус</span></a>
+						<a data-bs-toggle="collapse" data-bs-target="#collapseExample"><span>Taste</span></a>
 
 					</li>
 					<div class="collapse show" id="collapseExample">
@@ -30,45 +30,45 @@
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
 									<input id="Fruits" class="filter-checkbox" type="checkbox">
-									<label class="checkbox-label" for="fruits"><span>Фрукты</span></label>
+									<label class="checkbox-label" for="fruits"><span>Fruit</span></label>
 								</div>
 
 							</li>
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
 									<input id="Tobacco" class="filter-checkbox" type="checkbox">
-									<label class="checkbox-label" for="tabacco"><span>Табачка</span></label>
+									<label class="checkbox-label" for="tabacco"><span>Tobacco</span></label>
 								</div>
 
 							</li>
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
 									<input id="Drinks" class="filter-checkbox" type="checkbox">
-									<label class="checkbox-label" for="drinks"><span>Напитки</span></label>
+									<label class="checkbox-label" for="drinks"><span>Drinks</span></label>
 								</div>
 
 							</li>
 							<li class="categories_item level-1">
 								<div class="filter-checkbox">
 									<input id="Dessert" class="filter-checkbox" type="checkbox">
-									<label class="checkbox-label" for="dessert"><span>Десерты</span></label>
+									<label class="checkbox-label" for="dessert"><span>Desserts</span></label>
 								</div>
 							</li>
 						</ul>
 					</div>
-					<li class="categories_item filter level-0"><a  data-bs-toggle="collapse" data-bs-target="#collapseExample2"><span>Цена</span></a></li>
+					<li class="categories_item filter level-0"><a data-bs-toggle="collapse" data-bs-target="#collapseExample2"><span>Price</span></a></li>
 					<div class="collapse show" id="collapseExample2">
 						<div class="collapse_price">
 							<input type="search" class="price_input" value="@if(Model.Any())
 							@Math.Round(@Model.Min(x => x.Price))
 
 " />
-							<label> грн   - </label>
+							<label> grn   - </label>
 							<input type="search" class="price_input" value="@if(Model.Any())
 							@Math.Round(@Model.Max(x => x.Price))
 
 " />
-							<label> грн</label>
+							<label> grn</label>
 						</div>
 
 
@@ -81,17 +81,17 @@
 				<div class="col-6">
 					<div class="sorting_menu">
 						<div class="sort_dropdown d-flex">
-							<div class="sort_label"><i class="bi bi-filter-left"></i> Cортировать по: </div>
+							<div class="sort_label"><i class="bi bi-filter-left"></i> Sort by: </div>
 							<a id="sw_elm_sort_fields" class="dropdown_wrapper" data-bs-toggle="dropdown">
 								<span id="selected-sort-option"></span>
 							</a>
 							<ul id="elm_sort_fields" class="dropdown_content dropdown-menu">
-								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Новинки ниже')">Новинки ниже</a></li>
-								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Новинки выше')">Новинки выше</a></li>
-								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('От Я до А')">От Я до А</a></li>
-								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('От А до Я')">От А до Я</a></li>
-								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Дешевые выше')">Дешевые выше</a></li>
-								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Дорогие выше')">Дорогие выше</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('New items below')">New items below</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('New items above')">New items above</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('From Z to A')">From Z to A</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('From A to Z')">From A to Z</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Cheapest above')">Cheapest above</a></li>
+								<li class="dropdown_content_item"><a class="dropdown_content_item_a" href="#" onclick="changeSelectedOption('Cheapest below')">Cheapest below</a></li>
 							</ul>
 						</div>
 					</div>

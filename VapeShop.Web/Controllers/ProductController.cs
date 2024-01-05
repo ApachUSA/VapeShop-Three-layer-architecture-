@@ -189,12 +189,12 @@ namespace VapeShop.Web.Controllers
 		{
 			return sortOption switch
 			{
-				"Новинки ниже" => products.OrderBy(x => x.LiquidID),
-				"Новинки выше" => products.OrderByDescending(x => x.LiquidID),
-				"От А до Я" => products.OrderBy(x => x.Name),
-				"От Я до А" => products.OrderByDescending(x => x.Name),
-				"Дешевые выше" => products.OrderBy(x => x.Price),
-				"Дешевые ниже" => products.OrderByDescending(x => x.Price),
+                "New items below" => products.OrderBy(x => x.LiquidID),
+                "New items above" => products.OrderByDescending(x => x.LiquidID),
+                "From A to Z" => products.OrderBy(x => x.Name),
+                "From Z to A" => products.OrderByDescending(x => x.Name),
+                "Cheapest above" => products.OrderBy(x => x.Price),
+                "Cheapest below" => products.OrderByDescending(x => x.Price),
 				_ => products,
 			};
 		}
