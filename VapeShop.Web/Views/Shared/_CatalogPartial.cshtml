@@ -21,12 +21,16 @@
 								<a asp-action="Details" asp-controller="Product" asp-route-id="@liquid.LiquidID">
 									<img height="300" width="300" src="@liquid.Image" alt="Product Image">
 								</a>
-
+								@{
+									int? liquid_pramaID = null;
+									if (liquid.Liquid_Params.Any()) liquid_pramaID = liquid.Liquid_Params.FirstOrDefault().LiquidParamID;
+								}
 								<div class="body_image_btn hidden">
-									<a class="quick_view_btn">
+									<a  class="quick_view_btn add-to-wishlist" data-liquid-id="@liquid.LiquidID" data-liquid-prama-id="@liquid_pramaID">
 										<i class="far fa-heart"></i>
 									</a>
-									<a class="quick_view_btn">
+
+									<a class="quick_view_btn add-to-comparisonList" data-liquid-id="@liquid.LiquidID">
 										<i class="bi bi-bar-chart"></i>
 									</a>
 								</div>
@@ -45,10 +49,12 @@
 									<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
 										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 										<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-									</svg>  в наличии
+									</svg>  available
 								</div>
 								<div class="content_controll hidden">
-									<a class="btn_main btn_main_l"><i class="fa-solid fa-cart-shopping pe-2"></i>  Add to Cart</a>
+									<a class="btn_main btn_main_l" asp-action="Details" asp-controller="Product" asp-route-id="@liquid.LiquidID">
+										<i class="fa-solid fa-cart-shopping pe-2"></i> Move to product
+									</a>
 								</div>
 								<div class="content_bottom display">
 									<ul class="dots" style="padding: 0; font-family: Arial;">
@@ -136,225 +142,66 @@
 		transition: box-shadow 0.1s ease-in-out;
 	}
 
-	.body_image {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-		position: relative;
-		border: 0;
-		padding: 0;
-		margin: 0 auto 10px;
-		min-width: 100%;
-		max-width: 100%;
-		overflow: hidden;
-		height: 350px;
-	}
+<script>
+	$(document).ready(function () {
+		$('.add-to-wishlist').click(function (e) {
+			e.preventDefault(); // Предотвращаем стандартное действие ссылки
 
-		.body_image img {
-			max-height: 100%;
-			width: fit-content;
-		}
+			var liquidID = $(this).data('liquid-id');
+			var liquidPramaID = $(this).data('liquid-prama-id');
 
+			$.ajax({
+				type: 'POST',
+				url: "@Url.Action("AddItem", "Wish")",
+				data: { liquidID: liquidID, liquid_pramaID: liquidPramaID },
+				success: function (response) {
+					var toastText = "Item added to wish";
+					$("#s_toastText").text(toastText);
+					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+					Toast.show();
+					UpdateWishCount();
+				},
+				error: function (error) {
+					$("#e_toastText").text(error.responseText);
+					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+					errorToast.show();
+				}
+			});
+		});
+	});
 
-		.body_image > a {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			height: 100%;
-		}
+</script>
 
-	.body_image_btn {
-		display: block;
-		opacity: 0;
-		transition-delay: .1s;
-		top: 0;
-		right: 0;
-		position: absolute;
-		width: 36px;
-	}
+<script>
+	$(document).ready(function () {
+		$('.add-to-comparisonList').click(function (e) {
+			e.preventDefault(); // Предотвращаем стандартное действие ссылки
 
-	.quick_view_btn {
-		border-radius: 6px;
-		display: flex;
-		height: 36px;
-		width: 36px;
-		padding: 7px;
-		margin-bottom: -1px;
-		background-color: #fff;
-		box-shadow: inset 0 0 0 1px #efefef;
-	}
+			var liquidID = $(this).data('liquid-id');
 
-		.quick_view_btn i {
-			color: #8f8f8f;
-			font-size: 22px;
-			line-height: 22px;
-		}
+			$.ajax({
+				type: 'POST',
+				url: "@Url.Action("AddItem", "Comparison")",
+				data: { liquidID: liquidID },
+				success: function (response) {
+					var toastText = "Product has been added to comparison list";
+					$("#s_toastText").text(toastText);
+					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+					Toast.show();
+					UpdateComparisonCount();
+				},
+				error: function (error) {
+					$("#e_toastText").text(error.responseText);
+					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+					errorToast.show();
+				}
+			});
+		});
+	});
 
-			.quick_view_btn i:hover {
-				color: #08a6a8;
-			}
+</script>
 
-	.body_price {
-		min-height: 46px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-right: 10px;
-		font-family: MuseoSansBlack,'Helvetica Neue',Arial,-apple-system,sans-serif;
-		font-weight: bolder;
-		font-size: 18px;
-	}
-
-	.body_content {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.content_name {
-		flex: 0 0 auto;
-		white-space: normal;
-		text-align: left;
-		margin-bottom: 0 !important;
-	}
-
-	.product_title {
-		font-size: 14px;
-		line-height: 1.2;
-		margin-bottom: 5px;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		display: -webkit-box;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		max-height: 2.4em;
-		word-wrap: break-word;
-		-webkit-hyphens: auto;
-		hyphens: auto;
-		color: #434343;
-	}
-
-	.hidden {
-		visibility: hidden;
-	}
-
-	.display {
-		display: none;
-	}
-
-	.content_amount {
-		padding: 0;
-		height: 12px;
-		font-size: 13px;
-		color: #00a9aa;
-	}
-
-	.content_controll {
-		margin-top: 15px;
-		width: 100%;
-		height: 36px;
-		flex-direction: row-reverse;
-		justify-content: flex-end;
-		align-items: flex-end;
-	}
-
-	.content_bottom {
-		padding-top: 15px;
-		width: 100%;
-		float: left;
-	}
-
-	.dots span {
-		font-size: 13px;
-	}
-
-	ul.dots li {
-		list-style-type: none;
-		clear: both;
-		font-size: 1em;
-		margin: 0;
-		padding: 0;
-	}
-
-		ul.dots li span:first-child {
-			float: left;
-			padding: 0 10px 0 0;
-			color: gray;
-		}
-
-		ul.dots li span + span {
-			float: right;
-			padding: 0 0 0 10px;
-		}
-
-		ul.dots li:after {
-			content: "";
-			display: block;
-			overflow: hidden;
-			height: 0.8em;
-			border-bottom: 1px dotted gray;
-		}
-
-	input[type="checkbox"] {
-		appearance: none;
-		min-height: 1.48em;
-		min-width: 1.48em;
-		margin-top: -2px;
-		background: #fff;
-		border: 1px solid #d6d6d6;
-		box-shadow: inset 0 0 3px rgba(54,54,54,0.05);
-		cursor: pointer;
-		transition: border-color .1s ease;
-		border-radius: 6px;
-	}
-
-		input[type="checkbox"]:checked {
-			border-color: #08a6a8;
-			background: #08a6a8 center no-repeat url(https://cdn-icons-png.flaticon.com/512/8373/8373255.png);
-			background-size: 55%;
-			background-origin: border-box;
-			box-shadow: none;
-		}
-
-
-
-
-	.filter-checkbox {
-		display: flex;
-		align-items: center;
-		min-height: 34px;
-	}
-
-
-
-	.checkbox-label {
-		position: relative;
-		padding-left: 15px;
-		padding-right: 5px;
-		line-height: 0;
-		width: 100%;
-		cursor: pointer;
-	}
-
-	.price_input {
-		font-size: 14px !important;
-		background: #fff;
-		min-height: 36px;
-		height: 36px;
-		border-radius: 6px;
-		transition: all 150ms;
-		font-family: Arial,'Helvetica Neue',-apple-system,sans-serif;
-		outline: none !important;
-		padding: 4px 8px;
-		border: 1px solid #c9c9c9;
-		width: 74px;
-	}
-
-		.price_input:hover {
-			border-color: #08a6a8;
-			box-shadow: 0 0 0 2px rgba(8,166,168,0.1);
-		}
+<style>
 
 	.collapse_price {
 		display: flex;

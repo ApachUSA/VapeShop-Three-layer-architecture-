@@ -140,8 +140,8 @@ namespace VapeShop.Infrastructure
 
 			modelBuilder.Entity<ComparisonList>(builder =>
 			{
-				builder.ToTable("ComparisonLists").HasKey(x => x.ComparsionListID);
-				builder.Property(x => x.ComparsionListID).ValueGeneratedOnAdd();
+				builder.ToTable("ComparisonLists").HasKey(x => x.ComparisonListID);
+				builder.Property(x => x.ComparisonListID).ValueGeneratedOnAdd();
 
 				builder.HasOne(x => x.User)
 				.WithMany(x => x.ComparisonLists)

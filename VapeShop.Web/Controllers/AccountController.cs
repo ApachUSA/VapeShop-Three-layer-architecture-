@@ -34,14 +34,14 @@ namespace VapeShop.Web.Controllers
 			if(ModelState.IsValid)
 			{
 				var response = await _accountService.Register(model);
-				if(response.StatusCode == Domain.Enum.StatusCode.Succes)
+				if(response.StatusCode == Domain.Enum.StatusCode.Success && response.Value != null)
 				{
 					await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new System.Security.Claims.ClaimsPrincipal(response.Value));
 					return RedirectToAction("Index", "Home");
 
 				}
 				FillSelects();
-				ModelState.AddModelError("", response.Descrition);
+				ModelState.AddModelError("", response.Description?? string.Empty);
 			}
 			return View(model);
 		}
@@ -55,13 +55,13 @@ namespace VapeShop.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				var response = await _accountService.Login(model);
-				if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+				if (response.StatusCode == Domain.Enum.StatusCode.Success && response.Value != null)
 				{
 					await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new System.Security.Claims.ClaimsPrincipal(response.Value));
 					return RedirectToAction("Index", "Home");
 
 				}
-				ModelState.AddModelError("", response.Descrition);
+				ModelState.AddModelError("", response.Description ?? string.Empty);
 			}
 			return View(model);
 		}
@@ -70,7 +70,7 @@ namespace VapeShop.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Profile() 
 		{
-			var response = await _profileService.GetProfile(HttpContext.User.Identity.Name);
+			var response = await _profileService.GetProfile(int.Parse(HttpContext.User.FindFirst("UserID").Value));
 			FillSelects();
 			return View(response.Value);
 		}
@@ -81,21 +81,21 @@ namespace VapeShop.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				var response = await _profileService.Update(model);
-				if (response.StatusCode == Domain.Enum.StatusCode.Succes)
+				if (response.StatusCode == Domain.Enum.StatusCode.Success)
 				{
 					return RedirectToAction("Profile");
 
 				}
-				ModelState.AddModelError("", response.Descrition);
+				ModelState.AddModelError("", response.Description ?? string.Empty);
 			}
 			FillSelects();
 			return View(model);
 		}
 
-		private void FillSelects()
+		private async void FillSelects()
 		{
-			var cities = _profileService.GetCities().Value;
-			var citySelectList = cities.Select(city => new SelectListItem
+			var cities = await _profileService.GetCities();
+			var citySelectList = cities?.Value?.Select(city => new SelectListItem
 			{
 				Text = city.CityName,
 				Value = city.CityID.ToString()
@@ -103,7 +103,7 @@ namespace VapeShop.Web.Controllers
 
 
 			ViewBag.Cities = citySelectList;
-			ViewBag.CommMethod = _profileService.GetCommunicationMethod().Value;
+			ViewBag.CommMethod = _profileService.GetCommunicationMethod().Result.Value;
 		}
 
 		public async Task<IActionResult> Logout()

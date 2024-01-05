@@ -18,6 +18,8 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ILiquidService, LiquidService>();
 builder.Services.AddScoped<ILiquidParamService, LiquidParamService>();
+builder.Services.AddScoped<IWishService, WishService>();
+builder.Services.AddScoped<IComparisonService, ComparisonService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(options =>

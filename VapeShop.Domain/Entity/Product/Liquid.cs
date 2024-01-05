@@ -35,5 +35,7 @@ namespace VapeShop.Domain.Entity.Product
 
 		public List<ComparisonList>? ComparisonLists { get; set; }
 
+		public ICollection<WishList>? WishLists { get; set; }
+
 	}
 }

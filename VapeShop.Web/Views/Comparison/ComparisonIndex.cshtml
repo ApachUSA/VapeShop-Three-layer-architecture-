@@ -1,0 +1,440 @@
+﻿@model IEnumerable<ComparisonList>
+<div class="row"></div>
+<div class="row mt-5" style="padding-left: 20px; padding-right: 20px;">
+	<div class="main-content-grid ">
+		<div class="ty-mainbox-container">
+			<h1 class="ty-mainbox-title fw-bold" style="font-size: 28px">
+				Compare
+
+			</h1>
+
+			<div class="ty-mainbox-body">
+				@if (Model != null)
+				{
+					<div class="ty-compare">
+						<div class="ty-compare_wrapper">
+
+							<table class="ty-compare-products">
+								<tbody>
+									<tr>
+										<td class="ty-compare-products_menu">
+											<ul class="ty-compare-menu" style="list-style: none; padding: 0; margin: 0;">
+												<li class="ty-compare-menu__item"><span class="ty-compare-menu__elem">All specifications</span></li>
+											</ul>
+										</td>
+										@foreach (var item in Model)
+										{
+											<td class="ty-compare-products__product">
+												<div class="ty-compare-products__image">
+													<div class="ty-compare-products__delete">
+														<a class="ty-remove" title="Delete" asp-controller="Comparison" asp-action="DeleteItem" asp-route-comparsionListID="@item.ComparisonListID">
+															<span class="ty-icon ty-icon-cancel-circle ty-remove__icon"></span>
+															<span class="ty-twishlist-item__txt ty-remove__txt">Удалить</span>
+														</a>
+													</div>
+													<div class="ty-compare-products__img">
+														<a asp-action="Details" asp-controller="Product" asp-route-id="@item.Liquid.LiquidID">
+															<img class="ty-pict  cm-image ls-is-cached lazyloaded" src="@item.Liquid.Image" width="270" height="270">
+
+														</a>
+													</div>
+												</div>
+
+												<div class="ty-compare-products__name">
+													<bdi><a asp-action="Details" asp-controller="Product" asp-route-id="@item.Liquid.LiquidID">@item.Liquid.Name - @item.Liquid.LongName 	@((int)item.Liquid.Volume)ml</a></bdi>
+												</div>
+												<div class="ty-compare-products__price pr-col">
+													<div class="body_price">
+														<span>@Math.Round(item.Liquid.Price) grn</span>
+													</div>
+
+												</div>
+
+												<div class="ty-compare-products__buttons">
+													<div class="ty-simple-list clearfix">
+														<div class="ty-simple-list__buttons">
+															<a class="btn_main btn_main_l" asp-action="Details" asp-controller="Product" asp-route-id="@item.Liquid.LiquidID">
+																<i class="fa-solid fa-cart-shopping pe-2"></i> Move to product
+															</a>
+
+														</div>
+													</div>
+												</div>
+											</td>
+										}
+
+
+									</tr>
+								</tbody>
+							</table>
+
+							<div class="ty-compare-future">
+								<table class="ty-compare-feature__table">
+									<tbody>
+
+										<tr class="ty-compare-feature__row">
+											<td class="ty-compare-feature__item ty-compare-sort">
+												<strong class="ty-compare-sort__title">Brand:</strong>
+											</td>
+											@foreach (var item in Model)
+											{
+												<td class="ty-compare-feature__item ty-compare-feature_item_size">
+													VapeJoy
+												</td>
+											}
+
+										</tr>
+										<tr class="ty-compare-feature__row">
+											<td class="ty-compare-feature__item ty-compare-sort">
+												<strong class="ty-compare-sort__title">Flavors by species:</strong>
+											</td>
+											@foreach (var item in Model)
+											{
+												<td class="ty-compare-feature__item ty-compare-feature_item_size">
+													@item.Liquid.Flavor?.Flavor_name
+												</td>
+											}
+										</tr>
+										<tr class="ty-compare-feature__row">
+											<td class="ty-compare-feature__item ty-compare-sort">
+												<strong class="ty-compare-sort__title">Bottle volume:</strong>
+											</td>
+											@foreach (var item in Model)
+											{
+												<td class="ty-compare-feature__item ty-compare-feature_item_size">
+													@((int)item.Liquid.Volume)ml
+												</td>
+											}
+										</tr>
+										<tr class="ty-compare-feature__row">
+											<td class="ty-compare-feature__item ty-compare-sort">
+												<strong class="ty-compare-sort__title">Assignment:</strong>
+											</td>
+											@foreach (var item in Model)
+											{
+												<td class="ty-compare-feature__item ty-compare-feature_item_size">
+													@if (item.Liquid.LiquidType == VapeShop.Domain.Enum.LiquidType.Normal)
+													{
+														<span>for vape</span>
+													}
+													else if (item.Liquid.LiquidType == VapeShop.Domain.Enum.LiquidType.Salt)
+													{
+														<span>for POD systems</span>
+													}
+													else
+													{
+														<span>-</span>
+													}
+												</td>
+											}
+										</tr>
+										<tr class="ty-compare-feature__row">
+											<td class="ty-compare-feature__item ty-compare-sort">
+												<strong class="ty-compare-sort__title">Flavor level:</strong>
+											</td>
+
+
+											@foreach (var item in Model)
+											{
+												<td class="ty-compare-feature__item ty-compare-feature_item_size">
+													Saturated
+												</td>
+											}
+
+
+										</tr>
+										<tr class="ty-compare-feature__row">
+											<td class="ty-compare-feature__item ty-compare-sort">
+												<strong class="ty-compare-sort__title">Type of nicotine:</strong>
+											</td>
+											@foreach (var item in Model)
+											{
+												<td class="ty-compare-feature__item ty-compare-feature_item_size">
+													@if (item.Liquid.LiquidType == VapeShop.Domain.Enum.LiquidType.Normal)
+													{
+														<span>organic</span>
+													}
+													else if (item.Liquid.LiquidType == VapeShop.Domain.Enum.LiquidType.Salt)
+													{
+														<span>salt</span>
+													}
+													else
+													{
+														<span>-</span>
+													}
+												</td>
+											}
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+				}
+				else
+				{
+					<p class="ty-no-items ty-compare__no-items">Items not selected</p>
+				}
+				<div class="buttons-container ut2-compare__buttons">
+					<a class="btn_main btn_main_l ms-3" style="width:fit-content" asp-action="Index" asp-controller="Product"><bdi>Continue shopping</bdi></a>
+					@if (Model != null && Model.Any())
+					{
+						<a class="btn_main btn_main_d" style="width:fit-content" asp-action="DeleteAllItems" asp-controller="Comparison"><i class="fa-solid fa-trash"></i><bdi>Clear the list of pending items</bdi></a>
+					}
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+
+	.ty-no-items {
+		padding: 60px 20px;
+		background: #f8f9f9;
+		color: #bdc3c7;
+		text-align: center;
+		font-size: 115%;
+		margin-bottom: 20px;
+	}
+
+	.ty-compare {
+		position: relative;
+	}
+
+	.ty-compare_wrapper {
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	.ty-compare-products {
+		width: 100%;
+		table-layout: fixed;
+		border-collapse: collapse;
+		border-spacing: 0;
+		display: table;
+		text-indent: initial;
+		border-color: gray;
+	}
+
+	.ty-compare-products_menu {
+		position: sticky;
+		left: 0;
+		right: auto;
+		border-left: 0;
+		z-index: 4;
+		background: #fff;
+		padding-right: 5px;
+		vertical-align: top;
+		width: 150px;
+	}
+
+	.ty-compare-menu {
+		max-width: 150px;
+		width: auto;
+	}
+
+	.ty-compare-menu__item {
+		padding: 0;
+	}
+
+	.ty-compare-menu__elem {
+		padding: 10px;
+		background: #08a6a8;
+		color: #fff;
+		display: block;
+	}
+
+	.ty-compare-products__product {
+		position: relative;
+		padding-bottom: 15px;
+		padding: 0 10px;
+		width: 215px;
+		vertical-align: top;
+		text-align: center;
+	}
+
+		.ty-compare-products__product:hover .ty-compare-products__delete {
+			display: inline-block;
+		}
+
+	.ty-compare-products__image {
+		margin-bottom: 10px;
+	}
+
+	.ty-compare-products__delete {
+		height: auto;
+		position: absolute;
+		z-index: 3;
+		right: auto;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%,0%);
+		background: #fff;
+		border: 1px solid #08a6a8;
+		padding: 3px 7px 3px 5px;
+		border-radius: 6px;
+		text-align: center;
+		display: none;
+	}
+
+		.ty-compare-products__delete a span {
+			color: #08a6a8;
+		}
+
+	.ty-icon-cancel-circle {
+		font-size: 16px;
+		line-height: 16px;
+		color: #a3a3a3;
+	}
+
+		.ty-icon-cancel-circle:before {
+			content: "\f057";
+			font-family: FontAwesome;
+			font-weight: normal;
+		}
+
+	.ty-remove {
+		position: relative;
+		display: inline-block;
+		width: auto;
+		white-space: nowrap;
+		text-decoration: none;
+	}
+
+	.ty-remove__icon {
+		vertical-align: middle;
+	}
+
+	.ty-remove__txt {
+		padding-left: 5px;
+		font-size: 12px;
+		color: #bcbcbc;
+		vertical-align: middle;
+	}
+
+	.ty-compare-products__product:hover .ty-compare-products__delete:hover {
+		border-color: #ff5722;
+	}
+
+		.ty-compare-products__product:hover .ty-compare-products__delete:hover * {
+			color: #ff5722;
+		}
+
+	.ty-compare-products__img {
+	}
+
+	.ty-compare-products__name {
+		/*margin-bottom: 10px;*/
+	}
+
+		.ty-compare-products__name a {
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			display: flex;
+			display: -webkit-box;
+			line-height: 1.2;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 230px;
+			min-height: 32px;
+			max-height: 32px;
+			margin: 0 auto;
+			word-wrap: break-word;
+			font-size: 14px;
+			color: #363636;
+			hyphens: auto;
+		}
+
+	.ty-compare-products__price {
+		display: flex;
+		justify-content: center;
+	}
+
+	.ty-compare-products__buttons {
+		margin-bottom: 10px;
+	}
+
+	.ty-simple-list {
+	}
+
+	.ty-simple-list__buttons {
+		padding: 0;
+		margin-top: 10px;
+		height: 36px;
+		width: 100%;
+		display: flex;
+		overflow: hidden;
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		justify-content: center;
+	}
+
+
+	.ty-compare-feature {
+		position: relative;
+		z-index: 20;
+		margin-bottom: 10px;
+	}
+
+	.ty-compare-feature__table {
+		width: 100%;
+		table-layout: fixed;
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	.ty-compare-feature__row {
+		background-color: #fff;
+	}
+
+	.ty-compare-feature__item {
+		padding: 10px;
+		border: 1px solid #ebebeb;
+		vertical-align: middle;
+	}
+
+	.ty-compare-sort {
+		position: sticky;
+		left: 0;
+		right: auto;
+		border-left: 0;
+		background: #f7f7f7;
+		z-index: 4;
+		width: 150px;
+		text-align: left;
+	}
+
+	.ty-compare-sort__title {
+	}
+
+	.ty-compare-feature__item {
+		padding: 10px;
+		border: 1px solid #ebebeb;
+		vertical-align: middle;
+		text-align: left;
+	}
+
+	.ty-compare-feature_item_size {
+		padding: 0 10px;
+		width: 215px;
+	}
+
+	.buttons-container {
+		margin: 20px 0;
+		background: #f7f7f7;
+		padding: 15px;
+		border-radius: 0;
+	}
+
+	.ut2-compare__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+</style>

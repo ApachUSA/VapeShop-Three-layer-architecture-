@@ -1,0 +1,233 @@
+﻿@model IEnumerable<WishList>
+<div class="row"></div>
+<div class="row mt-5" style="padding-left: 20px; padding-right: 20px;">
+	<div class="main-content-grid ">
+		<div class="ty-mainbox-container">
+			<h1 class="ty-mainbox-title fw-bold" style="font-size: 28px">
+				Wish list
+
+			</h1>
+		
+			<div class="ty-mainbox-body">
+
+				<div class="ty-grid-list ty-wish-list-empty">
+					@if(Model != null)@foreach (var item in Model)
+					{
+						<div class="ty-column4">
+							<div class="product_card">
+								<div class="ty-twishlist-item">
+									<a asp-action="DeleteItem" asp-controller="Wish" asp-route-wishListID="@item.WishListID"  class="ty-twishlist-item__remove ty-remove" title="Удалить">
+										<span class="ty-icon ty-icon-cancel-circle ty-remove__icon"></span>
+										<span class="ty-twishlist-item__txt ty-remove__txt">Delete</span>
+									</a>
+								</div>
+								<div class="product_card_body">
+
+									<div class="body_image">
+											<a asp-action="DetailsWithParam" asp-controller="Product" asp-route-id="@item.LiquidID" asp-route-liquid_paramID="@item.Liquid_paramID">
+											<img src="@item.Liquid?.Image" alt="Product Image">
+										</a>
+
+										<div class="body_image_btn hidden">
+											<a class="quick_view_btn">
+												<i class="bi bi-bar-chart"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="body_price">
+										@if (item.Liquid_param != null)
+										{
+											@Math.Round(item.Liquid.Price + item.Liquid_param.Nicotine.Additional_price)
+										}
+										else
+											@Math.Round(@item.Liquid.Price)
+										 grn
+									</div>
+
+									<div class="body_content">
+										<div class="content_name">
+											<a class="product_title">@item.Liquid.Name - @item.Liquid.LongName</a>
+										</div>
+										<div class="content_rating"></div>
+										<div class="content_amount">
+											<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+												<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+												<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+													</svg>  available
+										</div>
+										<div class="content_controll hidden">
+													<a class="btn_main btn_main_l" asp-action="DetailsWithParam" asp-controller="Product" asp-route-id="@item.LiquidID" asp-route-liquid_paramID="@item.Liquid_paramID">
+														<i class="fa-solid fa-cart-shopping pe-2"></i> Move to product</a>
+										</div>
+										<div class="content_bottom display">
+											<ul class="dots" style="padding: 0; font-family: Arial;">
+												<li><span>Brand</span><span>VapeJoy</span></li>
+												<li><span>Flavor</span><span>@item.Liquid?.Flavor?.Flavor_name</span></li>
+													<li><span>Volume</span><span>@((int)item.Liquid?.Volume) ml</span></li>
+											</ul>
+
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+					}
+					@if (Model != null)
+					{
+						@for(int i=0;i<(4-Model.Count()); i++)
+						{
+							<div class="ty-column4">
+								<div class="ty-product-empty">
+									<span class="ty-product-empty__text">Пусто</span>
+								</div>
+							</div>
+						}
+					}
+					else
+					{
+						@for (int i = 0; i < 4; i++)
+						{
+							<div class="ty-column4">
+								<div class="ty-product-empty">
+									<span class="ty-product-empty__text">Пусто</span>
+								</div>
+							</div>
+						}
+					}
+
+				</div>
+
+				<div class="buttons-container ty-wish-list__buttons">
+					@if (Model != null && Model.Any())
+					{
+						<a class="btn_main btn_main_d" style="width:fit-content" asp-action="DeleteAllItems" asp-controller="Wish"><i class="fa-solid fa-trash"></i><bdi>Clear the list of pending items</bdi></a>
+					}
+					<a class="btn_main btn_main_l ms-3" style="width:fit-content" asp-action="Index" asp-controller="Product"><bdi>Продолжить покупки</bdi></a>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+
+	.ty-twishlist-item{
+		height: auto;
+		position: absolute;
+		z-index: 3;
+		top: -5px;
+		right: auto;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%,0%);
+		background: #fff;
+		border: 1px solid #08a6a8;
+		padding: 3px 7px 3px 5px;
+		border-radius: 6px;
+		text-align: center;
+		display: none;
+	}
+
+	.ty-remove{
+		position: relative;
+		display: inline-block;
+		width: auto;
+		white-space: nowrap;
+		text-decoration: none;
+	}
+
+	.ty-twishlist-item a span{
+		color: #08a6a8;
+	}
+
+	.ty-icon-cancel-circle {
+		font-size: 16px;
+		line-height: 16px;
+		color: #a3a3a3;
+	}
+
+		.ty-icon-cancel-circle:before {
+			content: "\f057";
+			font-family: FontAwesome;
+			font-weight: normal;
+		}
+
+	.ty-remove__icon {
+		vertical-align: middle;
+	}
+
+	.ty-remove__txt {
+		padding-left: 5px;
+		font-size: 12px;
+		color: #bcbcbc;
+		vertical-align: middle;
+	}
+
+	.product_card:hover .ty-twishlist-item {
+		display: inline-block;
+	}
+
+		.product_card:hover .ty-twishlist-item:hover {
+		border-color: #ff5722;
+	}
+
+			.product_card:hover .ty-twishlist-item:hover *{
+		color: #ff5722;
+	}
+
+	.main-content-grid {
+		padding-bottom: 40px;
+	}
+
+	.ty-mainbox-container {
+		margin-bottom: 20px;
+	}
+
+	.ty-mainbox-body {
+	}
+
+	.ty-grid-list {
+	}
+
+	.ty-column4 {
+		display: inline-block;
+		width: 25%;
+		vertical-align: top;
+		margin-right: -0.25em;
+	}
+
+	.ty-product-empty {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #f7f7f7;
+		box-shadow: inset 0 0 0 1px #e2e2e2;
+		margin: 0;
+		text-align: center;
+		height: 550px;
+	}
+
+	.ty-product-empty__text {
+		color: #cdcdcd;
+		font-size: 115%;
+		line-height: 190px;
+	}
+
+	.buttons-container {
+		background: #f7f7f7;
+		padding: 15px;
+		border-radius: 0;
+	}
+
+	.ty-wish-list__buttons {
+		display: inline-flex;
+		width: 100%;
+		margin-top: 20px;
+	}
+</style>

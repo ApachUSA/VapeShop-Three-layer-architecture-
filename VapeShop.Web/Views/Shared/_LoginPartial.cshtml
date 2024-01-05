@@ -2,14 +2,14 @@
 @if(User.Identity.IsAuthenticated)
 {
 	<ul style="padding: 20px 0">
-		<li class="li_style"><span class="dropdown-item disabled p-0" style="color: black">@User.Identity.Name</span></li>
+		<li style="padding: 7px 14px;"><span class="dropdown-item disabled p-0" style="color: black">@User.Identity.Name</span></li>
 		<li class="li_style"><a class="dropdown-item p-0" asp-action="Profile" asp-controller="Account">Profile</a></li>
 		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Order</a></li>
-		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Wish</a></li>
-		<li class="li_style"><a class="dropdown-item p-0" asp-action="" asp-controller="">Comparison</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-controller="Wish" asp-action="Index">Wish</a></li>
+		<li class="li_style"><a class="dropdown-item p-0" asp-controller="Comparison" asp-action="ComparisonIndex">Comparison</a></li>
 	</ul>
 	<div class="button-div">
-		<a class="btn_main btn_main_l" asp-action="Logout" asp-controller="Account">LogOut</a>
+		<a class="btn_main btn_main_l" style="width: 100%" asp-action="Logout" asp-controller="Account">LogOut</a>
 	</div>
 
 	

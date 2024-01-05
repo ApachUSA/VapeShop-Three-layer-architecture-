@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using VapeShop.Domain.Entity.Client;
+using VapeShop.Domain.Enum;
+using VapeShop.Domain.Helpers;
 using VapeShop.Domain.Response;
 using VapeShop.Infrastructure.Interfaces;
 using VapeShop.Service.Interfaces;
@@ -29,48 +31,43 @@ namespace VapeShop.Service.Implementations
 			_deliveryAddressRepository = deliveryAddressRepository;
 		}
 
-		public BaseResponse<IEnumerable<City>> GetCities()
+		public async Task<BaseResponse<IEnumerable<City>>> GetCities()
 		{
-			return new BaseResponse<IEnumerable<City>> { Value =  _cityRepository.Get().ToList().OrderBy(x => x.CityName) };
+			 return ResponseHelper.CreateResponse<IEnumerable<City>>(await _cityRepository.Get().OrderBy(x => x.CityName).ToListAsync(), null, StatusCode.Success);
 		}
 
-		public BaseResponse<IEnumerable<CommunicationMethod>> GetCommunicationMethod()
+		public async Task<BaseResponse<IEnumerable<CommunicationMethod>>> GetCommunicationMethod()
 		{
-			return new BaseResponse<IEnumerable<CommunicationMethod>> { Value = _communicationMethodRepository.Get().ToList() };
+			return ResponseHelper.CreateResponse<IEnumerable<CommunicationMethod>>(await _communicationMethodRepository.Get().ToListAsync(), null, StatusCode.Success);
 		}
 
-		public async Task<BaseResponse<User>> GetProfile(string name)
+
+		public async Task<BaseResponse<IEnumerable<Region>>> GetRegions()
+		{
+			return ResponseHelper.CreateResponse<IEnumerable<Region>>(await _regionRepository.Get().ToListAsync(), null, StatusCode.Success);
+		}
+
+		public async Task<BaseResponse<User>> GetProfile(int userID)
 		{
 			try
 			{
-				var surname_name = name.Split(' ');
-				var user = _userRepository.Get()
-					.Where(x => x.Surname == surname_name[0] && x.Name == surname_name[1])
+				var user = await _userRepository.Get()
+					.Where(x => x.UserID == userID)
 					.Include(x => x.CommunicationMethod)
 					.Include(x => x.DeliveryAddress)
-					.FirstOrDefault();
+					.FirstOrDefaultAsync();
+
 				if(user == null)
 				{
-					return new BaseResponse<User>
-					{
-						StatusCode = Domain.Enum.StatusCode.UserNotFound,
-						Descrition = "User not found",
-					};
+					return ResponseHelper.CreateResponse<User>(null, "User not found", StatusCode.UserNotFound);
 				}
 
-				return new BaseResponse<User>
-				{
-					Value = user,
-					StatusCode = Domain.Enum.StatusCode.Succes,
-				};
+				return ResponseHelper.CreateResponse(user, null, StatusCode.Success);
 
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<User>()
-				{
-					Descrition = ex.Message
-				};
+				return ResponseHelper.CreateResponse<User>(null, $"[GetProfile] : {ex.Message}", StatusCode.InternalServerError);
 			}
 		}
 
@@ -90,19 +87,12 @@ namespace VapeShop.Service.Implementations
 				}
 				await _userRepository.Update(model);
 
-				return new BaseResponse<User>
-				{
-					Value = model,
-					StatusCode = Domain.Enum.StatusCode.Succes,
-				};
+				return ResponseHelper.CreateResponse(model, null, StatusCode.Success);
 
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<User>()
-				{
-					Descrition = ex.Message
-				};
+				return ResponseHelper.CreateResponse<User>(null, $"[UpdateProfile] : {ex.Message}", StatusCode.InternalServerError);
 			}
 		}
 	}
