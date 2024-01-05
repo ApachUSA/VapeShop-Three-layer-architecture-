@@ -4,176 +4,176 @@
 
 
 
-<div class="container">
-	<div class="row"></div>
-	<div class="row mt-4">
-		<div class="col-11">
-			<h3 class="fw-bold">@Model.Name - @Model.LongName @((int)Model.Volume)ml</h3>
-		</div>
-		<div class="col-1 d-inline-flex">
-			<a class="btn_main btn_main_d" asp-action="Edit" asp-controller="Product" asp-route-id="@Model.LiquidID"><i class="fa-regular fa-pen-to-square"></i></a>
-			<a class="btn_main btn_main_d" asp-action="Delete" asp-controller="Product" asp-route-liquid_id="@Model.LiquidID"><i class="fa-solid fa-trash"></i></i></a>
-		</div>
-
+div class="container">
+<div class="row"></div>
+<div class="row mt-4">
+	<div class="col-11">
+		<h3 class="fw-bold">@Model.Name - @Model.LongName @((int)Model.Volume)ml</h3>
+	</div>
+	<div class="col-1 d-inline-flex">
+		<a class="btn_main btn_main_d" asp-action="Edit" asp-controller="Product" asp-route-id="@Model.LiquidID"><i class="fa-regular fa-pen-to-square"></i></a>
+		<a class="btn_main btn_main_d" asp-action="Delete" asp-controller="Product" asp-route-liquid_id="@Model.LiquidID"><i class="fa-solid fa-trash"></i></i></a>
 	</div>
 
-	<div class="row mt-4" style="padding: 25px; margin: 0 10px 0 0;">
-		<div class="col-6">
-			<img height="450" src="@Model.Image" />
+</div>
+
+<div class="row mt-4" style="padding: 25px; margin: 0 10px 0 0;">
+	<div class="col-6">
+		<img height="450" src="@Model.Image" />
+	</div>
+
+	<div class="col-6" style="box-shadow: 0 0.1rem 2rem rgba(54,54,54,0.1); border-radius: 8px; ">
+
+		<div class="row text-end" style="line-height: 30px; border-bottom: 1px solid lightgray">
+			<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">CODE: @Model.LiquidID</p>
 		</div>
 
-		<div class="col-6" style="box-shadow: 0 0.1rem 2rem rgba(54,54,54,0.1); border-radius: 8px; ">
+		<div class="row mt-3">
+			<div class="col-6 ms-4">
+				@{
+					var liquid_pgvg = Model.Liquid_Params.Select(x => x.PG_VG).Distinct().ToDictionary(x => x.PG_VG_ID, x => x.PG_VG_name);
+				}
 
-			<div class="row text-end" style="line-height: 30px; border-bottom: 1px solid lightgray">
-				<p style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; margin: 5px">CODE: @Model.LiquidID</p>
-			</div>
-
-			<div class="row mt-3">
-				<div class="col-6 ms-4">
-					@{
-						var liquid_pgvg = Model.Liquid_Params.Select(x => x.PG_VG).Distinct().ToDictionary(x => x.PG_VG_ID, x => x.PG_VG_name);
-					}
-
-					<div class="col"><h3 class="fw-bold price">@Model.Price grn</h3></div>
-					<div class="col">
-						<p style="color: #08a6a8">
-							<i class="fa-regular fa-circle-check"></i>  available
-						</p>
+				<div class="col"><h3 class="fw-bold price">@Model.Price grn</h3></div>
+				<div class="col">
+					<p style="color: #08a6a8">
+						<i class="fa-regular fa-circle-check"></i>  available
+					</p>
+				</div>
+				<br />
+				<div class="col fw-bold">Ratio PG/VG</div>
+				@foreach (var item in liquid_pgvg)
+				{
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="liquidSelection" value="@item.Key">
+						<label class="form-check-label" for="flexRadioDefault1">
+							@item.Value
+						</label>
 					</div>
-					<br />
-					<div class="col fw-bold">Ratio PG/VG</div>
-					@foreach (var item in liquid_pgvg)
-					{
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="liquidSelection" value="@item.Key">
-							<label class="form-check-label" for="flexRadioDefault1">
-								@item.Value
-							</label>
-						</div>
-					}
-					<br />
+				}
+				<br />
 
-					<div class="col fw-bold">Nicotine</div>
-					<div class="col">
-						<select class="form-select" id="selectNicotine">
-							<option selected>Select PG/VG</option>
-						</select>
-					</div>
-					<div class="row mt-3">
-						<div class="col-5  pe-0">
-							<div class="ty-qty">
-								<div class="ty-value-changer">
-									<a class="ty-value-changer__increase">+</a>
-									<input type="text" size="5" class="ty-value-changer__input" value="1" id="countInput">
-									<a class="ty-value-changer__decrease">−</a>
-								</div>
+				<div class="col fw-bold">Nicotine</div>
+				<div class="col">
+					<select class="form-select" id="selectNicotine">
+						<option selected>Select PG/VG</option>
+					</select>
+				</div>
+				<div class="row mt-3">
+					<div class="col-5  pe-0">
+						<div class="ty-qty">
+							<div class="ty-value-changer">
+								<a class="ty-value-changer__increase">+</a>
+								<input type="text" size="5" class="ty-value-changer__input" value="1" id="countInput">
+								<a class="ty-value-changer__decrease">−</a>
 							</div>
 						</div>
-						<div class="col-7 ps-0">
-							<button class="btn_main btn_main_l" style="height: 50px; width: 100%;" id="addToCartButton">
-
-									<i class="fa-solid fa-cart-shopping pe-2"></i> Add to cart
-							</button>
-						</div>
 					</div>
+					<div class="col-7 ps-0">
+						<button class="btn_main btn_main_l" style="height: 50px; width: 100%;" id="addToCartButton">
 
-					<div class="col mt-2 text-center">
-						<a id="addToWish" class="link_hover" style="color: #08a6a8">
-							<i class="fa-regular fa-heart"></i>
-							<span>Wish</span>
-						</a>
-
-						<a class="link_hover" id="addToComparison" style="color: #08a6a8">
-							<i class="bi bi-bar-chart"></i>
-							Compare
-						</a>
-
+							<i class="fa-solid fa-cart-shopping pe-2"></i> Add to cart
+						</button>
 					</div>
-					</form>
+				</div>
+
+				<div class="col mt-2 text-center">
+					<a id="addToWish" class="link_hover" style="color: #08a6a8">
+						<i class="fa-regular fa-heart"></i>
+						<span>Wish</span>
+					</a>
+
+					<a class="link_hover" id="addToComparison" style="color: #08a6a8">
+						<i class="bi bi-bar-chart"></i>
+						Compare
+					</a>
 
 				</div>
 
-				<div class="col-5 text-start">
-					<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
-						<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-							<i class="bi bi-truck"></i>
-							Delivery
-						</a>
-						<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample">
-							- Новая Почта
-							<br />
-							- Bolt  доставка (Заророжье)
-						</p>
+			</div>
+
+			<div class="col-5 text-start">
+				<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
+					<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+						<i class="bi bi-truck"></i>
+						Delivery
+					</a>
+					<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample">
+						- Новая Почта
+						<br />
+						- Bolt  доставка (Заророжье)
+					</p>
+				</div>
+				<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
+					<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample">
+						<i class="bi bi-credit-card"></i>
+						Payment options
+					</a>
+					<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample2">
+						<br />
+						— Payment by card	<br />
+						— Cash on delivery at the Store
+					</p>
+				</div>
+				<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
+					<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample">
+						<i class="bi bi-star"></i>
+						Our advantages
+					</a>
+					<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample3">
+						— Собственное производство	<br />
+						— Широкий ассортимент<br />
+						— Быстрая отправка<br />
+						— Доступные цены<br />
+						— Гарантии соблюдения всех  производственых норм и условий правил хранения
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row mt-4 mb-4">
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
+			<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Characteristics</button>
+		</div>
+	</nav>
+	<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+			<div id="formattedText" class="product_description">
+				@Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+				<div class="text-center">
+					<div><strong>VAPEJOY</strong></div>
+					<div><strong>- MORE THAN JUST TASTE -</strong></div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+			<div class="content_features">
+				<div class="filter_container">
+					<div class="product_feature">
+						<div class="product_feature_label"><span>Flavors by species</span></div>
+						<div class="product_feature_value">@Model.Flavor.Flavor_name</div>
 					</div>
-					<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
-						<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample">
-							<i class="bi bi-credit-card"></i>
-							Payment options
-						</a>
-						<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample2"><br />
-							— Payment by card	<br />
-							— Cash on delivery at the Store
-						</p>
+					<div class="product_feature">
+						<div class="product_feature_label"><span>Bottle volume</span></div>
+						<div class="product_feature_value">@((int)Model.Volume)ml</div>
 					</div>
-					<div class="col" style="border-bottom: 1px solid gray; line-height: 50px">
-						<a class="link_hover fw-bold" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample">
-							<i class="bi bi-star"></i>
-							Our advantages
-						</a>
-						<p style="line-height: 1.5em; font-family: Arial" class="collapse mt-2" id="collapseWidthExample3">
-							— Собственное производство	<br />
-							— Широкий ассортимент<br />
-							— Быстрая отправка<br />
-							— Доступные цены<br />
-							— Гарантии соблюдения всех  производственых норм и условий правил хранения
-						</p>
+					<div class="product_feature">
+						<div class="product_feature_label"><span>Liquid type</span></div>
+						<div class="product_feature_value">@Model.LiquidType</div>
+					</div>
+					<div class="product_feature">
+						<div class="product_feature_label"><span>Flavor level</span></div>
+						<div class="product_feature_value">Saturated</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="row mt-4 mb-4">
-		<nav>
-			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
-				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Characteristics</button>
-			</div>
-		</nav>
-		<div class="tab-content" id="nav-tabContent">
-			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-				<div id="formattedText" class="product_description">
-					@Html.Raw(HttpUtility.HtmlDecode(Model.Description))
-					<div class="text-center">
-						<div><strong>VAPEJOY</strong></div>
-						<div><strong>- MORE THAN JUST TASTE -</strong></div>
-					</div>
-				</div>
-			</div>
-			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-				<div class="content_features">
-					<div class="filter_container">
-						<div class="product_feature">
-							<div class="product_feature_label"><span>Flavors by species</span></div>
-							<div class="product_feature_value">@Model.Flavor.Flavor_name</div>
-						</div>
-						<div class="product_feature">
-							<div class="product_feature_label"><span>Bottle volume</span></div>
-							<div class="product_feature_value">@((int)Model.Volume)ml</div>
-						</div>
-						<div class="product_feature">
-							<div class="product_feature_label"><span>Liquid type</span></div>
-							<div class="product_feature_value">@Model.LiquidType</div>
-						</div>
-						<div class="product_feature">
-							<div class="product_feature_label"><span>Flavor level</span></div>
-							<div class="product_feature_value">Saturated</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+</div>
 
 </div>
 
@@ -326,7 +326,7 @@
 					UpdateWishCount();
 				},
 				error: function (error) {
-				 // Здесь предполагается, что текст ошибки возвращается как "message" в JSON
+					// Здесь предполагается, что текст ошибки возвращается как "message" в JSON
 					$("#e_toastText").text(error.responseText);
 					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
 					errorToast.show();
@@ -481,6 +481,6 @@
 			}
 		}
 
-		
+
 	}
 </script>

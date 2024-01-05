@@ -46,11 +46,6 @@ namespace VapeShop.Service.Implementations
 			try
 			{
 				foreach (var param in model) await _liquid_paramRepository.Create(param);
-				return new BaseResponse<bool>()
-				{
-					Value = true,
-					Descrition = "Liquid_params added",
-					StatusCode = StatusCode.Succes
 
 				return ResponseHelper.CreateResponse(true, "Liquid_params added", StatusCode.Success);
 			}
@@ -66,10 +61,6 @@ namespace VapeShop.Service.Implementations
 			{
 
 				await _liquid_paramRepository.Delete(model);
-				return new BaseResponse<bool>()
-				{
-					Value = true,
-					StatusCode = StatusCode.Succes
 
 				return ResponseHelper.CreateResponse(true, $"Liquid_param (id: {model.LiquidParamID}) deleted", StatusCode.Success);
 
@@ -90,10 +81,6 @@ namespace VapeShop.Service.Implementations
 				{
 					return ResponseHelper.CreateResponse(false, $"Liquid_param (id: {liquidParamID}) not found", StatusCode.ItemNotFound);
 				}
-				return new BaseResponse<bool>()
-				{
-					Value = false,
-					StatusCode = StatusCode.InternalServerError
 
 				await _liquid_paramRepository.Delete(liquid_param);
 				return ResponseHelper.CreateResponse(true, $"Liquid_param (id: {liquid_param.LiquidParamID}) deleted", StatusCode.Success);
@@ -115,7 +102,7 @@ namespace VapeShop.Service.Implementations
 					return ResponseHelper.CreateResponse<Liquid_param>(null, $"Liquid_param (id: {id}) not found", StatusCode.ItemNotFound);
 				}
 
-				return ResponseHelper.CreateResponse(liquid_param,null, StatusCode.Success);
+				return ResponseHelper.CreateResponse(liquid_param, null, StatusCode.Success);
 			}
 			catch (Exception ex)
 			{
@@ -156,7 +143,6 @@ namespace VapeShop.Service.Implementations
 				{
 					return ResponseHelper.CreateResponse<IEnumerable<Nicotine>>(null, $"Nicotines not found", StatusCode.ItemNotFound);
 
-					};
 				}
 
 				return ResponseHelper.CreateResponse<IEnumerable<Nicotine>>(nicotines, null, StatusCode.Success);
@@ -166,8 +152,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return ResponseHelper.CreateResponse<IEnumerable<Nicotine>>(null, $"[GetNicotines] : {ex.Message}", StatusCode.InternalServerError);
 
-				};
-			}
+			};
 		}
 
 		public Task<BaseResponse<IEnumerable<Nicotine>>> GetNicotine(int liquid_id)
@@ -184,8 +169,6 @@ namespace VapeShop.Service.Implementations
 				if (pG_VGs == null)
 				{
 					return ResponseHelper.CreateResponse<IEnumerable<PG_VG>>(null, $"PG_VG not found", StatusCode.ItemNotFound);
-
-					};
 				}
 
 				return ResponseHelper.CreateResponse<IEnumerable<PG_VG>>(pG_VGs, null, StatusCode.Success);
@@ -195,8 +178,7 @@ namespace VapeShop.Service.Implementations
 			{
 				return ResponseHelper.CreateResponse<IEnumerable<PG_VG>>(null, $"[GetPG_VGs] : {ex.Message}", StatusCode.InternalServerError);
 
-				};
-			}
+			};
 		}
 
 		public Task<BaseResponse<IEnumerable<PG_VG>>> GetPG_VG(int liquid_id)

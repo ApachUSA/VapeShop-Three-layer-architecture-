@@ -71,11 +71,6 @@ namespace VapeShop.Service.Implementations
 			}
 		}
 
-		public BaseResponse<IEnumerable<Region>> GetRegions()
-		{
-			return new BaseResponse<IEnumerable<Region>> { Value = _regionRepository.Get().ToList() };
-		}
-
 		public async Task<BaseResponse<User>> Update(User model)
 		{
 			try

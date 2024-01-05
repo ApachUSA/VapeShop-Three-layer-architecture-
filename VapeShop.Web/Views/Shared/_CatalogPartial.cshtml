@@ -5,7 +5,7 @@
 
 <div class="row">
 
-	
+
 	<div class="grid_ist">
 
 
@@ -26,7 +26,7 @@
 									if (liquid.Liquid_Params.Any()) liquid_pramaID = liquid.Liquid_Params.FirstOrDefault().LiquidParamID;
 								}
 								<div class="body_image_btn hidden">
-									<a  class="quick_view_btn add-to-wishlist" data-liquid-id="@liquid.LiquidID" data-liquid-prama-id="@liquid_pramaID">
+									<a class="quick_view_btn add-to-wishlist" data-liquid-id="@liquid.LiquidID" data-liquid-prama-id="@liquid_pramaID">
 										<i class="far fa-heart"></i>
 									</a>
 
@@ -88,7 +88,6 @@
 	}
 
 	.column {
-	
 		flex-basis: auto;
 		min-width: 200px;
 		margin-right: 0;
@@ -141,67 +140,68 @@
 		box-shadow: inset 0 0 0 1px #efefef;
 		transition: box-shadow 0.1s ease-in-out;
 	}
+</style>
 
-<script>
+	<script>
 	$(document).ready(function () {
-		$('.add-to-wishlist').click(function (e) {
-			e.preventDefault(); // Предотвращаем стандартное действие ссылки
+			$('.add-to-wishlist').click(function (e) {
+				e.preventDefault(); // Предотвращаем стандартное действие ссылки
 
-			var liquidID = $(this).data('liquid-id');
-			var liquidPramaID = $(this).data('liquid-prama-id');
+				var liquidID = $(this).data('liquid-id');
+				var liquidPramaID = $(this).data('liquid-prama-id');
 
-			$.ajax({
-				type: 'POST',
-				url: "@Url.Action("AddItem", "Wish")",
-				data: { liquidID: liquidID, liquid_pramaID: liquidPramaID },
-				success: function (response) {
-					var toastText = "Item added to wish";
-					$("#s_toastText").text(toastText);
-					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
-					Toast.show();
-					UpdateWishCount();
-				},
-				error: function (error) {
-					$("#e_toastText").text(error.responseText);
-					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
-					errorToast.show();
-				}
+				$.ajax({
+					type: 'POST',
+					url: "@Url.Action("AddItem", "Wish")",
+					data: { liquidID: liquidID, liquid_pramaID: liquidPramaID },
+					success: function (response) {
+						var toastText = "Item added to wish";
+						$("#s_toastText").text(toastText);
+						var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+						Toast.show();
+						UpdateWishCount();
+					},
+					error: function (error) {
+						$("#e_toastText").text(error.responseText);
+						var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+						errorToast.show();
+					}
+				});
 			});
 		});
-	});
 
-</script>
+	</script >
 
-<script>
+	<script >
 	$(document).ready(function () {
-		$('.add-to-comparisonList').click(function (e) {
-			e.preventDefault(); // Предотвращаем стандартное действие ссылки
+			$('.add-to-comparisonList').click(function (e) {
+				e.preventDefault(); // Предотвращаем стандартное действие ссылки
 
-			var liquidID = $(this).data('liquid-id');
+				var liquidID = $(this).data('liquid-id');
 
-			$.ajax({
-				type: 'POST',
-				url: "@Url.Action("AddItem", "Comparison")",
-				data: { liquidID: liquidID },
-				success: function (response) {
-					var toastText = "Product has been added to comparison list";
-					$("#s_toastText").text(toastText);
-					var Toast = new bootstrap.Toast(document.getElementById('successToast'));
-					Toast.show();
-					UpdateComparisonCount();
-				},
-				error: function (error) {
-					$("#e_toastText").text(error.responseText);
-					var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
-					errorToast.show();
-				}
+				$.ajax({
+					type: 'POST',
+					url: "@Url.Action("AddItem", "Comparison")",
+					data: { liquidID: liquidID },
+					success: function (response) {
+						var toastText = "Product has been added to comparison list";
+						$("#s_toastText").text(toastText);
+						var Toast = new bootstrap.Toast(document.getElementById('successToast'));
+						Toast.show();
+						UpdateComparisonCount();
+					},
+					error: function (error) {
+						$("#e_toastText").text(error.responseText);
+						var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+						errorToast.show();
+					}
+				});
 			});
 		});
-	});
 
-</script>
+	</script >
 
-<style>
+	<style >
 
 	.collapse_price {
 		display: flex;

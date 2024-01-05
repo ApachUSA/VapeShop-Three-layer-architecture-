@@ -110,13 +110,6 @@ namespace VapeShop.Service.Implementations
 					.ThenInclude(lp => lp.Nicotine)
 					.FirstOrDefaultAsync(x => x.LiquidID == id);
 
-				if (liquid == null)
-				{
-					return new BaseResponse<Liquid>()
-					{
-						Descrition = "Liquid not found",
-						StatusCode = StatusCode.InternalServerError
-
 				if (liquid == null) return ResponseHelper.CreateResponse<Liquid>(null, $"Liquid (id : {id}) not found", StatusCode.ItemNotFound);
 
 				return ResponseHelper.CreateResponse(liquid, null, StatusCode.Success);
@@ -125,7 +118,6 @@ namespace VapeShop.Service.Implementations
 			{
 				return ResponseHelper.CreateResponse<Liquid>(null, $"[GetLiquid] : {ex.Message}", StatusCode.InternalServerError);
 
-				};
 			}
 
 		}

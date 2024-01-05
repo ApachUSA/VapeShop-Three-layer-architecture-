@@ -172,8 +172,6 @@ namespace VapeShop.Web.Controllers
 				return PartialView("_CatalogPartial", filteredProducts.Value);
 			}
 			return View("Error", $"{filteredProducts.Description}");
-
-			return PartialView("_CatalogPartial", filteredProducts);
 		}
 
 
