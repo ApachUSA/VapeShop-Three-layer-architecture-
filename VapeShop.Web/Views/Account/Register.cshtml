@@ -2,17 +2,13 @@
 @model RegisterVM
 
 
-@{
-	ViewData["Title"] = "Register";
-}
-
 
 <div class="container">
 
 	<div class="row"></div>
 
 	<div class="row mt-4">
-		<h3 class="fw-bold">Создать учетную запись</h3>
+		<h3 class="fw-bold">Create an account</h3>
 	</div>
 
 
@@ -41,7 +37,7 @@
 						<span asp-validation-for="Phone" class="text-danger"></span>
 					</div>
 					<div class="form-group mb-3">
-						<label asp-for="CommunicationMethodID"></label><br />
+						<label asp-for="CommunicationMethodID">Communication method</label><br />
 						@foreach (CommunicationMethod commMethod in ViewBag.CommMethod)
 						{
 							<label class="m-2" style="font-weight: 500">
@@ -63,7 +59,7 @@
 						<span asp-validation-for="Password" class="text-danger"></span>
 					</div>
 					<div class="form-group mb-3">
-						<label asp-for="PasswordConfirme"></label>
+						<label asp-for="PasswordConfirme">Password confirmation</label>
 						<input asp-for="PasswordConfirme" type="password" class="form-control" />
 						<span asp-validation-for="PasswordConfirme" class="text-danger"></span>
 					</div>
@@ -75,12 +71,12 @@
 
 		<div class="col-6" style="padding-left: 40px">
 			<div>
-				<h4 class="fw-bold" style="font-size: 19px">Преимущества зарегистрированного пользователя:</h4>
+				<h4 class="fw-bold" style="font-size: 19px">Benefits of a registered user:</h4>
 				<br />
 				<ul>
-					<li>Отслеживание заказов на персональной странице</li>
-					<li>Возможность настроить магазин под себя для более удобных покупок</li>
-					<li>Ускоренное оформление последующих заказов</li>
+					<li>Tracking orders on your personal page</li>
+					<li>Ability to customize the store for more convenient shopping</li>
+					<li>Expedited processing of subsequent orders</li>
 				</ul>
 			</div>
 		</div>
